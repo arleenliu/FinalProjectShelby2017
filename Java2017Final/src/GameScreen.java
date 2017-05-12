@@ -1,5 +1,5 @@
 
-public class kjojk {
+public class GameScreen {
 
 	private int x;
 	
