@@ -25,6 +25,9 @@ public class Character {
 	public int getY(){
 		return y;
 	}
+	
+	
+	
 	public void die(int windowHeight){
 		if (y >= windowHeight){
 			isDead = true;
