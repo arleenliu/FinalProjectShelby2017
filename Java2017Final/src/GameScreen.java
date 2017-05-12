@@ -43,7 +43,6 @@ public class GameScreen extends JPanel implements KeyListener {
 		Color LIGHTGRAY = new Color(211, 211, 211);
 		g.setColor(LIGHTGRAY);
 		g.fillRect(650, 0,  150, height);
-		
 	}
 
 
