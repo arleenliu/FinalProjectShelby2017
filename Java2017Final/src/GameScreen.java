@@ -1,9 +1,10 @@
+//Helen
+//graphics of the game screen
 
 public class GameScreen {
 
-	private int x;
-	
 
+	
 	public void y() {
 		
 	}
