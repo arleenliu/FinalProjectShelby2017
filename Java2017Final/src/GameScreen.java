@@ -33,15 +33,16 @@ public class GameScreen extends JPanel implements KeyListener {
 		int height = getHeight();
 		
 		//platform for character
-		Color PALEGREEN = new Color(152, 251, 152);
+		Color PALEGREEN = new Color(160, 255, 100);
 		g.setColor(PALEGREEN);
-		g.fillRect(0,400, 150, 200);
-		
-		
+		g.fillRect(0, 400, 150, 200);		
 		
 		//platform for target
-		
+		g.fillRect(500, 300, 150, 300);
 		//screen
+		Color LIGHTGRAY = new Color(211, 211, 211);
+		g.setColor(LIGHTGRAY);
+		g.fillRect(650, 0,  150, height);
 		
 	}
 
