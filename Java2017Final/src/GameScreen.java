@@ -56,6 +56,8 @@ public class GameScreen extends JPanel implements MouseListener {
 
 		if(drawHelperObj == true) {
 			g.fillRect(xClick, yClick, 50, 20);
+			drawHelperObj = false;
+			helperObj = false;
 		}
 	}
 
@@ -104,11 +106,10 @@ public class GameScreen extends JPanel implements MouseListener {
 			//if true, which means have already clicked on a block
 			else {
 				drawHelperObj = true;
-				helperObj = false;
+				repaint();
 			}
 		}
 		
-		repaint();
 	}
 
 	@Override
