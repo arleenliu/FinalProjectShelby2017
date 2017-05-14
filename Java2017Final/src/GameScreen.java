@@ -55,7 +55,7 @@ public class GameScreen extends JPanel implements MouseListener {
 		g.fillRect(700, 150, 50, 20);
 
 		if(drawHelperObj == true) {
-			g.fillRect(xClick, yClick, 50, 20);
+			new HelperObject(xClick, yClick, 50, 20).draw(g, Color.WHITE);
 			drawHelperObj = false;
 			helperObj = false;
 		}
@@ -109,7 +109,7 @@ public class GameScreen extends JPanel implements MouseListener {
 				repaint();
 			}
 		}
-		
+
 	}
 
 	@Override
