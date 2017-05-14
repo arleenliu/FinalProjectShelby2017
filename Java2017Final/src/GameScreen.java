@@ -21,6 +21,7 @@ public class GameScreen extends JPanel implements MouseListener {
 
 	private boolean helperObj, drawHelperObj;
 	private int xClick, yClick;
+	private int objWidth, objHeight;
 
 	private GameScreen () {
 		slingshot = new Slingshot();
@@ -28,6 +29,8 @@ public class GameScreen extends JPanel implements MouseListener {
 		target = new Target();		
 
 		helperObj = false;
+		objWidth = 60;
+		objHeight = 30;
 
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
@@ -52,10 +55,10 @@ public class GameScreen extends JPanel implements MouseListener {
 		g.setColor(LIGHTGRAY);
 		g.fillRect(650, 0,  150, height);
 		g.setColor(Color.WHITE);
-		g.fillRect(700, 150, 50, 20);
+		g.fillRect(700, 150, objWidth, objHeight);
 
 		if(drawHelperObj == true) {
-			new HelperObject(xClick, yClick, 50, 20).draw(g, Color.WHITE);
+			new HelperObject(xClick, yClick, objWidth, objHeight).draw(g, Color.WHITE);
 			drawHelperObj = false;
 			helperObj = false;
 		}
@@ -93,6 +96,7 @@ public class GameScreen extends JPanel implements MouseListener {
 	}
 
 	@Override
+	//right click to rotate? or have different helper obj?
 	public void mousePressed(MouseEvent e) {
 		xClick = e.getX();
 		yClick = e.getY();
@@ -100,7 +104,7 @@ public class GameScreen extends JPanel implements MouseListener {
 
 		if(button == MouseEvent.BUTTON1) {
 			if(helperObj == false) {
-				if(xClick>= 700 && xClick<=750 && yClick>=150 && yClick <=170)
+				if(xClick>= 700 && xClick<=700+objWidth && yClick>=150 && yClick <=150+objHeight)
 					helperObj = true;
 			}
 			//if true, which means have already clicked on a block
