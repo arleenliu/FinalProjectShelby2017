@@ -96,7 +96,7 @@ public class GameScreen extends JPanel implements MouseListener {
 	}
 
 	@Override
-	//right click to rotate? or have different helper obj?
+	//right click to rotate? or have different helper obj? ignore rotation for now
 	public void mousePressed(MouseEvent e) {
 		xClick = e.getX();
 		yClick = e.getY();
