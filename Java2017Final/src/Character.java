@@ -28,18 +28,19 @@ public class Character {
 	
 	
 	
-	public void die(int windowHeight){
-		if (y >= windowHeight){
-			isDead = true;
-		}
+	public void die(){
+		isDead = true;
 	}
 	public boolean isOnTarget(){
 	
 		return true;
 	}
-	public void launch(){
+	public void launch(int angle, int distance){
 		
 	}
+	
+	
+	//code this later
 	public void bounce(){
 		
 	}
