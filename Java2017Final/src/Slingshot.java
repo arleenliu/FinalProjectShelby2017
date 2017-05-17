@@ -3,9 +3,7 @@ import java.awt.Image;
 public class Slingshot {
 
 	// FIELDS
-	private Image slingshotImg;
 	private static final double GRAVITY = 9.81;
-	private int height, width;
 	private int length;
 	// velocityI calculation will be figured out later
 	private int velocityI, velocityF;
@@ -24,10 +22,7 @@ public class Slingshot {
 		return xVelocity;
 	}
 
-	public Slingshot(Image slingshot, int h, int w, int length) {
-		slingshotImg = slingshot;
-		height = h;
-		width = w;
+	public Slingshot(int length) {
 		this.length = length;
 		setVelocity();
 		velocityI = 0;
