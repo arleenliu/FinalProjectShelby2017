@@ -28,7 +28,8 @@ public class GameScreen extends JPanel implements MouseListener {
 	private int xClick, yClick;
 	private int objWidth, objHeight;
 	private int slingX, slingY;
-
+	private boolean slingClicked, changeSling;
+	
 	private GameScreen () {
 		slingshot = new Slingshot();
 		//charImg = (new ImageIcon("sunImg.png").getImage());
@@ -40,6 +41,8 @@ public class GameScreen extends JPanel implements MouseListener {
 		objWidth = 60;
 		objHeight = 30;
 		
+		slingClicked = false;
+		changeSling = false;
 		slingX = 60;
 		slingY = 335;
 
@@ -66,13 +69,19 @@ public class GameScreen extends JPanel implements MouseListener {
 		Graphics2D g2 = (Graphics2D)g;
         g2.setStroke(new BasicStroke(8));
 		g2.drawLine(90, 340, slingX, slingY	);
-		
+		if(changeSling == true) {
+			slingX = xClick;
+			slingY = yClick;
+			slingClicked = false;
+			changeSling = false;
+		}
 		
 		//character
 		g.drawImage(charImg, 150, 200, 50, 50, this);
 		
 
 		//platform for target
+		g.setColor(PALEGREEN);
 		g.fillRect(500, 300, 150, 300);
 
 		//screen w/ all the things
@@ -140,6 +149,17 @@ public class GameScreen extends JPanel implements MouseListener {
 				drawHelperObj = true;
 				repaint();
 			}
+			
+			if(slingClicked == false) {
+				//if it's approximately near the slingshot bc too lazy for precise coordinates lol
+				if(xClick>=50 && xClick<=120 && yClick>=300 && yClick<=400)
+					slingClicked = true;
+			}
+			else {
+				changeSling = true;
+				repaint();
+			}
+			
 		}
 
 	}
