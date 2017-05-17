@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,7 +18,7 @@ import javax.swing.JPanel;
 //graphics of the game screen, background 
 //has character, slingshot, target, + the menu w/ the helper blocks
 
-public class GameScreen extends JPanel implements MouseListener {
+public class GameScreen extends JPanel implements MouseListener, MouseMotionListener {
 
 	private Slingshot slingshot;
 	private Character character;
@@ -30,7 +31,7 @@ public class GameScreen extends JPanel implements MouseListener {
 	//private int slingX, slingY;
 	private boolean slingClicked, changeSling;
 	
-	private GameScreen () {
+	public GameScreen () {
 		//charImg = (new ImageIcon("sunImg.png").getImage());
 		slingImg = (new ImageIcon("slingshot1.png").getImage());
 		charImg = (new ImageIcon("trashcanCharacter.png").getImage());
@@ -173,6 +174,18 @@ public class GameScreen extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
