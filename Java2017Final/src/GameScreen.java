@@ -156,20 +156,20 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			if(helperObj == false) {
 				if(xClick>= 700 && xClick<=700+objWidth && yClick>=150 && yClick <=150+objHeight){
 					helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
-					helperObj = true;	
+					helperObj = true;
 				}
 					repaint();
 
 			}
 			//if true, which means have already clicked on a block
 			else {
-				drawHelperObj = true;
+				if (xClick < 650){
+					drawHelperObj = true;
 				}
+				
+			}
 			
-			
-			
-			
-			
+			repaint();
 			
 			
 			
