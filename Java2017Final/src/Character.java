@@ -4,7 +4,7 @@ public class Character {
 	//FIELDS
 	private int x; //location of character
 	private int y;
-	private Image characImg;
+	private Image charImg;
 	private boolean isDead;
 
 	
@@ -12,7 +12,7 @@ public class Character {
 	public Character (int xLoc, int yLoc, Image character){
 		x = xLoc;
 		y = yLoc;
-		characImg = character;
+		charImg = character;
 		isDead = false;
 	}
 	
