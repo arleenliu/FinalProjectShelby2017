@@ -4,7 +4,7 @@ public class Fling {
 	
 	public static void main(String[] args)
 	{
-		JFrame w = new JFrame("Game Screen!!");
+		JFrame w = new JFrame("Fling");
 		w.setBounds(100, 100, 800, 600);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GameScreen panel = new GameScreen();
