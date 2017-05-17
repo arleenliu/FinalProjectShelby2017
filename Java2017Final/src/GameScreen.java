@@ -22,7 +22,7 @@ public class GameScreen extends JPanel implements MouseListener {
 	private Slingshot slingshot;
 	private Character character;
 	private Target target;
-	private Image charImg;
+	private Image charImg, slingImg;
 
 	private boolean helperObj, drawHelperObj;
 	private int xClick, yClick;
@@ -31,8 +31,8 @@ public class GameScreen extends JPanel implements MouseListener {
 	private boolean slingClicked, changeSling;
 	
 	private GameScreen () {
-		slingshot = new Slingshot();
 		//charImg = (new ImageIcon("sunImg.png").getImage());
+		slingImg = (new ImageIcon("slingshot1.png").getImage());
 		charImg = (new ImageIcon("trashcanCharacter.png").getImage());
 		character = new Character(150, 200, charImg);
 		target = new Target();		
@@ -45,7 +45,7 @@ public class GameScreen extends JPanel implements MouseListener {
 		changeSling = false;
 		slingX = 60;
 		slingY = 335;
-
+		
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
 	}
@@ -62,22 +62,24 @@ public class GameScreen extends JPanel implements MouseListener {
 		g.fillRect(0, 400, 150, 200);	
 		
 		//slingshot body
-		Color BROWN = new Color(185, 155, 75);
+		g.drawImage(slingImg, 60, 300, 70, 100, this);
+		/*Color BROWN = new Color(185, 155, 75);
 		g.setColor(BROWN);
 		g.fillRect(90, 330, 20, 70);
-		//sling shot string/line
+		//sling shot string/line		
 		Graphics2D g2 = (Graphics2D)g;
         g2.setStroke(new BasicStroke(8));
+        
 		g2.drawLine(90, 340, slingX, slingY	);
 		if(changeSling == true) {
 			slingX = xClick;
 			slingY = yClick;
 			slingClicked = false;
 			changeSling = false;
-		}
+		} */
 		
 		//character
-		g.drawImage(charImg, 150, 200, 50, 50, this);
+		g.drawImage(charImg, 60, 320, 46, 46, this);
 		
 
 		//platform for target
@@ -94,8 +96,8 @@ public class GameScreen extends JPanel implements MouseListener {
 
 		if(drawHelperObj == true) {
 			new HelperObject(xClick, yClick, objWidth, objHeight).draw(g, Color.WHITE);
-			drawHelperObj = false;
 			helperObj = false;
+			drawHelperObj = false;
 		}
 		
 		
