@@ -28,7 +28,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private boolean helperObj, drawHelperObj;
 	private int xClick, yClick;
 	private int objWidth, objHeight;
-	//private int slingX, slingY;
+	private int slingX, slingY;
 	private boolean slingClicked, changeSling;
 	
 	public GameScreen () {
@@ -44,8 +44,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		
 		slingClicked = false;
 		changeSling = false;
-		//slingX = 60;
-		//slingY = 335;
+		slingX = 60;
+		slingY = 335;
 		
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
@@ -62,9 +62,13 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setColor(PALEGREEN);
 		g.fillRect(0, 400, 150, 200);	
 		
+		
+		//character
+		g.drawImage(charImg, 60, 320, 46, 46, this);
+		
 		//slingshot body
-		g.drawImage(slingImg, 60, 300, 70, 100, this);
-		/*Color BROWN = new Color(185, 155, 75);
+		//g.drawImage(slingImg, 60, 300, 70, 100, this);
+		Color BROWN = new Color(185, 155, 75);
 		g.setColor(BROWN);
 		g.fillRect(90, 330, 20, 70);
 		//sling shot string/line		
@@ -77,11 +81,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			slingY = yClick;
 			slingClicked = false;
 			changeSling = false;
-		} */
-		
-		//character
-		g.drawImage(charImg, 60, 320, 46, 46, this);
-		
+		}
 
 		//platform for target
 		g.setColor(PALEGREEN);
