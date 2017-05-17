@@ -44,7 +44,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		slingImg = (new ImageIcon("slingshot1.png").getImage());
 		charImg = (new ImageIcon("trashcanCharacter.png").getImage());
 		character = new Character(150, 200, charImg);
-		target = new Target();		
+		target = new Target(0, 0, 0);		
 
 		helperObj = false;
 		drawHelperObj = false;
@@ -83,9 +83,9 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		//g.drawImage(slingImg, 60, 300, 70, 100, this);
 		Color BROWN = new Color(185, 155, 75);
 		g.setColor(BROWN);
-		g.fillRect(90, 330, 20, 70);
+		g.fillRect(90, 330, 10, 70);
 		Graphics2D g2 = (Graphics2D)g;
-		g2.setStroke(new BasicStroke(8));
+		g2.setStroke(new BasicStroke(5));
 
 		if(slingClicked == true) {
 			g2.drawLine(90,  340, dragX, dragY);
@@ -104,14 +104,24 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setColor(LIGHTGRAY);
 		g.fillRect(650, 0,  150, height);
 
-		g.setColor(Color.WHITE);
-		g.fillRect(700, 150, objWidth, objHeight);
+		
+		
+		if (helperObj){
+			g.setColor(Color.CYAN);
+			g.fillRect(700, 150, objWidth, objHeight);
 
+		}
+		else {
+			g.setColor(Color.WHITE);
+			g.fillRect(700, 150, objWidth, objHeight);
+		
+		}
 			for (int i = 0; i < helpers.size(); i++){
 			HelperObject obj = helpers.get(i);
 			obj.draw(g, Color.WHITE);
 			
 			}
+			
 			//helperObj = false;
 			//drawHelperObj = false;
 		
