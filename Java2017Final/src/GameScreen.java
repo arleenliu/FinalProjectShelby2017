@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -26,11 +28,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private Target target;
 	private Image charImg, slingImg;
 
+	private int dragOffsetX, dragOffsetY;
+
 	private boolean helperObj, drawHelperObj;
 	private int xClick, yClick;
 	private int objWidth, objHeight;
-	private int slingX, slingY;
-	private boolean slingClicked, changeSling;
+	private int slingX, slingY, dragX, dragY;
+	private boolean slingClicked;
+
 	public ArrayList<HelperObject> helpers;
 	
 	
@@ -44,12 +49,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		helperObj = false;
 		objWidth = 60;
 		objHeight = 30;
-		
+
 		slingClicked = false;
-		changeSling = false;
 		slingX = 60;
 		slingY = 335;
-		
+		dragX = slingX;
+		dragY = slingY;
+		//sling = new Rectangle(slingX, slingY, 70, 10);	
+
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
 		
@@ -66,27 +73,26 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		Color PALEGREEN = new Color(160, 255, 100);
 		g.setColor(PALEGREEN);
 		g.fillRect(0, 400, 150, 200);	
-		
-		
+
+
 		//character
-		g.drawImage(charImg, 60, 320, 46, 46, this);
-		
+		//g.drawImage(charImg, 60, 320, 46, 46, this);
+
 		//slingshot body
 		//g.drawImage(slingImg, 60, 300, 70, 100, this);
 		Color BROWN = new Color(185, 155, 75);
 		g.setColor(BROWN);
 		g.fillRect(90, 330, 20, 70);
-		//sling shot string/line		
 		Graphics2D g2 = (Graphics2D)g;
-        g2.setStroke(new BasicStroke(8));
-        
-		g2.drawLine(90, 340, slingX, slingY	);
-		if(changeSling == true) {
-			slingX = xClick;
-			slingY = yClick;
-			slingClicked = false;
-			changeSling = false;
+		g2.setStroke(new BasicStroke(8));
+
+		if(slingClicked == true) {
+			g2.drawLine(90,  340, dragX, dragY);
 		}
+		else
+			g2.drawLine(90, 340, slingX, slingY	);
+
+		//g.fillRect(sling.x, sling.y, sling.width, sling.height);
 
 		//platform for target
 		g.setColor(PALEGREEN);
@@ -110,8 +116,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			helperObj = false;
 			drawHelperObj = false;
 		}
-		
-		
+
+
 	}
 
 
@@ -126,6 +132,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		w.setVisible(true);
 
 		panel.addMouseListener(panel);
+		panel.addMouseMotionListener(panel);
+
 	}
 
 	@Override
@@ -154,6 +162,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		if(button == MouseEvent.BUTTON1) {
 			if(helperObj == false) {
+
 				if(xClick>= 700 && xClick<=700+objWidth && yClick>=150 && yClick <=150+objHeight){
 					helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
 					helperObj = true;
@@ -165,7 +174,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			else {
 				if (xClick < 650){
 					drawHelperObj = true;
-				}
+			}
+
 				
 			}
 			
@@ -173,32 +183,42 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			
 			
 			
+
+			
+			
+			
 			if(slingClicked == false) {
 				//if it's approximately near the slingshot bc too lazy for precise coordinates lol
-				if(xClick>=50 && xClick<=120 && yClick>=300 && yClick<=400)
+				if(xClick>=50 && xClick<=120 && yClick>=300 && yClick<=400) {
 					slingClicked = true;
+					dragX = xClick;
+					dragY = yClick;
+				}
+				else {
+					//changeSling = true;
+				}
 			}
-			else {
-				changeSling = true;
-				repaint();
-			}
-			
-			
 
+			repaint();
 		}
-
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-
+		slingClicked = false;
+		repaint();
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (slingClicked = true) {
+			dragX = e.getX();
+			dragY= e.getY();
+			repaint();
+		}
+
 	}
 
 	@Override
