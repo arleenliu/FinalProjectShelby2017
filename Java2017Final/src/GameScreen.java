@@ -145,12 +145,13 @@ public class GameScreen extends JPanel implements MouseListener {
 			if(helperObj == false) {
 				if(xClick>= 700 && xClick<=700+objWidth && yClick>=150 && yClick <=150+objHeight)
 					helperObj = true;
+				repaint();
+
 			}
 			//if true, which means have already clicked on a block
 			else {
 				drawHelperObj = true;
-				repaint();
-			}
+				}
 			
 			if(slingClicked == false) {
 				//if it's approximately near the slingshot bc too lazy for precise coordinates lol
@@ -163,6 +164,7 @@ public class GameScreen extends JPanel implements MouseListener {
 			}
 			
 			
+
 		}
 
 	}
