@@ -1,8 +1,9 @@
-import java.awt.Image;
+// Arleen
 
 public class Slingshot {
 
 	// FIELDS
+	// subject to change
 	private static final double GRAVITY = 9.81;
 	private int length;
 	// velocityI calculation will be figured out later
