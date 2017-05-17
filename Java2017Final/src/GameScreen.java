@@ -27,7 +27,7 @@ public class GameScreen extends JPanel implements MouseListener {
 	private boolean helperObj, drawHelperObj;
 	private int xClick, yClick;
 	private int objWidth, objHeight;
-	private int slingX, slingY;
+	//private int slingX, slingY;
 	private boolean slingClicked, changeSling;
 	
 	private GameScreen () {
@@ -43,8 +43,8 @@ public class GameScreen extends JPanel implements MouseListener {
 		
 		slingClicked = false;
 		changeSling = false;
-		slingX = 60;
-		slingY = 335;
+		//slingX = 60;
+		//slingY = 335;
 		
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
