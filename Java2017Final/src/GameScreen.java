@@ -20,7 +20,7 @@ public class GameScreen extends JPanel implements MouseListener {
 	private Slingshot slingshot;
 	private Character character;
 	private Target target;
-	private Image charImg, slingImg;
+	private Image charImg;
 
 	private boolean helperObj, drawHelperObj;
 	private int xClick, yClick;
@@ -51,9 +51,12 @@ public class GameScreen extends JPanel implements MouseListener {
 		//platform for character
 		Color PALEGREEN = new Color(160, 255, 100);
 		g.setColor(PALEGREEN);
-		g.fillRect(0, 400, 150, 200);		
+		g.fillRect(0, 400, 150, 200);	
 		
-		//character + slingshot
+		//slingshot
+		
+		
+		//character
 		g.drawImage(charImg, 150, 200, 50, 50, this);
 		
 
