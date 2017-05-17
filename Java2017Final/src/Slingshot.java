@@ -4,7 +4,7 @@ public class Slingshot {
 
 	// FIELDS
 	// subject to change
-	private static final double GRAVITY = 9.81;
+	public static final double GRAVITY = 9.81;
 	private int length;
 	// velocityI calculation will be figured out later
 	private int velocityI, velocityF;
@@ -37,12 +37,16 @@ public class Slingshot {
 		if (jumpNum == 0) {
 			velocityI = (int) (length * GRAVITY);
 		} else {
-			velocityI = (int) (velocityF / 2.0);
+			velocityI = (int) (-velocityF / 2.0);
 			velocityF = 0;
 		}
 		
 		jumpNum++;
 
+	}
+	
+	public int getInitialVelocity() {
+		return velocityI;
 	}
 
 	public void setTimeTaken(double beginTime, double endTime) {
@@ -78,7 +82,7 @@ public class Slingshot {
 
 		yVelocityI = (int) (velocityI * Math.sin(angle));
 		yVelocityF = (int) (Math.sqrt(Math.pow(yVelocityI, 2) - 2 * GRAVITY * objectHeight));
-		velocityF = (int) (Math.sqrt(Math.pow(xVelocity, 2) + Math.pow(yVelocityF, 2)));
+		velocityF = -(int) (Math.sqrt(Math.pow(xVelocity, 2) + Math.pow(yVelocityF, 2)));
 
 		return velocityF;
 	}
