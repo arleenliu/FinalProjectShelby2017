@@ -47,6 +47,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		target = new Target();		
 
 		helperObj = false;
+		drawHelperObj = false;
 		objWidth = 60;
 		objHeight = 30;
 
@@ -106,16 +107,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setColor(Color.WHITE);
 		g.fillRect(700, 150, objWidth, objHeight);
 
-		if(drawHelperObj == true){
-			
 			for (int i = 0; i < helpers.size(); i++){
 			HelperObject obj = helpers.get(i);
 			obj.draw(g, Color.WHITE);
 			
 			}
-			helperObj = false;
-			drawHelperObj = false;
-		}
+			//helperObj = false;
+			//drawHelperObj = false;
+		
 
 
 	}
@@ -163,8 +162,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		if(button == MouseEvent.BUTTON1) {
 			if(helperObj == false) {
 
-				if(xClick>= 700 && xClick<=700+objWidth && yClick>=150 && yClick <=150+objHeight){
-					helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
+				if(xClick >= 700 && xClick <= 700 + objWidth && yClick >= 150 && yClick <= 150 + objHeight){
+					
 					helperObj = true;
 				}
 					repaint();
@@ -173,18 +172,13 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			//if true, which means have already clicked on a block
 			else {
 				if (xClick < 650){
-					drawHelperObj = true;
-			}
+					helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
+					helperObj = false;
+				}
 
-				
 			}
 			
 			repaint();
-			
-			
-			
-
-			
 			
 			
 			if(slingClicked == false) {
