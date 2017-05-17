@@ -1,6 +1,8 @@
 import java.awt.Color.*;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -25,18 +27,21 @@ public class GameScreen extends JPanel implements MouseListener {
 	private boolean helperObj, drawHelperObj;
 	private int xClick, yClick;
 	private int objWidth, objHeight;
+	private int slingX, slingY;
 
 	private GameScreen () {
 		slingshot = new Slingshot();
 		//charImg = (new ImageIcon("sunImg.png").getImage());
 		charImg = (new ImageIcon("trashcanCharacter.png").getImage());
 		character = new Character(150, 200, charImg);
-		
 		target = new Target();		
 
 		helperObj = false;
 		objWidth = 60;
 		objHeight = 30;
+		
+		slingX = 60;
+		slingY = 335;
 
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
@@ -53,7 +58,14 @@ public class GameScreen extends JPanel implements MouseListener {
 		g.setColor(PALEGREEN);
 		g.fillRect(0, 400, 150, 200);	
 		
-		//slingshot
+		//slingshot body
+		Color BROWN = new Color(185, 155, 75);
+		g.setColor(BROWN);
+		g.fillRect(90, 330, 20, 70);
+		//sling shot string/line
+		Graphics2D g2 = (Graphics2D)g;
+        g2.setStroke(new BasicStroke(8));
+		g2.drawLine(90, 340, slingX, slingY	);
 		
 		
 		//character
