@@ -4,10 +4,12 @@ import java.awt.Graphics;
 public class Target {
 	private int xLoc, yLoc, size;
 	
-	public Target (){
-		size = 50;
-		xLoc = 725;
-		yLoc = 225;
+	public Target (int x, int y, int size){
+		this.size = 50;
+		//xLoc = 725;
+		//yLoc = 225;
+		xLoc = x;
+		yLoc = y;
 	}
 	
 	public void drawTarget(Graphics g) {
