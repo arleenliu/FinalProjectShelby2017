@@ -9,6 +9,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -30,6 +31,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private int objWidth, objHeight;
 	private int slingX, slingY;
 	private boolean slingClicked, changeSling;
+	public ArrayList<HelperObject> helpers;
+	
 	
 	public GameScreen () {
 		//charImg = (new ImageIcon("sunImg.png").getImage());
@@ -49,6 +52,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
+		
+		helpers = new ArrayList<>();
 	}
 
 	public void paintComponent (Graphics g) {
@@ -95,8 +100,13 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setColor(Color.WHITE);
 		g.fillRect(700, 150, objWidth, objHeight);
 
-		if(drawHelperObj == true) {
-			new HelperObject(xClick, yClick, objWidth, objHeight).draw(g, Color.WHITE);
+		if(drawHelperObj == true){
+			
+			for (int i = 0; i < helpers.size(); i++){
+			HelperObject obj = helpers.get(i);
+			obj.draw(g, Color.WHITE);
+			
+			}
 			helperObj = false;
 			drawHelperObj = false;
 		}
@@ -144,15 +154,24 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		if(button == MouseEvent.BUTTON1) {
 			if(helperObj == false) {
-				if(xClick>= 700 && xClick<=700+objWidth && yClick>=150 && yClick <=150+objHeight)
-					helperObj = true;
-				repaint();
+				if(xClick>= 700 && xClick<=700+objWidth && yClick>=150 && yClick <=150+objHeight){
+					helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
+					helperObj = true;	
+				}
+					repaint();
 
 			}
 			//if true, which means have already clicked on a block
 			else {
 				drawHelperObj = true;
 				}
+			
+			
+			
+			
+			
+			
+			
 			
 			if(slingClicked == false) {
 				//if it's approximately near the slingshot bc too lazy for precise coordinates lol
