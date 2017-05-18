@@ -23,11 +23,11 @@ public class Character {
 	
 	//METHODS
 	public int getX(){
-		return x;
+		return x + xChange;
 	}
 	
 	public int getY(){
-		return y;
+		return y + yChange;
 	}
 	
 	
