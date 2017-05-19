@@ -1,6 +1,7 @@
 import java.awt.Color.*;
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -105,11 +106,15 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setColor(PALEGREEN);
 		g.fillRect(500, 300, 150, 300);
 
-		//screen w/ all the things
+		//screen w/ all the thing
 		Color LIGHTGRAY = new Color(211, 211, 211);
 		g.setColor(LIGHTGRAY);
 		g.fillRect(650, 0,  150, height);
-
+		g.setColor(Color.GRAY);
+		Font newFont = new Font("SansSerif", Font.PLAIN, 15);
+		g.setFont(newFont);
+		g.drawString("Click and drop", 660, 25);
+		g.drawString("to use the blocks", 658, 40);
 		
 		
 		if (helperObj){
@@ -208,9 +213,11 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (slingClicked = true) {
+			if (e.getX()<getWidth()/2) {
 			dragX = e.getX();
 			dragY= e.getY();
 			repaint();
+			}
 		}
 
 	}
