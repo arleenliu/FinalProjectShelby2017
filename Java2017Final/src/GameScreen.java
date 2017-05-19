@@ -37,10 +37,16 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private int slingX, slingY, dragX, dragY;
 	private boolean slingClicked;
 
-	public ArrayList<HelperObject> helpers;
+	private ArrayList<HelperObject> helpers;
+	private ArrayList<Obstacle> obstacles;
+	private int level;
+	private levelOne level1;
+	private levelTwo level2;
 	
 	
-	public GameScreen () {
+	
+	
+	public GameScreen (int lvl) {
 		//charImg = (new ImageIcon("sunImg.png").getImage());
 		slingImg = (new ImageIcon("slingshot1.png").getImage());
 		charImg = (new ImageIcon("trashcanCharacter.png").getImage());
@@ -63,6 +69,18 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		setBackground(SKYBLUE);
 		
 		helpers = new ArrayList<>();
+		level = lvl;
+		if (level == 1){
+			obstacles = level1.typeOfObstacles();
+		} else if (level == 2){
+			
+		} else if (level == 3){
+			
+		} else if (level == 4){
+			
+		} else if (level == 5){
+			
+		}
 	}
 
 	public void paintComponent (Graphics g) {
