@@ -1,21 +1,36 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.*;
 
-public class TitleScreen extends JPanel {
+public class TitleScreen extends JPanel implements MouseListener {
 	
 	private Image catImg;
+	private boolean showTitle;
 	
 	public TitleScreen() {
 		catImg = (new ImageIcon("booboo.jpg").getImage());
+		showTitle = true;
 		
 	}
 	
 	public void paintComponent(Graphics g) {
 		g.drawImage(catImg, 0, 0, 800, 600, this);
-		g.setColor(Color.GRAY);
-		Font font1 = new Font("Monospaced", Font.BOLD, 39);
-		g.setFont(font1);
-		g.drawString("FLING", getWidth()/4, getHeight()/4);
+		Color NEWGREEN = new Color(60, 222, 120);
+		g.setColor(NEWGREEN);
+		Font f1 = new Font("Arial", Font.BOLD, 45);
+		g.setFont(f1);
+		g.drawString("FLING", 50, 80);
+		
+		Color LESSGREEN = new Color(60, 179, 113);
+		g.setColor(LESSGREEN);
+		Font f2 = new Font("Arial Narrow", Font.PLAIN, 25);
+		g.setFont(f2);
+		g.drawString("Click anywhere near the cat to proceed", 430, 520);
+		
+		if(showTitle == false) 
+			g.drawString("test test test", 300, 400);
 	}
 	
 	public static void main(String[] args)
@@ -27,8 +42,44 @@ public class TitleScreen extends JPanel {
 		w.add(panel);
 		w.setResizable(false);
 		w.setVisible(true);
+		
+		panel.addMouseListener(panel);
 
+	}
 
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		int xClick = e.getX();
+		int yClick = e.getY();
+		
+		if(xClick >= 100 && xClick <= 700 && yClick >= 80 && yClick <= 550)
+			showTitle = !showTitle;
+		
+		repaint();
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
