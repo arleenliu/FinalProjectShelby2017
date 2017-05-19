@@ -8,6 +8,7 @@ public class Fling {
 		w.setBounds(100, 100, 800, 600);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GameScreen panel = new GameScreen();
+		//TitleScreen titlePanel = new TitleScreen();
 		w.add(panel);
 		w.setResizable(false);
 		w.setVisible(true);
