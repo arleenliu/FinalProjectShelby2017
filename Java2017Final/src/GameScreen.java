@@ -75,23 +75,29 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setColor(PALEGREEN);
 		g.fillRect(0, 400, 150, 200);	
 
-
 		//character
-		//g.drawImage(charImg, 60, 320, 46, 46, this);
+		if(slingClicked == true) {
+			g.drawImage(charImg, dragX-23, dragY-23, 46, 46, this);
+		}
+		else
+			g.drawImage(charImg, slingX-23, slingY-23, 46, 46, this);
 
-		//slingshot body
+		//slingshot
 		//g.drawImage(slingImg, 60, 300, 70, 100, this);
+		Color NEWYELLOW = new Color(241, 221, 56);
+		g.setColor(NEWYELLOW);
+		Graphics2D g2 = (Graphics2D)g;
+		g2.setStroke(new BasicStroke(5));
+		if(slingClicked == true) {
+			g2.drawLine(95,  340, dragX, dragY);
+		}
+		else
+			g2.drawLine(95, 340, slingX, slingY	);
+		//slingshot body
 		Color BROWN = new Color(185, 155, 75);
 		g.setColor(BROWN);
 		g.fillRect(90, 330, 10, 70);
-		Graphics2D g2 = (Graphics2D)g;
-		g2.setStroke(new BasicStroke(5));
 
-		if(slingClicked == true) {
-			g2.drawLine(90,  340, dragX, dragY);
-		}
-		else
-			g2.drawLine(90, 340, slingX, slingY	);
 
 		//g.fillRect(sling.x, sling.y, sling.width, sling.height);
 
