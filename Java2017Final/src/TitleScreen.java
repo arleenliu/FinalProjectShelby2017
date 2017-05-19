@@ -12,10 +12,10 @@ public class TitleScreen extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		g.drawImage(catImg, 0, 0, 800, 600, this);
-		g.setColor(Color.CYAN);
-		Font font1 = new Font("SansSerif", Font.BOLD | Font.ITALIC, 39);
+		g.setColor(Color.GRAY);
+		Font font1 = new Font("Monospaced", Font.BOLD, 39);
 		g.setFont(font1);
-		g.drawString("Fling!!!", getWidth()/4, getHeight()/4);
+		g.drawString("FLING", getWidth()/4, getHeight()/4);
 	}
 	
 	public static void main(String[] args)
