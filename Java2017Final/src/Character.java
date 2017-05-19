@@ -1,4 +1,5 @@
 import java.awt.Image;
+import java.util.ArrayList;
 
 public class Character {
 	//FIELDS
@@ -49,7 +50,10 @@ public class Character {
 		
 	}
 	
-	
+	/*public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacles> obstacles) {
+		
+	}
+	*/
 	
 	
 	//code this later

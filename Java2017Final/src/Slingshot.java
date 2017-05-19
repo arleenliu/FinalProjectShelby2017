@@ -23,7 +23,7 @@ public class Slingshot {
 		return xVelocity;
 	}
 
-	public Slingshot(int length, double angle, int initialHeight) {
+	public Slingshot(int length, double angle) {
 		this.length = length;
 		this.angle = angle;
 		jumpNum = 0;

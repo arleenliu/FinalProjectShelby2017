@@ -71,7 +71,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		helpers = new ArrayList<>();
 		level = lvl;
 		if (level == 1){
-			obstacles = level1.typeOfObstacles();
+			// obstacles = level1.typeOfObstacles();
 		} else if (level == 2){
 			
 		} else if (level == 3){
