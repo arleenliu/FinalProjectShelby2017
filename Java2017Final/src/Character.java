@@ -39,13 +39,17 @@ public class Character {
 	
 		return true;
 	}
-	public void launch(Slingshot ss, double currentTime, double angle) {
+	public void launch(Slingshot ss, double currentTime) {
 		double timeDiff = currentTime - beginTime;
+		ss.incrementJumpNum();
+		ss.setVelocity();
 		
-		yChange = (int) (ss.getInitialVelocity() * Math.sin(angle) * timeDiff - 0.5 * Slingshot.GRAVITY * Math.pow(timeDiff, 2));
-		xChange = (int) (ss.getInitialVelocity() * Math.cos(angle) * timeDiff);
+		yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 * Slingshot.GRAVITY * Math.pow(timeDiff, 2));
+		xChange = (int) (ss.getXVelocity() * timeDiff);
 		
 	}
+	
+	
 	
 	
 	//code this later

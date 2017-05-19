@@ -10,53 +10,51 @@ public class Slingshot {
 	private int velocityI, velocityF;
 	private int xVelocity, yVelocityI, yVelocityF;
 	private int jumpNum;
-	private double timeTaken;
 	private int objectHeight;
+	private double angle;
 
 	// CONSTRUCTORS
 	// to be deleted later
 	public Slingshot() {
 
 	}
-	
+
 	public int calculateCurrentXVelocity() {
 		return xVelocity;
 	}
 
-	public Slingshot(int length) {
+	public Slingshot(int length, double angle, int initialHeight) {
 		this.length = length;
-		setVelocity();
-		velocityI = 0;
-		velocityF = 0;
+		this.angle = angle;
 		jumpNum = 0;
-		timeTaken = 0;
+		velocityI = (int) (length * GRAVITY);
+		velocityF = 0;
+		yVelocityF = 0;
+		yVelocityI = (int) (velocityI * Math.sin(angle));
+		xVelocity = (int) (velocityI * Math.cos(angle));
 		objectHeight = 0;
 	}
 
-	private void setVelocity() {
-		if (jumpNum == 0) {
-			velocityI = (int) (length * GRAVITY);
-		} else {
-			velocityI = (int) (-velocityF / 2.0);
-			velocityF = 0;
-		}
-		
-		jumpNum++;
+	public void setVelocity() {
+		calculateFinalVelocity();
+
+		velocityI = (int) (-velocityF / 2.0);
+		velocityF = 0;
 
 	}
-	
+
 	public int getInitialVelocity() {
 		return velocityI;
 	}
 
-	public void setTimeTaken(double beginTime, double endTime) {
-		timeTaken = endTime - beginTime;
+	public int getInitialYVelocity() {
+		return yVelocityI;
 	}
 
-	public double getTimeTaken() {
-		return timeTaken;
+	public int getXVelocity() {
+		return xVelocity;
 	}
-
+	
 	public void setObjectHeight(int heightI, int heightF) {
 		objectHeight = heightF - heightI;
 	}
@@ -65,26 +63,30 @@ public class Slingshot {
 		return objectHeight;
 	}
 
-	public int calculateDistance(double angle) {
-		
-		
-		xVelocity = (int) (velocityI * Math.cos(angle));
+	/*
+	 * public int calculateDistance(double angle) {
+	 * 
+	 * 
+	 * xVelocity = (int) (velocityI * Math.cos(angle));
+	 * 
+	 * int distance = (int) (timeTaken * xVelocity);
+	 * 
+	 * setVelocity();
+	 * 
+	 * return distance; }
+	 */
 
-		int distance = (int) (timeTaken * xVelocity);
-
-		setVelocity();
-		jumpNum++;
-
-		return distance;
-	}
-
-	public int calculateFinalVelocity(double angle) {
+	public void calculateFinalVelocity() {
 
 		yVelocityI = (int) (velocityI * Math.sin(angle));
-		yVelocityF = (int) (Math.sqrt(Math.pow(yVelocityI, 2) - 2 * GRAVITY * objectHeight));
+		xVelocity = (int) (velocityI * Math.cos(angle));
+		yVelocityF = (int) (Math.sqrt(Math.pow(yVelocityI, 2) - 2 * GRAVITY * (-objectHeight)));
 		velocityF = -(int) (Math.sqrt(Math.pow(xVelocity, 2) + Math.pow(yVelocityF, 2)));
 
-		return velocityF;
+	}
+
+	public void incrementJumpNum() {
+		jumpNum++;
 	}
 
 	public int getJumpNum() {
