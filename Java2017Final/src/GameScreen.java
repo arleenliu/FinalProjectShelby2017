@@ -213,7 +213,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (slingClicked = true) {
-			if (e.getX()<getWidth()/2) {
+			if (e.getX()<getWidth()*3/4) {
 			dragX = e.getX();
 			dragY= e.getY();
 			repaint();
