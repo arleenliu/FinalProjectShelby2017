@@ -1,10 +1,9 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-public class TitleScreen extends JPanel implements MouseListener {
+public class TitleScreen extends Screen {
 	
 	private Image catImg;
 	private boolean showTitle;
@@ -48,24 +47,6 @@ public class TitleScreen extends JPanel implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void mousePressed(MouseEvent e) {
 		int xClick = e.getX();
 		int yClick = e.getY();
@@ -74,12 +55,6 @@ public class TitleScreen extends JPanel implements MouseListener {
 			showTitle = !showTitle;
 		
 		repaint();
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
