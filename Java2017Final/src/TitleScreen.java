@@ -5,17 +5,14 @@ import javax.swing.*;
 
 public class TitleScreen extends Screen {
 	
-	private Image catImg;
 	private boolean showTitle;
 	
 	public TitleScreen() {
-		catImg = (new ImageIcon("booboo.jpg").getImage());
 		showTitle = true;
 		
 	}
 	
 	public void paintComponent(Graphics g) {
-		g.drawImage(catImg, 0, 0, 800, 600, this);
 		Color NEWGREEN = new Color(60, 222, 120);
 		g.setColor(NEWGREEN);
 		Font f1 = new Font("Arial", Font.BOLD, 45);
@@ -30,20 +27,6 @@ public class TitleScreen extends Screen {
 		
 		if(showTitle == false) 
 			g.drawString("test test test", 300, 400);
-	}
-	
-	public static void main(String[] args)
-	{
-		JFrame w = new JFrame("Fling");
-		w.setBounds(100, 100, 800, 600);
-		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		TitleScreen panel = new TitleScreen();
-		w.add(panel);
-		w.setResizable(false);
-		w.setVisible(true);
-		
-		panel.addMouseListener(panel);
-
 	}
 
 	@Override
