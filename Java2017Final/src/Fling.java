@@ -9,14 +9,15 @@ public class Fling {
 		w.setBounds(100, 100, 800, 600);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GameScreen panel = new GameScreen(1);
-		//TitleScreen titlePanel = new TitleScreen();
+		TitleScreen titlePanel = new TitleScreen();
 		ResultScreen resultPanel = new ResultScreen();
-		w.add(resultPanel);
+		w.add(titlePanel);
 		w.setResizable(false);
 		w.setVisible(true);
 
 		panel.addMouseListener(panel);
 		panel.addMouseMotionListener(panel);
+		titlePanel.addMouseListener(titlePanel);
 		//random
 		
 
