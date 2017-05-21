@@ -16,6 +16,8 @@ public class Fling {
 
 		panel.addMouseListener(panel);
 		panel.addMouseMotionListener(panel);
+		//random
+		
 
 	}
 	
