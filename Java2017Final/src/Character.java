@@ -9,6 +9,7 @@ public class Character {
 	private Image charImg;
 	private boolean isDead;
 	private double beginTime;
+	private boolean hasHitBottom, hasHitTop, hasHitObstacle;
 
 	
 	//CONSTRUCTORS
@@ -20,6 +21,9 @@ public class Character {
 		charImg = character;
 		isDead = false;
 		beginTime = 0;
+		hasHitBottom = false;
+		hasHitTop = false;
+		hasHitObstacle = false;
 	}
 	
 	//METHODS
@@ -50,10 +54,9 @@ public class Character {
 		
 	}
 	
-	/*public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacles> obstacles) {
+	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles) {
 		
 	}
-	*/
 	
 	
 	//code this later

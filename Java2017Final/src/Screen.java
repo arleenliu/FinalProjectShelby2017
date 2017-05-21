@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class Screen extends JPanel implements MouseListener {
 		
-=	public Screen() {
+	public Screen() {
 	}
 		public void paintComponent(Graphics g) {
 	}
