@@ -42,7 +42,10 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private int level;
 	private LevelOne level1;
 	private LevelTwo level2;
-	
+	private LevelThree level3;
+	private LevelFour level4;
+	private LevelFive level5;
+
 	
 	
 	
@@ -68,17 +71,33 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
 		
+		level1 = new LevelOne();
+		level2 = new LevelTwo();
+		level3 = new LevelThree();
+		level4 = new LevelFour();
+		level5 = new LevelFive();
+		
 		helpers = new ArrayList<>();
 		level = lvl;
 		if (level == 1){
-			// obstacles = level1.typeOfObstacles();
+			
+			obstacles = level1.typeOfObstacles();
+			
 		} else if (level == 2){
 			
+			obstacles = level2.typeOfObstacles();
+
 		} else if (level == 3){
+			
+			obstacles = level3.typeOfObstacles();
 			
 		} else if (level == 4){
 			
+			obstacles = level4.typeOfObstacles();
+			
 		} else if (level == 5){
+			
+			obstacles = level5.typeOfObstacles();
 			
 		}
 	}
@@ -134,7 +153,15 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.drawString("Click and drop", 660, 25);
 		g.drawString("to use the blocks", 658, 40);
 		
+		//Obstacles
 		
+		for (int i = 0; i < obstacles.size(); i++){
+			Obstacle obstacle = obstacles.get(i);
+			obstacle.drawObstacle(g);
+		}
+		
+		
+		//Helper Objects
 		if (helperObj){
 			g.setColor(Color.CYAN);
 			g.fillRect(700, 150, objWidth, objHeight);
