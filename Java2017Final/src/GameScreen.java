@@ -56,7 +56,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		helperObj = false;
 		drawHelperObj = false;
 		objWidth = 60;
-		objHeight = 30;
+		objHeight = 5;
 
 		slingClicked = false;
 		slingX = 60;
@@ -185,7 +185,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		if(button == MouseEvent.BUTTON1) {
 			if(helperObj == false) {
 
-				if(xClick >= 700 && xClick <= 700 + objWidth && yClick >= 150 && yClick <= 150 + objHeight){
+				if(xClick >= 700 && xClick <= 700 + objWidth && yClick >= 150-10 && yClick <= 150 + objHeight + 10){
 					
 					helperObj = true;
 				}
@@ -231,7 +231,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (slingClicked = true) {
-			if (e.getX()<getWidth()*3/4) {
+			if (e.getX() < getWidth()*1/2) {
 			dragX = e.getX();
 			dragY= e.getY();
 			repaint();
