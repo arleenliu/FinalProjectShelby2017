@@ -1,13 +1,13 @@
 import java.awt.Color;
 import java.util.ArrayList;
 
-public class levelOne {
+public class LevelOne {
 	//FIELDS
 	Obstacle ob1;
 	
 	//CONSTRUCTORS
 	
-	public levelOne (){
+	public LevelOne (){
 		
 		ob1 = new Obstacle (15, 0, 270, 0, 150, 100, Color.GREEN);
 		

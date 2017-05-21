@@ -40,8 +40,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private ArrayList<HelperObject> helpers;
 	private ArrayList<Obstacle> obstacles;
 	private int level;
-	private levelOne level1;
-	private levelTwo level2;
+	private LevelOne level1;
+	private LevelTwo level2;
 	
 	
 	
