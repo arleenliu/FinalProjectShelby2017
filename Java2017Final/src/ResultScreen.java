@@ -16,7 +16,7 @@ public class ResultScreen extends Screen {
 		//int time = getTime()? method in timetracker?
 		
 		/*if(time >= this)
-			score = 1;
+			score = 1; 
 		else if(time >= something)
 			score = 2; 
 		etc etc
