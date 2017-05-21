@@ -52,9 +52,9 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public GameScreen (int lvl) {
 		//charImg = (new ImageIcon("sunImg.png").getImage());
 		slingImg = (new ImageIcon("slingshot1.png").getImage());
-		charImg = (new ImageIcon("trashcanCharacter.png").getImage());
+		charImg = (new ImageIcon("shelbyface.JPG").getImage());
 		character = new Character(150, 200, charImg, 0);
-		target = new Target(0, 0, 0);		
+		target = new Target(550, 315, 80);		
 
 		helperObj = false;
 		drawHelperObj = false;
@@ -143,6 +143,9 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setColor(PALEGREEN);
 		g.fillRect(500, 300, 150, 300);
 
+		//Target
+		target.drawTarget(g);
+		
 		//screen w/ all the thing
 		Color LIGHTGRAY = new Color(211, 211, 211);
 		g.setColor(LIGHTGRAY);
@@ -152,6 +155,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setFont(newFont);
 		g.drawString("Click and drop", 660, 25);
 		g.drawString("to use the blocks", 658, 40);
+		
+		
 		
 		//Obstacles
 		

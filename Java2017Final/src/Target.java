@@ -14,6 +14,6 @@ public class Target {
 	
 	public void drawTarget(Graphics g) {
 		g.setColor(Color.WHITE);
-		g.fillOval(xLoc, yLoc, size, size-10);
+		g.fillOval(xLoc, yLoc, size, size-25);
 	}
 }

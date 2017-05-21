@@ -11,7 +11,7 @@ public class Fling {
 		GameScreen panel = new GameScreen(1);
 		TitleScreen titlePanel = new TitleScreen();
 		ResultScreen resultPanel = new ResultScreen();
-		w.add(titlePanel);
+		w.add(panel);
 		w.setResizable(false);
 		w.setVisible(true);
 
