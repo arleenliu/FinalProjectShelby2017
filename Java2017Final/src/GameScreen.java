@@ -24,7 +24,7 @@ import javax.swing.JPanel;
 public class GameScreen extends JPanel implements MouseListener, MouseMotionListener {
 
 	private Slingshot slingshot;
-	private Character character;
+	protected Character character;
 	private Target target;
 	private Image charImg, slingImg;
 	private int charSize;
@@ -36,7 +36,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private int xClick, yClick;
 	private int objWidth, objHeight;
 	private int slingX, slingY, dragX, dragY;
-	private boolean slingClicked;
+	private static boolean slingClicked;
 	
 	private ArrayList<HelperObject> helpers;
 	private ArrayList<Obstacle> obstacles;
@@ -344,5 +344,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 	}
 	
+	public static boolean getSlingClicked() {
+		return slingClicked;
+	}
 
 }

@@ -30,12 +30,14 @@ public class Fling extends JFrame{
 			
 			if(AllScreen.SCREEN == 6) {
 				AllScreen.cards.show(as, "Title");
-			}
-			else if(AllScreen.SCREEN == 7)
+			} else if(AllScreen.SCREEN == 7) {
 				AllScreen.cards.show(as, "Level");
-			else if(AllScreen.SCREEN == 8)
+			} else if(AllScreen.SCREEN == 8) {
 				AllScreen.cards.show(as, "Game");
-			else if(AllScreen.SCREEN == 9)
+				while (!AllScreen.panel.getSlingClicked()) {
+					AllScreen.panel.character.launch(TimeTracker.getTime());
+				}
+		} else if(AllScreen.SCREEN == 9) {
 				AllScreen.cards.show(as, "Results");
 			
 		}
@@ -82,6 +84,6 @@ public class Fling extends JFrame{
 	}
 	*/
 	
-	
+	}
 	
 }
