@@ -23,9 +23,7 @@ public class Fling extends JFrame{
 		TitleScreen titlePanel = new TitleScreen();
 		ResultScreen resultPanel = new ResultScreen();
 		LevelScreen levelPanel = new LevelScreen();
-		
-		System.out.println(Screen + "");
-		
+				
 		if(Screen == 6) {
 			
 			w.add(titlePanel);
