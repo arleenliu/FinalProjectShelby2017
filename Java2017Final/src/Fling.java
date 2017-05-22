@@ -1,4 +1,5 @@
-import javax.swing.JComponent;
+import java.awt.CardLayout;
+
 import javax.swing.JFrame;
 
 public class Fling extends JFrame{
@@ -9,15 +10,13 @@ public class Fling extends JFrame{
 	private static ResultScreen resultPanel;
 	private static LevelScreen levelPanel;
 	private static GameScreen panel;
-	private static Fling w;
+	private static CardLayout cl;
 	
 	//levels one-five are 1-5
 	public static int level;
 	
-	public Fling(String name) {
+	public Fling() {
 		Screen = 6;
-		
-	}
 
 	public static void main(String[] args)
 	{
@@ -25,15 +24,23 @@ public class Fling extends JFrame{
 		w.setBounds(100, 100, 800, 600);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+		this.setBounds(100, 100, 800, 600);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		panel = new GameScreen(level);
 		titlePanel = new TitleScreen();
 		resultPanel = new ResultScreen();
 		levelPanel = new LevelScreen();
+		cl = new CardLayout();
 		
-		w.add(levelPanel);
-		w.add(panel);
-		w.add(resultPanel);
-		w.add(titlePanel);
+		this.setLayout(cl);
+		
+		this.add(titlePanel, "Title");
+		this.add(levelPanel, "Level");
+		this.add(panel, "Game");
+		this.add(resultPanel, "Results");
+
+		//cl.show(this, "Title");
 		
 		GameScreen panel = new GameScreen(level);
 		TitleScreen titlePanel = new TitleScreen();
@@ -50,6 +57,10 @@ public class Fling extends JFrame{
 			w.getComponent(2);
 		else if(Screen == 9)
 			w.getComponent(3);
+	}
+
+	public static void main(String[] args)
+	{
 		
 		
 			w.add(titlePanel);
@@ -57,8 +68,10 @@ public class Fling extends JFrame{
 			System.out.println(level + "");
 
 	
-		w.setResizable(false);
-		w.setVisible(true);
+		Fling w = new Fling();
+		// this.setResizable(false);
+		// this.setVisible(true);
+
 
 		panel.addMouseListener(panel);
 		panel.addMouseMotionListener(panel);
@@ -66,23 +79,33 @@ public class Fling extends JFrame{
 		resultPanel.addMouseListener(resultPanel);
 		levelPanel.addMouseListener(levelPanel);
 		
+		if (Screen == 6){
+			cl.show(w, "Title");
+		}
+		else if(Screen == 7)
+			cl.show(w, "Level");
+		else if(Screen == 8)
+			cl.show(w, "Game");
+		else if(Screen == 9)
+			cl.show(w, "Results");
+		
+		w.setResizable(false);
+		w.setVisible(true);
 		w.run();
 	}
 	
 	public void run(){
 		
 		while (true){
-			if(Screen == 6) {
-				w.getComponent(0);
-			}
-			else if(Screen == 7)
-				w.getComponent(1);
-			else if(Screen == 8)
-				w.getComponent(2);
-			else if(Screen == 9)
-				w.getComponent(3);
-
-			System.out.println(Screen + "");
+//			if(Screen == 6) {
+//				cl.show(w, "Title");
+//			}
+//			else if(Screen == 7)
+//				cl.show(w, "Level");
+//			else if(Screen == 8)
+//				cl.show(w, "Game");
+//			else if(Screen == 9)
+//				cl.show(w, "Results");
 			
 		}
 		
