@@ -69,7 +69,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		slingImg = (new ImageIcon("slingshot1.png").getImage());
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 		slingshot = new Slingshot();
-		character = new Character(150, 200, charSize, charSize + 10, charImg, slingshot);
+		character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot);
 		time = new TimeTracker(character);
 		target = new Target(550, 315, 80);		
 		charSize = 50;
@@ -103,11 +103,15 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		//character
 		if(slingClicked == true) {
-			g.drawImage(charImg, dragX-23, dragY-23, charSize, charSize+10, this);
+			character.draw(g, dragX - 23, dragY - 23, charSize, charSize + 10);
 		}
-		else
-			g.drawImage(charImg, slingX-23, slingY-23, charSize, charSize+10, this);
+		else{
+			int x = character.getX();
+			int y = character.getY();
+			character.draw(g, x, y, charSize, charSize+10);
 
+			
+		}
 		//slingshot
 		//g.drawImage(slingImg, 60, 300, 70, 100, this);
 		Color NEWYELLOW = new Color(241, 221, 56);
@@ -298,8 +302,20 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			int x = e.getX();
 			int y = e.getY();
 			slingshot.setXY(x, y);
-//			slingshot.setObjectHeight(heightI, heightF);
-//			character.launch(time.getTime());
+			character.setXY(x,  y);
+			
+			
+			
+			
+			int heightI = e.getY();
+			int heightF = helpers.get(character.getIndexOfCurrObj()).getY();
+			
+			slingshot.setObjectHeight(heightI, heightF);
+			
+			
+			
+			
+			character.launch(time.getTime());
 
 		
 		}

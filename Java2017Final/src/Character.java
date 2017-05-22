@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
 
@@ -11,8 +12,10 @@ public class Character {
 	private Image charImg;
 	private boolean isDead;
 	private double beginTime;
-	private static boolean hasHitBottom, hasHitTop, hasDied;;
+	private static boolean hasHitBottom, hasHitTop, hasDied;
 	private Slingshot ss;
+	private HelperObject currObj;
+	private int indexOfCurrObj;
 
 	
 	//CONSTRUCTORS
@@ -30,6 +33,8 @@ public class Character {
 		hasDied = false;
 		charWidth = w;
 		charHeight = h;
+		currObj = new HelperObject(0, 0, 60, 10);
+		indexOfCurrObj = -1;
 	}
 	
 	//METHODS
@@ -79,10 +84,20 @@ public class Character {
 			if (x + xChange > helpers.get(i).getX() && x + (charWidth / 2.0) + xChange < helpers.get(i).getX() + 60) {
 				if (y + yChange + charHeight >= helpers.get(i).getY()) {
 					hasHitTop = true;
+					
+					indexOfCurrObj = i;
+					currObj = helpers.get(i);
+					
+					break;
 				}
 				
 				if (y + yChange <= helpers.get(i).getY()) {
 					hasHitBottom = true;
+					
+					indexOfCurrObj = i;
+					currObj = helpers.get(i);
+					
+					break;
 				}
 				
 				ss.setVelocity();
@@ -141,9 +156,27 @@ public class Character {
 		return hasDied;
 	}
 	
+	public void setXY(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
 	//code this later
 	public void bounce(){
 		
+	}
+	
+	public HelperObject getCurrObj() {
+		return currObj;
+	}
+	
+	public int getIndexOfCurrObj() {
+		return indexOfCurrObj;
+	}
+	
+	public void draw(Graphics g, int x, int y, int sizeX, int sizeY){
+		g.drawImage(charImg, x, y, sizeX, sizeY, null);
+
 	}
 	
 }

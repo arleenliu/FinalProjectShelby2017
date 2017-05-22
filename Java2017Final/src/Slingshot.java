@@ -47,6 +47,7 @@ public class Slingshot {
 		
 		if (Character.getHasHitBottom()){
 			this.angle = -angle;
+			velocityF = velocityI;
 		}
 
 	}
