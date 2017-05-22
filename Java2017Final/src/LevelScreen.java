@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Panel;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
@@ -36,20 +37,45 @@ public class LevelScreen extends Screen {
 		g.drawString("Level 5", 630, 225);
 
 	}
+	
+	
 
 	public void mousePressed(MouseEvent e) {
 		int xClick = e.getX();
 		int yClick = e.getY();
+		boolean isSelected = false;
 
-		if(xClick>=50 && xClick<=250 && yClick>=200 && yClick<=350)
-			Fling.level = 1;		
-		else if(xClick>=180 && xClick<=380 && yClick>=90 && yClick<=280)
-			Fling.level = 2;
-		else if(xClick>=250 && xClick<=450 && yClick>=400 && yClick<=650)
-			Fling.level = 3;
-		else if(xClick>=390 && xClick<=590 && yClick>=230 && yClick<= 410)
-			Fling.level = 4;
-		else if(xClick>=550 && xClick<= 750 && yClick>=120 && yClick<=270)
-			Fling.level = 5;
+		if(xClick>=50 && xClick<=250 && yClick>=200 && yClick<=350){
+			AllScreen.LEVEL = 1;		
+			isSelected = true;
+		}
+		else if(xClick>=180 && xClick<=380 && yClick>=90 && yClick<=280){
+			AllScreen.LEVEL = 2;
+			isSelected = true;
+		}
+		else if(xClick>=250 && xClick<=450 && yClick>=400 && yClick<=650){
+			AllScreen.LEVEL = 3;
+			isSelected = true;
+		}
+		else if(xClick>=390 && xClick<=590 && yClick>=230 && yClick<= 410){
+			AllScreen.LEVEL = 4;		
+			isSelected = true;
+
+		}
+		else if(xClick>=550 && xClick<= 750 && yClick>=120 && yClick<=270){
+			AllScreen.LEVEL = 5;
+			isSelected = true;
+			
+
+		}
+		AllScreen.panel.setLevel(AllScreen.LEVEL);
+		
+		if (isSelected){
+			AllScreen.SCREEN = 8;
+			
+			System.out.println(AllScreen.LEVEL + "");
+		}
+		
+		
 	}
 }

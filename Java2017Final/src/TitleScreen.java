@@ -26,7 +26,7 @@ public class TitleScreen extends Screen {
 		int yClick = e.getY();
 
 		if(xClick >= 460 && xClick <= 700 && yClick >= 410 && yClick <= 550) {
-			Fling.Screen = 7;
+			AllScreen.SCREEN = 7;
 		}
 	}
 

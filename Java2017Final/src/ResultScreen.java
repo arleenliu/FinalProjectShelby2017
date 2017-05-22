@@ -69,6 +69,6 @@ public class ResultScreen extends Screen {
 		int yClick = e.getY();
 
 		if(xClick >= 700 && xClick <= 770 && yClick >= 480 && yClick <= 560)
-			Fling.Screen = 7;
+			AllScreen.SCREEN = 7;
 	}
 }

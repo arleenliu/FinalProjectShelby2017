@@ -51,13 +51,12 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 
 
-	public GameScreen (int lvl) {
+	public GameScreen () {
 		//charImg = (new ImageIcon("sunImg.png").getImage());
 		slingImg = (new ImageIcon("slingshot1.png").getImage());
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 		character = new Character(150, 200, charSize, charSize + 10, charImg, slingshot);
-		character = new Character(150, 200, charSize, charSize + 10, charImg, slingshot);
-		time = new TimeTracker (character);
+		time = new TimeTracker(character);
 		target = new Target(550, 315, 80);		
 		charSize = 50;
 		
@@ -85,28 +84,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		level5 = new LevelFive();
 
 		helpers = new ArrayList<>();
-		level = lvl;
-		if (level == 1){
-
-			obstacles = level1.typeOfObstacles();
-
-		} else if (level == 2){
-
-			obstacles = level2.typeOfObstacles();
-
-		} else if (level == 3){
-
-			obstacles = level3.typeOfObstacles();
-
-		} else if (level == 4){
-
-			obstacles = level4.typeOfObstacles();
-
-		} else if (level == 5){
-
-			obstacles = level5.typeOfObstacles();
-
-		}
+		
 	}
 
 	public void paintComponent (Graphics g) {
@@ -204,6 +182,35 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			obj.draw(g, Color.WHITE);
 
 		}
+
+	}
+
+	public int setLevel(int lvl){
+		
+		level = lvl;
+		
+		if (level == 1){
+
+			obstacles = level1.typeOfObstacles();
+
+		} else if (level == 2){
+
+			obstacles = level2.typeOfObstacles();
+
+		} else if (level == 3){
+
+			obstacles = level3.typeOfObstacles();
+
+		} else if (level == 4){
+
+			obstacles = level4.typeOfObstacles();
+
+		} else {
+
+			obstacles = level5.typeOfObstacles();
+
+		}
+		return level;
 
 	}
 
