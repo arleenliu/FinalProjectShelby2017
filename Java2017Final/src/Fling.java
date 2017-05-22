@@ -24,6 +24,7 @@ public class Fling extends JFrame{
 		w = new Fling("Fling");
 		w.setBounds(100, 100, 800, 600);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+<<<<<<< HEAD
 		
 		panel = new GameScreen(level);
 		titlePanel = new TitleScreen();
@@ -35,8 +36,23 @@ public class Fling extends JFrame{
 		w.add(resultPanel);
 		w.add(titlePanel);
 		
+=======
+		GameScreen panel = new GameScreen(level);
+		TitleScreen titlePanel = new TitleScreen();
+		ResultScreen resultPanel = new ResultScreen();
+		LevelScreen levelPanel = new LevelScreen();
+				
+>>>>>>> branch 'master' of https://github.com/janniezhong/FinalProjectShelby2017.git
 		if(Screen == 6) {
+<<<<<<< HEAD
 			w.getComponent(0);
+=======
+			
+			w.add(titlePanel);
+			System.out.println(Screen + "");
+			System.out.println(level + "");
+
+>>>>>>> branch 'master' of https://github.com/janniezhong/FinalProjectShelby2017.git
 		}
 		else if(Screen == 7)
 			w.getComponent(1);

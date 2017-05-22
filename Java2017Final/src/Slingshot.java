@@ -36,10 +36,15 @@ public class Slingshot {
 	}
 
 	public void setVelocity() {
-		calculateFinalVelocity();
-
-		velocityI = (int) (-velocityF / 2.0);
-		velocityF = 0;
+		if (Character.getHasHitTop()){
+			calculateFinalVelocity();
+			velocityI = (int) (-velocityF / 2.0);
+			velocityF = 0;
+		}
+		
+		if (Character.getHasHitBottom()){
+			this.angle = -angle;
+		}
 
 	}
 
