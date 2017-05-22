@@ -12,7 +12,7 @@ public class TimeTracker implements ActionListener {
 	    Timer clock = new Timer(1000, this); 
 	    clock.start();
 	    
-	    if(character.returnStatus() == true)
+	    if(character.getHasDied() == true)
 	    	clock.stop();
 	}
 
