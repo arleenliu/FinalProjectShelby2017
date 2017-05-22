@@ -45,13 +45,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private LevelFour level4;
 	private LevelFive level5;
 
-	
-	
-	
+	private boolean isEditable;
+
+
+
 	public GameScreen (int lvl) {
 		//charImg = (new ImageIcon("sunImg.png").getImage());
 		slingImg = (new ImageIcon("slingshot1.png").getImage());
-		charImg = (new ImageIcon("shelbyface.JPG").getImage());
+		charImg = (new ImageIcon("shelbyface.png").getImage());
 		character = new Character(150, 200, charImg, 0);
 		target = new Target(550, 315, 80);		
 
@@ -65,39 +66,41 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		slingY = 335;
 		dragX = slingX;
 		dragY = slingY;
+
+		isEditable = true;
 		//sling = new Rectangle(slingX, slingY, 70, 10);	
 
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
-		
+
 		level1 = new LevelOne();
 		level2 = new LevelTwo();
 		level3 = new LevelThree();
 		level4 = new LevelFour();
 		level5 = new LevelFive();
-		
+
 		helpers = new ArrayList<>();
 		level = lvl;
 		if (level == 1){
-			
+
 			obstacles = level1.typeOfObstacles();
-			
+
 		} else if (level == 2){
-			
+
 			obstacles = level2.typeOfObstacles();
 
 		} else if (level == 3){
-			
+
 			obstacles = level3.typeOfObstacles();
-			
+
 		} else if (level == 4){
-			
+
 			obstacles = level4.typeOfObstacles();
-			
+
 		} else if (level == 5){
-			
+
 			obstacles = level5.typeOfObstacles();
-			
+
 		}
 	}
 
@@ -144,7 +147,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		//Target
 		target.drawTarget(g);
-		
+
 		//screen w/ all the thing
 		Color LIGHTGRAY = new Color(211, 211, 211);
 		g.setColor(LIGHTGRAY);
@@ -154,38 +157,48 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setFont(newFont);
 		g.drawString("Click and drop", 660, 25);
 		g.drawString("to use the blocks", 658, 40);
-		
-		
-		
+
+
+
 		//Obstacles
-		
+
 		for (int i = 0; i < obstacles.size(); i++){
 			Obstacle obstacle = obstacles.get(i);
 			obstacle.drawObstacle(g);
 		}
-		
-		
-		//Helper Objects
-		if (helperObj){
-			g.setColor(Color.CYAN);
-			g.fillRect(700, 150, objWidth, objHeight);
 
+
+		//button to change editability
+		g.setColor(Color.GREEN);
+		g.fillRect(700, 400, 60, 30);
+		g.setColor(Color.BLACK);
+		g.drawString("Editing", 705, 420);
+
+		if (isEditable){
+
+			//Helper Objects
+			if (helperObj){
+				g.setColor(Color.CYAN);
+				g.fillRect(700, 150, objWidth, objHeight);
+
+			}
+			else {
+				g.setColor(Color.WHITE);
+				g.fillRect(700, 150, objWidth, objHeight);
+
+			}
+
+		} else {
+			g.setColor(Color.RED);
+			g.fillRect(690, 400, 80, 30);
+			g.setColor(Color.BLACK);
+			g.drawString("No Editing", 700, 420);
 		}
-		else {
-			g.setColor(Color.WHITE);
-			g.fillRect(700, 150, objWidth, objHeight);
-		
-		}
-			for (int i = 0; i < helpers.size(); i++){
+		for (int i = 0; i < helpers.size(); i++){
 			HelperObject obj = helpers.get(i);
 			obj.draw(g, Color.WHITE);
-			
-			}
-			
-			//helperObj = false;
-			//drawHelperObj = false;
-		
 
+		}
 
 	}
 
@@ -209,6 +222,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	@Override
 	//right click to rotate? or have different helper obj? ignore rotation for now
 	public void mousePressed(MouseEvent e) {
+
 		xClick = e.getX();
 		yClick = e.getY();
 		int button = e.getButton();
@@ -217,24 +231,26 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			if(helperObj == false) {
 
 				if(xClick >= 700 && xClick <= 700 + objWidth && yClick >= 150-10 && yClick <= 150 + objHeight + 10){
-					
+
 					helperObj = true;
 				}
-					repaint();
+
 
 			}
 			//if true, which means have already clicked on a block
 			else {
 				if (xClick < 650){
-					helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
-					helperObj = false;
+					if (helpers.size() < 10){
+						helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
+						helperObj = false;
+					}
+
 				}
 
 			}
-			
-			repaint();
-			
-			
+
+
+
 			if(slingClicked == false) {
 				//if it's approximately near the slingshot bc too lazy for precise coordinates lol
 				if(xClick>=50 && xClick<=120 && yClick>=300 && yClick<=400) {
@@ -247,8 +263,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 				}
 			}
 
-			repaint();
 		}
+
+		if (xClick >= 670 && xClick <= 700 + 60 && yClick >= 400 && yClick <= 400 + 30){
+			isEditable = false;
+
+		}
+
+		repaint();
 	}
 
 	@Override
@@ -262,10 +284,10 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (slingClicked = true) {
-			if (e.getX() < getWidth()*1/2) {
-			dragX = e.getX();
-			dragY= e.getY();
-			repaint();
+			if (e.getX() < 90) {
+				dragX = e.getX();
+				dragY= e.getY();
+				repaint();
 			}
 		}
 
@@ -274,7 +296,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
