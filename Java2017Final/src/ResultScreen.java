@@ -55,7 +55,5 @@ public class ResultScreen extends Screen {
 
 		if(xClick >= 100 && xClick <= 700 && yClick >= 80 && yClick <= 550)
 			Fling.Screen = 7;
-
-		repaint();
 	}
 }

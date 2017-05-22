@@ -3,7 +3,7 @@ import javax.swing.JFrame;
 public class Fling {
 	
 	//levels one - five are 1-5
-	//title is 6, level is 7, game is 8, result is 9
+	//title is 6, level is 7, game is 8, result is 
 	public static int Screen;
 	
 	public Fling() {
