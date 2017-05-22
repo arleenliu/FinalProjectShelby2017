@@ -16,7 +16,7 @@ public class Character {
 
 	
 	//CONSTRUCTORS
-	public Character (int xCoor, int yCoor, int w, int h, Image character, Slingshot ss, double beginTime){
+	public Character (int xCoor, int yCoor, int w, int h, Image character, Slingshot ss){
 		x = xCoor;
 		y = yCoor;
 		xChange = 0;
@@ -35,6 +35,10 @@ public class Character {
 	//METHODS
 	public int getX(){
 		return x + xChange;
+	}
+	
+	public void setInitialTime(double beginTime) {
+		this.beginTime = beginTime;
 	}
 	
 	public int getY(){
@@ -104,11 +108,14 @@ public class Character {
 					m1x * (x + xChange) + m1y * (y + yChange + charHeight) == c1 ||
 					m1x * (x + xChange + charWidth) + m1y * (y + yChange) == c1 ||
 					m1x * (x + xChange) + m1y * (y + yChange) == c1) {
-				
+				hasDied = true;
 			}
 			
-			if (m2x * (x + xChange) + m2y * (y + yChange) == c2) {
-				
+			if (m2x * (x + xChange + charWidth) + m2y * (y + yChange + charHeight) == c2 ||
+					m2x * (x + xChange) + m2y * (y + yChange + charHeight) == c2 ||
+					m2x * (x + xChange + charWidth) + m2y * (y + yChange) == c2 ||
+					m2x * (x + xChange) + m2y * (y + yChange) == c2) {
+				hasDied = true;
 			}
 			
 		}
