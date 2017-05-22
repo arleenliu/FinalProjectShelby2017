@@ -66,6 +66,7 @@ public class Character {
 		yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 * Slingshot.GRAVITY * Math.pow(timeDiff, 2));
 		xChange = (int) (ss.getXVelocity() * timeDiff);
 		
+		
 	}
 	
 	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, int screenWidth, int screenHeight) {

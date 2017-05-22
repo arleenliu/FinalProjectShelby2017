@@ -12,8 +12,6 @@ public class LevelScreen extends Screen {
 	private Image level1, level2, level3, level4, level5;
 
 	public LevelScreen() {
-		Color SKYBLUE = new Color(175, 238, 238);
-		setBackground(SKYBLUE);
 
 		level1 = (new ImageIcon("pusheen1.png").getImage());
 		level2 = (new ImageIcon("pusheen2.png").getImage());
@@ -23,6 +21,13 @@ public class LevelScreen extends Screen {
 	}
 
 	public void paintComponent(Graphics g) {
+		
+		Color SKYBLUE = new Color(175, 238, 238);
+		g.setColor(SKYBLUE);
+		g.fillRect(0, 0, 800, 600);
+		
+		g.setColor(Color.BLACK);
+		
 		Font newFont = new Font("Arial", Font.PLAIN, 20);
 		g.setFont(newFont);
 		g.drawImage(level1, 50, 200, 200, 150, this);
