@@ -53,10 +53,11 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 	public GameScreen (int lvl) {
 		//charImg = (new ImageIcon("sunImg.png").getImage());
-		time = new TimeTracker (character);
 		slingImg = (new ImageIcon("slingshot1.png").getImage());
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 		character = new Character(150, 200, charSize, charSize + 10, charImg, slingshot);
+		character = new Character(150, 200, charSize, charSize + 10, charImg, slingshot);
+		time = new TimeTracker (character);
 		target = new Target(550, 315, 80);		
 		charSize = 50;
 		
