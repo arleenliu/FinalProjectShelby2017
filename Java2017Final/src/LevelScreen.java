@@ -26,5 +26,5 @@ public class LevelScreen extends Screen {
 		//g.draw
 	}
 	
-	public void 
+	//public void 
 }
