@@ -27,6 +27,9 @@ public class Fling {
 		ResultScreen resultPanel = new ResultScreen();
 		LevelScreen levelPanel = new LevelScreen();
 		
+		System.out.println(Screen + "");
+
+		
 		if(Screen != 6)
 			w.add(titlePanel);
 		/*else if(Screen == 7)
