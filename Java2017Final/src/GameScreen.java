@@ -18,7 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-//Helen
 //graphics of the game screen, background 
 //has character, slingshot, target, + the menu w/ the helper blocks
 
