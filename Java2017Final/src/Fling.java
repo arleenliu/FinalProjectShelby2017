@@ -11,8 +11,7 @@ public class Fling extends JFrame{
 	public static int level;
 	
 	public Fling(String name) {
-		Screen = 9;
-		level = 1;
+		Screen = 6;
 	}
 
 	public static void main(String[] args)
