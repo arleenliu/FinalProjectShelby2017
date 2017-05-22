@@ -105,7 +105,9 @@ public class Slingshot {
 		x2 = x;
 		y2 = y;
 		
-		
+		length = (int) Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
+		angle = Math.atan((y1 - y2) / (double) (x1 - 2));
+	
 	}
 
 	/*
