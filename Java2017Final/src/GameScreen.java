@@ -28,6 +28,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private Character character;
 	private Target target;
 	private Image charImg, slingImg;
+	private int charSize;
 
 	private int dragOffsetX, dragOffsetY;
 
@@ -56,15 +57,16 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 		character = new Character(150, 200, charImg, 0);
 		target = new Target(550, 315, 80);		
-
+		charSize = 50;
+		
 		helperObj = false;
 		drawHelperObj = false;
 		objWidth = 60;
 		objHeight = 5;
 
 		slingClicked = false;
-		slingX = 60;
-		slingY = 335;
+		slingX = 65;
+		slingY = 370;
 		dragX = slingX;
 		dragY = slingY;
 
@@ -118,10 +120,10 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		//character
 		if(slingClicked == true) {
-			g.drawImage(charImg, dragX-23, dragY-23, 46, 46, this);
+			g.drawImage(charImg, dragX-23, dragY-23, charSize, charSize+10, this);
 		}
 		else
-			g.drawImage(charImg, slingX-23, slingY-23, 46, 46, this);
+			g.drawImage(charImg, slingX-23, slingY-23, charSize, charSize+10, this);
 
 		//slingshot
 		//g.drawImage(slingImg, 60, 300, 70, 100, this);
