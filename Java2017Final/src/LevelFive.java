@@ -9,7 +9,7 @@ public class LevelFive {
 	
 	public LevelFive (){
 		
-		ob1 = new Obstacle (15, 0, 270, 0, 150, 100, Color.GREEN);
+		ob1 = new Obstacle (15, 0, 270, 0, 150, 100, Color.BLACK);
 		
 	}
 	

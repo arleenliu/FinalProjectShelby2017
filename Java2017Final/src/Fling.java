@@ -8,7 +8,7 @@ public class Fling {
 		JFrame w = new JFrame("Fling");
 		w.setBounds(100, 100, 800, 600);
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GameScreen panel = new GameScreen(1);
+		GameScreen panel = new GameScreen(4);
 		TitleScreen titlePanel = new TitleScreen();
 		ResultScreen resultPanel = new ResultScreen();
 		w.add(panel);
