@@ -13,12 +13,14 @@ public class TimeTracker implements ActionListener {
 	    clock.start();
 	    
 	    if(character.returnStatus() == true)
-	    	clock.restart();
+	    	clock.stop();
 	}
 
 	
 	public int getTime() {
-		return time;
+		int t1 = time;
+		
+		return t1;
 	}
 
 	@Override
