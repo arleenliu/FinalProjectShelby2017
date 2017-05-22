@@ -298,7 +298,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			int x = e.getX();
 			int y = e.getY();
 			slingshot.setXY(x, y);
-			character.launch(time.getTime());
+//			slingshot.setObjectHeight(heightI, heightF);
+//			character.launch(time.getTime());
 
 		
 		}
