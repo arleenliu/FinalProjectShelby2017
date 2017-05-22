@@ -26,7 +26,7 @@ public class Fling extends JFrame{
 		
 		System.out.println(Screen + "");
 		
-		if(Screen != 6) {
+		if(Screen == 6) {
 			w.add(titlePanel);
 			System.out.println(Screen + "");
 		}
