@@ -36,7 +36,10 @@ public class ResultScreen extends Screen {
 			score = 5;
 	}
 
-	public void paintComponent(Graphics g) {		
+	public void paintComponent(Graphics g) {	
+		Color SKYBLUE = new Color(175, 238, 238);
+		g.setColor(SKYBLUE);
+		g.fillRect(0, 0, 800, 600);
 		g.drawImage(catImg, 0, 0, 800, 600, this);
 
 		for(int i = 0; i < score; i++) {
