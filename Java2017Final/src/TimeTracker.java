@@ -4,7 +4,7 @@ import javax.swing.Timer;
 
 public class TimeTracker implements ActionListener {
 
-	private int time;
+	private static int time;
 	private boolean characterDead;
 	
 	public TimeTracker(Character character) {
@@ -12,12 +12,14 @@ public class TimeTracker implements ActionListener {
 	    Timer clock = new Timer(1000, this); 
 	    clock.start();
 	    
-	    if(character.getHasDied() == true)
+	    if(character.getHasDied() == true) {
 	    	clock.stop();
+	    	time = -1;
+	    }
 	}
 
 	
-	public int getTime() {
+	public static int getTime() {
 		int t1 = time;
 		
 		return t1;

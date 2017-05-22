@@ -8,6 +8,7 @@ import javax.swing.*;
 public class ResultScreen extends Screen {
 
 	private int score;
+	private int time;
 	private Image starImg;
 	private Image shelbyFace, catImg;
 
@@ -19,15 +20,20 @@ public class ResultScreen extends Screen {
 		setBackground(SKYBLUE);
 
 		score = 3;
+		time = TimeTracker.getTime();
 
-		//int time = getTime()? method in timetracker?
-
-		/*if(time >= this)
+		if(time == -1)
+			score = 0;
+		else if(time >= 360)
 			score = 1;
-		else if(time >= something)
-			score = 2; 
-		etc etc
-		 */
+		else if(time >= 300)
+			score = 2;
+		else if(time >= 180)
+			score = 3;
+		else if(time >= 60)
+			score = 4;
+		else if(time >= 20)
+			score = 5;
 	}
 
 	public void paintComponent(Graphics g) {		
@@ -43,7 +49,9 @@ public class ResultScreen extends Screen {
 		
 		String phrase = "";
 		
-		if(score == 1)
+		if(score == 0)
+			phrase = "You lost! Oh no!";
+		else if(score == 1)
 			phrase = "Wow you are almost as terrible as Arleen";
 		else if(score == 2)
 			phrase = "Okay??? I guess";
