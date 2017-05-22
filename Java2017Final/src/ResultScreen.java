@@ -18,7 +18,7 @@ public class ResultScreen extends Screen {
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
 
-		score = 1;
+		score = 3;
 
 		//int time = getTime()? method in timetracker?
 
@@ -56,9 +56,9 @@ public class ResultScreen extends Screen {
 		
 		Font f2 = new Font("Arial Narrow", Font.PLAIN, 26);
 		g.setFont(f2);
-		g.drawString(phrase, 185, 380);
+		g.drawString(phrase, 185, 360);
 		
-		Font f3 = new Font("Arial Narrow", Font.PLAIN, 16);
+		Font f3 = new Font("Arial Narrow", Font.PLAIN, 18);
 		g.setFont(f3);
 		g.drawString("Click on Shelby to continue", 615, 455);
 		g.drawImage(shelbyFace, 700, 480, 70, 80, this);
