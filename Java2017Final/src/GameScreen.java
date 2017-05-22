@@ -38,8 +38,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private int slingX, slingY, dragX, dragY;
 	private static boolean slingClicked;
 	
-	private ArrayList<HelperObject> helpers;
-	private ArrayList<Obstacle> obstacles;
+	protected ArrayList<HelperObject> helpers;
+	protected ArrayList<Obstacle> obstacles;
 	private int level;
 	private LevelOne level1;
 	private LevelTwo level2;
@@ -48,11 +48,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private LevelFive level5;
 	
 	private boolean isEditable;
+	private AllScreen as;
+	// still need to call as.changeScreen("Results") somewhere
 
 
 
-	public GameScreen () {
+	public GameScreen (AllScreen as) {
 		
+		this.as = as;
 		helperObj = false;
 		drawHelperObj = false;
 		objWidth = 60;
@@ -220,6 +223,31 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		return level;
 
 	}
+	
+	
+	public void run() {
+		
+		while(true){
+		
+			// CHANGE
+			if (!AllScreen.panel.getSlingClicked()) {
+				AllScreen.panel.character.launch(TimeTracker.getTime());
+				AllScreen.panel.character.checkHasCollided(AllScreen.panel.helpers, AllScreen.panel.obstacles, 800, 600);
+			}
+			
+			repaint();
+			
+			try {
+				Thread.sleep(16);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}
+		
+	}
+	
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {

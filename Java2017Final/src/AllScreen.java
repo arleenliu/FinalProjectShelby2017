@@ -19,11 +19,11 @@ public class AllScreen extends JPanel{
 		
 		cards = new CardLayout();
 		
-		titlePanel = new TitleScreen();
-		resultPanel = new ResultScreen();
-		levelPanel = new LevelScreen();
+		titlePanel = new TitleScreen(this);
+		resultPanel = new ResultScreen(this);
+		levelPanel = new LevelScreen(this);
 		
-		panel = new GameScreen();
+		panel = new GameScreen(this);
 		panel.setLevel(LEVEL);
 		System.out.println(LEVEL + "");
 		
@@ -41,6 +41,11 @@ public class AllScreen extends JPanel{
 		resultPanel.addMouseListener(resultPanel);
 		levelPanel.addMouseListener(levelPanel);
 	
+		
+	}
+	
+	public void changeScreen(String name) {
+		cards.show(this, name);
 		
 	}
 

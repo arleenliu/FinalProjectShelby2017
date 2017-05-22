@@ -6,8 +6,11 @@ import javax.swing.*;
 public class TitleScreen extends Screen {
 
 	private Image titleImg;
+	
+	private AllScreen as;
 
-	public TitleScreen() {
+	public TitleScreen(AllScreen as) {
+		this.as = as;
 		titleImg = (new ImageIcon("FlingTitleScreen.png").getImage());
 	}
 
@@ -26,7 +29,8 @@ public class TitleScreen extends Screen {
 		int yClick = e.getY();
 
 		if(xClick >= 460 && xClick <= 700 && yClick >= 410 && yClick <= 550) {
-			AllScreen.SCREEN = 7;
+			//AllScreen.SCREEN = 7;
+			as.changeScreen("Level");
 		}
 	}
 

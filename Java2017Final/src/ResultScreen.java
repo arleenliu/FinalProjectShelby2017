@@ -11,8 +11,10 @@ public class ResultScreen extends Screen {
 	private int time;
 	private Image starImg;
 	private Image shelbyFace, catImg;
+	private AllScreen as;
 
-	public ResultScreen() {
+	public ResultScreen(AllScreen as) {
+		this.as = as;
 		starImg = (new ImageIcon("starImg.png").getImage());
 		shelbyFace = (new ImageIcon("shelbyface.png").getImage());
 		
@@ -79,6 +81,6 @@ public class ResultScreen extends Screen {
 		int yClick = e.getY();
 
 		if(xClick >= 700 && xClick <= 770 && yClick >= 480 && yClick <= 560)
-			AllScreen.SCREEN = 7;
+			as.changeScreen("Level");
 	}
 }

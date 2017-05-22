@@ -10,9 +10,11 @@ import javax.swing.ImageIcon;
 public class LevelScreen extends Screen {
 
 	private Image level1, level2, level3, level4, level5;
+	private AllScreen as;
 
-	public LevelScreen() {
-
+	public LevelScreen(AllScreen as) {
+		this.as = as;
+		
 		level1 = (new ImageIcon("pusheen1.png").getImage());
 		level2 = (new ImageIcon("pusheen2.png").getImage());
 		level3 = (new ImageIcon("pusheen3.png").getImage());
@@ -76,9 +78,9 @@ public class LevelScreen extends Screen {
 		AllScreen.panel.setLevel(AllScreen.LEVEL);
 		
 		if (isSelected){
-			AllScreen.SCREEN = 8;
+			as.changeScreen("Game");
 			
-			System.out.println(AllScreen.LEVEL + "");
+			// System.out.println(AllScreen.LEVEL + "");
 		}
 		
 		
