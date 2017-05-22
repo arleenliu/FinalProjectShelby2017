@@ -12,20 +12,23 @@ public class Slingshot {
 	private int jumpNum;
 	private int objectHeight;
 	private double angle;
+	private int x1, y1, x2, y2;
 
 	// CONSTRUCTORS
 	// to be deleted later
-	public Slingshot() {
-
-	}
 
 	public int calculateCurrentXVelocity() {
 		return xVelocity;
 	}
 
-	public Slingshot(int length, double angle) {
-		this.length = length;
-		this.angle = angle;
+	public Slingshot() {
+		x1 = 95;
+		y1 = 340;
+		x2 = 95;
+		y2 = 340;
+		
+		length = 0;
+		angle = 0;
 		jumpNum = 0;
 		velocityI = (int) (length * GRAVITY);
 		velocityF = 0;
@@ -96,6 +99,13 @@ public class Slingshot {
 
 	public int getJumpNum() {
 		return jumpNum;
+	}
+	
+	public void setXY(int x, int y) {
+		x2 = x;
+		y2 = y;
+		
+		
 	}
 
 	/*
