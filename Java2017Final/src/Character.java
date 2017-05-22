@@ -11,7 +11,7 @@ public class Character {
 	private Image charImg;
 	private boolean isDead;
 	private double beginTime;
-	private boolean hasHitBottom, hasHitTop, hasDied;;
+	private static boolean hasHitBottom, hasHitTop, hasDied;;
 	private Slingshot ss;
 
 	
@@ -128,15 +128,15 @@ public class Character {
 	}
 	
 	
-	public boolean getHasHitTop() {
+	public static boolean getHasHitTop() {
 		return hasHitTop;
 	}
 	
-	public boolean getHasHitBottom() {
+	public static boolean getHasHitBottom() {
 		return hasHitBottom;
 	}
 	
-	public boolean getHasDied() {
+	public static boolean getHasDied() {
 		return hasDied;
 	}
 	
