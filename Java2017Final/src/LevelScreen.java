@@ -32,7 +32,7 @@ public class LevelScreen extends Screen {
 		g.setFont(newFont);
 		g.drawImage(level1, 50, 200, 200, 150, this);
 		g.drawString("Level 1", 100, 300);
-		g.drawImage(level2, 180, 80, 200, 200, this);
+		g.drawImage(level2, 180, 55, 200, 210, this);
 		g.drawString("Level 2", 228, 180);
 		g.drawImage(level3, 250, 400, 200, 150, this);
 		g.drawString("Level 3", 320, 475);
@@ -54,20 +54,20 @@ public class LevelScreen extends Screen {
 			AllScreen.LEVEL = 1;		
 			isSelected = true;
 		}
-		else if(xClick>=180 && xClick<=380 && yClick>=90 && yClick<=280){
+		else if(xClick>=180 && xClick<=380 && yClick>=100 && yClick<=220){
 			AllScreen.LEVEL = 2;
 			isSelected = true;
 		}
-		else if(xClick>=250 && xClick<=450 && yClick>=400 && yClick<=650){
+		else if(xClick>=250 && xClick<=450 && yClick>=415 && yClick<=650){
 			AllScreen.LEVEL = 3;
 			isSelected = true;
 		}
-		else if(xClick>=390 && xClick<=590 && yClick>=230 && yClick<= 410){
+		else if(xClick>=400 && xClick<=580 && yClick>=240 && yClick<= 390){
 			AllScreen.LEVEL = 4;		
 			isSelected = true;
 
 		}
-		else if(xClick>=550 && xClick<= 750 && yClick>=120 && yClick<=270){
+		else if(xClick>=565 && xClick<= 750 && yClick>=130 && yClick<=270){
 			AllScreen.LEVEL = 5;
 			isSelected = true;
 			
