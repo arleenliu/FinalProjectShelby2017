@@ -24,9 +24,9 @@ public class ResultScreen extends Screen {
 
 		if(time == -1)
 			score = 0;
-		else if(time >= 360)
-			score = 1;
 		else if(time >= 300)
+			score = 1;
+		else if(time >= 240)
 			score = 2;
 		else if(time >= 180)
 			score = 3;
@@ -40,7 +40,6 @@ public class ResultScreen extends Screen {
 		Color SKYBLUE = new Color(175, 238, 238);
 		g.setColor(SKYBLUE);
 		g.fillRect(0, 0, 800, 600);
-		g.drawImage(catImg, 0, 0, 800, 600, this);
 
 		for(int i = 0; i < score; i++) {
 			g.drawImage(starImg, 250 + 60*i, 200, 50, 50, this);
