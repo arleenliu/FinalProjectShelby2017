@@ -85,7 +85,32 @@ public class Character {
 		}
 		
 		for (int i = 0; i < obstacles.size(); i++) {
-			//if (obstacles.get(i))
+			int x1 = obstacles.get(i).getX1();
+			int x2 = obstacles.get(i).getX2();
+			int x3 = obstacles.get(i).getX3();
+			int y1 = obstacles.get(i).getY1();
+			int y2 = obstacles.get(i).getY2();
+			int y3 = obstacles.get(i).getY3();
+			
+			int m1y = - (y3 - y1);
+			int m1x = (x3 - x1);
+			int m2y = - (y3 - y2);
+			int m2x = (x3 - x2);
+
+			int c1 = m1x * x3 + m1y * y3;
+			int c2 = m2x * x3 + m2y * y3;
+			
+			if (m1x * (x + xChange + charWidth) + m1y * (y + yChange + charHeight) == c1 ||
+					m1x * (x + xChange) + m1y * (y + yChange + charHeight) == c1 ||
+					m1x * (x + xChange + charWidth) + m1y * (y + yChange) == c1 ||
+					m1x * (x + xChange) + m1y * (y + yChange) == c1) {
+				
+			}
+			
+			if (m2x * (x + xChange) + m2y * (y + yChange) == c2) {
+				
+			}
+			
 		}
 		
 		
