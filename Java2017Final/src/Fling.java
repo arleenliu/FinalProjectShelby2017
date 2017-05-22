@@ -27,15 +27,21 @@ public class Fling extends JFrame{
 		System.out.println(Screen + "");
 		
 		if(Screen == 6) {
+<<<<<<< HEAD
+=======
+		
+>>>>>>> branch 'master' of https://github.com/janniezhong/FinalProjectShelby2017.git
 			w.add(titlePanel);
 			System.out.println(Screen + "");
+			System.out.println(level + "");
+
 		}
-		/*else if(Screen == 7)
+		else if(Screen == 7)
 			w.add(levelPanel);
 		else if(Screen == 8)
 			w.add(panel);
 		else if(Screen == 9)
-			w.add(resultPanel); */
+			w.add(resultPanel);
 		
 		w.setResizable(false);
 		w.setVisible(true);

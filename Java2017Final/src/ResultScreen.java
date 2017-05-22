@@ -14,7 +14,9 @@ public class ResultScreen extends Screen {
 	public ResultScreen() {
 		starImg = (new ImageIcon("starImg.png").getImage());
 		shelbyFace = (new ImageIcon("shelbyface.JPG").getImage());
-		catImg = (new ImageIcon("booboo.jpg").getImage());
+		
+		Color SKYBLUE = new Color(175, 238, 238);
+		setBackground(SKYBLUE);
 
 		score = 5;
 
@@ -35,11 +37,7 @@ public class ResultScreen extends Screen {
 			g.drawImage(starImg, 250 + 60*i, 200, 50, 50, this);
 		}
 
-		Color NEWGREEN = new Color(60, 222, 120);
-		g.setColor(NEWGREEN);
-		Font f1 = new Font("Arial", Font.BOLD, 45);
-		g.setFont(f1);
-		g.drawString("FLING", 50, 80);
+
 
 		Color LESSGREEN = new Color(60, 179, 113);
 		g.setColor(LESSGREEN);
