@@ -2,6 +2,13 @@ import javax.swing.JFrame;
 
 public class Fling {
 	
+	//levels one - five are 1-5
+	//title is 6, level is 7, game is 8, result is 9
+	public static int Screen;
+	
+	public Fling() {
+		Screen = 6;
+	}
 	
 	public static void main(String[] args)
 	{
@@ -11,16 +18,16 @@ public class Fling {
 		GameScreen panel = new GameScreen(1);
 		TitleScreen titlePanel = new TitleScreen();
 		ResultScreen resultPanel = new ResultScreen();
-		w.add(panel);
+		LevelScreen levelPanel = new LevelScreen();
+		w.add(levelPanel);
 		w.setResizable(false);
 		w.setVisible(true);
 
 		panel.addMouseListener(panel);
 		panel.addMouseMotionListener(panel);
 		titlePanel.addMouseListener(titlePanel);
-		//random
-		
-
+		resultPanel.addMouseListener(resultPanel);
+		levelPanel.addMouseListener(levelPanel);
 	}
 	
 }
