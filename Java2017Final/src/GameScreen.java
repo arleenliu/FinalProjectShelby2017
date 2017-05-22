@@ -37,7 +37,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private int objWidth, objHeight;
 	private int slingX, slingY, dragX, dragY;
 	private boolean slingClicked;
-
+	
 	private ArrayList<HelperObject> helpers;
 	private ArrayList<Obstacle> obstacles;
 	private int level;
@@ -46,19 +46,12 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private LevelThree level3;
 	private LevelFour level4;
 	private LevelFive level5;
-
+	
 	private boolean isEditable;
 
 
 
 	public GameScreen () {
-		//charImg = (new ImageIcon("sunImg.png").getImage());
-		slingImg = (new ImageIcon("slingshot1.png").getImage());
-		charImg = (new ImageIcon("shelbyface.png").getImage());
-		character = new Character(150, 200, charSize, charSize + 10, charImg, slingshot);
-		time = new TimeTracker(character);
-		target = new Target(550, 315, 80);		
-		charSize = 50;
 		
 		helperObj = false;
 		drawHelperObj = false;
@@ -70,6 +63,16 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		slingY = 370;
 		dragX = slingX;
 		dragY = slingY;
+
+		
+		//charImg = (new ImageIcon("sunImg.png").getImage());
+		slingImg = (new ImageIcon("slingshot1.png").getImage());
+		charImg = (new ImageIcon("shelbyface.png").getImage());
+		slingshot = new Slingshot();
+		character = new Character(150, 200, charSize, charSize + 10, charImg, slingshot);
+		time = new TimeTracker(character);
+		target = new Target(550, 315, 80);		
+		charSize = 50;
 
 		isEditable = true;
 		//sling = new Rectangle(slingX, slingY, 70, 10);	
@@ -84,7 +87,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		level5 = new LevelFive();
 
 		helpers = new ArrayList<>();
-		
+
 	}
 
 	public void paintComponent (Graphics g) {
@@ -186,9 +189,9 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	}
 
 	public int setLevel(int lvl){
-		
+
 		level = lvl;
-		
+
 		if (level == 1){
 
 			obstacles = level1.typeOfObstacles();
@@ -262,20 +265,22 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			}
 
 
+			if (isEditable == false){
+				if(slingClicked == false) {
+					//if it's approximately near the slingshot bc too lazy for precise coordinates lol
+					if(xClick>=50 && xClick<=120 && yClick>=300 && yClick<=400) {
+						slingClicked = true;
+						dragX = xClick;
+						dragY = yClick;
+					}
+					else {
 
-			if(slingClicked == false) {
-				//if it's approximately near the slingshot bc too lazy for precise coordinates lol
-				if(xClick>=50 && xClick<=120 && yClick>=300 && yClick<=400) {
-					slingClicked = true;
-					dragX = xClick;
-					dragY = yClick;
-				}
-				else {
-					//changeSling = true;
+					}
 				}
 			}
 
 		}
+		
 
 		if (xClick >= 670 && xClick <= 700 + 60 && yClick >= 400 && yClick <= 400 + 30){
 			isEditable = false;
@@ -289,21 +294,28 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (slingClicked){
-			slingClicked = false;
+			slingClicked = false;		
+			int x = e.getX();
+			int y = e.getY();
+			slingshot.setXY(x, y);
 			character.launch(time.getTime());
-		}
+
 		
+		}
+
 		repaint();
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if (slingClicked = true) {
-			if (e.getX() < 90) {
-				dragX = e.getX();
-				dragY= e.getY();
-				repaint();
+		if (isEditable == false){
+			if (slingClicked == true) {
+				if (e.getX() < 90) {
+					dragX = e.getX();
+					dragY= e.getY();
+					repaint();
+				}
 			}
 		}
 
@@ -314,5 +326,6 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		// TODO Auto-generated method stub
 
 	}
+	
 
 }
