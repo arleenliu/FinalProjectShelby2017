@@ -42,14 +42,14 @@ public class LevelScreen extends Screen {
 		int yClick = e.getY();
 
 		if(xClick>=50 && xClick<=250 && yClick>=200 && yClick<=350)
-			Fling.Screen = 1;		
+			Fling.level = 1;		
 		else if(xClick>=180 && xClick<=380 && yClick>=90 && yClick<=280)
-			Fling.Screen = 2;
+			Fling.level = 2;
 		else if(xClick>=250 && xClick<=450 && yClick>=400 && yClick<=650)
-			Fling.Screen = 3;
+			Fling.level = 3;
 		else if(xClick>=390 && xClick<=590 && yClick>=230 && yClick<= 410)
-			Fling.Screen = 4;
+			Fling.level = 4;
 		else if(xClick>=550 && xClick<= 750 && yClick>=120 && yClick<=270)
-			Fling.Screen = 5;
+			Fling.level = 5;
 	}
 }
