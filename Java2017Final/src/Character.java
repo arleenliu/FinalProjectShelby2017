@@ -40,6 +40,10 @@ public class Character {
 	public void die(){
 		isDead = true;
 	}
+	
+	public boolean returnStatus() {
+		return isDead;
+	}
 	public boolean isOnTarget(){
 	
 		return true;
