@@ -6,17 +6,14 @@ public class Fling {
 	
 	//title is 6, level is 7, game is 8, result is 9
 	public static int Screen;
+	
 	//levels one-five are 1-5
 	public static int level;
 	
 	public Fling() {
 		Screen = 6;
 	}
-	
-	public void returnScreen() {
-		System.out.println(Screen + "");
-	}
-	
+
 	public static void main(String[] args)
 	{
 		JFrame w = new JFrame("Fling");
@@ -27,11 +24,10 @@ public class Fling {
 		ResultScreen resultPanel = new ResultScreen();
 		LevelScreen levelPanel = new LevelScreen();
 		
-		System.out.println(Screen + "");
-
-		
-		if(Screen != 6)
+		if(Screen != 6) {
 			w.add(titlePanel);
+			System.out.println(Screen + "");
+		}
 		/*else if(Screen == 7)
 			w.add(levelPanel);
 		else if(Screen == 8)
