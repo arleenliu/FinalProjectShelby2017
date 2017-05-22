@@ -7,14 +7,12 @@ public class TimeTracker implements ActionListener {
 	private int time;
 	private boolean characterDead;
 	
-	public TimeTracker() {
+	public TimeTracker(Character character) {
 		time = 0;
 	    Timer clock = new Timer(1000, this); 
 	    clock.start();
 	    
-	    
-	    
-	    //if(this.returnStatus() == true)
+	    if(character.returnStatus() == true)
 	    	clock.restart();
 	}
 
