@@ -64,15 +64,15 @@ public class Character {
 		return true;
 	}
 	public void launch(double currentTime) {
-		double timeDiff = (currentTime - beginTime)*10;
+		double timeDiff = (currentTime - beginTime)*50;
 		// ss.incrementJumpNum();
 //		ss.setVelocity();
 		
 		xChange = (int) (ss.getXVelocity() * timeDiff);
 		yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 * Slingshot.GRAVITY * Math.pow(timeDiff, 2));
 		
-		int dummy = 0;
-		dummy += 1;
+		// int dummy = 0;
+		// dummy += 1;
 		
 	}
 	

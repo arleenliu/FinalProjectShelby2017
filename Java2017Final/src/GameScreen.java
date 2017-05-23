@@ -61,7 +61,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public GameScreen (AllScreen as) {
 		
 		t = 0;
-		Timer clock = new Timer(1000, this);
+		Timer clock = new Timer(16, this);
 		clock.start();
 		
 		this.as = as;
@@ -348,8 +348,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		if (slingPressed){
 			slingPressed = false;	
 			slingInitTimeSet = false;  // mark if we have set initial time yet
-			int x = e.getX();
-			int y = e.getY();
+			int x = e.getX() - 23;
+			int y = e.getY() - 23;
 			slingshot.setXY(x, y);
 			character.setXY(x,  y);
 			
