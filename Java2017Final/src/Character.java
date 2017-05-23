@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Polygon;
 import java.util.ArrayList;
 
 public class Character {
@@ -107,7 +108,23 @@ public class Character {
 		}
 		
 		for (int i = 0; i < obstacles.size(); i++) {
-			int x1 = obstacles.get(i).getX1();
+			
+			Polygon obstacle = new Polygon();
+			
+			obstacle.addPoint(obstacles.get(i).getX1(), obstacles.get(i).getY1());
+			obstacle.addPoint(obstacles.get(i).getX2(), obstacles.get(i).getY2());
+			obstacle.addPoint(obstacles.get(i).getX3(), obstacles.get(i).getY3());
+			
+			if (obstacle.intersects(x, y, charWidth, charHeight)) {
+				
+				hasDied = true;
+				
+				break;
+				
+			}
+			
+			/*
+			 * int x1 = obstacles.get(i).getX1();
 			int x2 = obstacles.get(i).getX2();
 			int x3 = obstacles.get(i).getX3();
 			int y1 = obstacles.get(i).getY1();
@@ -135,6 +152,7 @@ public class Character {
 					m2x * (x + xChange) + m2y * (y - yChange) == c2) {
 				hasDied = true;
 			}
+			*/
 			
 		}
 		

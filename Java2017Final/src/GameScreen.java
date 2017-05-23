@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -61,7 +62,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public GameScreen (AllScreen as) {
 		
 		t = 0;
-		Timer clock = new Timer(16, this);
+		Timer clock = new Timer(30, this);
 		clock.start();
 		
 		this.as = as;
@@ -99,6 +100,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 	public void paint(Graphics g) {
 		super.paint(g);
+		Toolkit.getDefaultToolkit().sync();
 
 		int width = getWidth();
 		int height = getHeight();
