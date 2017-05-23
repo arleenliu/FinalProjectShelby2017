@@ -137,29 +137,9 @@ public class Character {
 					break;
 				}
 
-				ss.setVelocity();
+				// ss.setVelocity();
 			}
 		}
-			
-			for (int i = 0; i < obstacles.size(); i++) {
-
-				Polygon obstacle = obstacles.get(i).getPolygon();
-
-				// obstacle.addPoint(obstacles.get(i).getX1(),
-				// obstacles.get(i).getY1());
-				// obstacle.addPoint(obstacles.get(i).getX2(),
-				// obstacles.get(i).getY2());
-				// obstacle.addPoint(obstacles.get(i).getX3(),
-				// obstacles.get(i).getY3());
-
-				if (obstacle.intersects(x, y, charWidth, charHeight)) {
-
-					hasDied = true;
-
-					break;
-
-				}
-			}
 			
 			
 		}
@@ -209,9 +189,6 @@ public class Character {
 	}
 
 	// code this later
-	public void bounce() {
-
-	}
 
 	public HelperObject getCurrObj() {
 		return currObj;
@@ -222,7 +199,7 @@ public class Character {
 	}
 
 	public void draw(Graphics g, int x, int y, int sizeX, int sizeY) {
-		g.drawImage(charImg, x, y, sizeX, sizeY, null);
+		g.drawImage(charImg, x, y, sizeX, sizeY, AllScreen.panel);
 
 	}
 

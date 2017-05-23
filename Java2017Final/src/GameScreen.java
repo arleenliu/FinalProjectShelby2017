@@ -38,7 +38,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private int xClick, yClick;
 	private int objWidth, objHeight;
 	private int slingX, slingY, dragX, dragY;
-	private static boolean slingPressed, slingReleased=false, slingInitTimeSet;  // slingReleased = sling clicked, then released 
+	private static boolean slingPressed, slingReleased, slingInitTimeSet;  // slingReleased = sling clicked, then released 
 	
 	protected ArrayList<HelperObject> helpers;
 	protected ArrayList<Obstacle> obstacles;
@@ -83,6 +83,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		time = new TimeTracker(character);
 		target = new Target(550, 315, 80);		
 		
+		slingReleased = false;
 
 		isEditable = true;
 
@@ -387,7 +388,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			if (slingPressed == true) {
 				if (e.getX() < 90) {
 					dragX = e.getX();
-					dragY= e.getY();
+					dragY = e.getY();
 					repaint();
 				}
 			}
@@ -405,7 +406,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		return slingReleased;
 	}
 	public static void setSlingReleased(Boolean b) {
-		slingReleased = false;
+		slingReleased = b;
 	}
 
 	@Override
@@ -415,7 +416,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		//while(true){
 			
 			// CHANGE
-			if (AllScreen.panel.getSlingReleased()) {
+			if(getSlingReleased()) {
 				
 				if (!slingInitTimeSet) {
 					// set start time of fling, so that we can compute diff correctly
@@ -427,20 +428,20 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 								
 				// System.out.println("launch....");
 
-				AllScreen.panel.character.launch();
-				AllScreen.panel.character.checkHasCollided(AllScreen.panel.helpers, AllScreen.panel.obstacles, 800, 600);
+				character.launch();
+				character.checkHasCollided(helpers, obstacles, 800, 600);
+	
+				slingshot.setVelocity();
 				
-				if(character.getHasHitTop() || character.getHasHitBottom()) {
-					slingshot.setVelocity();
-				}
+				repaint();
 				
 				if(character.getHasDied() == true) {
-					AllScreen.panel.setSlingReleased(false);  // only release once
+					setSlingReleased(false);  // only release once
 					as.changeScreen("Results");
 				}
+				
 			}
 			
-			repaint();
 			// System.out.println("repainting....");
 
 		
