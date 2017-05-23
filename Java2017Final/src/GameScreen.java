@@ -409,7 +409,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		t++;
+		// t++;
 		//while(true){
 			
 			// CHANGE
@@ -423,7 +423,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 								
 				// System.out.println("launch....");
 
-				AllScreen.panel.character.launch(TimeTracker.getTime());
+				AllScreen.panel.character.launch();
 				AllScreen.panel.character.checkHasCollided(AllScreen.panel.helpers, AllScreen.panel.obstacles, 800, 600);
 				
 				if(character.getHasHitTop() || character.getHasHitBottom()) {
@@ -438,13 +438,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			
 			repaint();
 			// System.out.println("repainting....");
-			
-			try {
-				Thread.sleep(16);
-			} catch (InterruptedException o) {
-				// TODO Auto-generated catch block
-				o.printStackTrace();
-			}
+
 		
 		}
 		

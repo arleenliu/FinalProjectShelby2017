@@ -9,7 +9,7 @@ public class Character {
 	private int y;
 	private int charWidth;
 	private int charHeight;
-	private int xChange, yChange;
+	// private int xChange, yChange;
 	private Image charImg;
 	private boolean isDead;
 	private double beginTime;
@@ -17,13 +17,16 @@ public class Character {
 	private Slingshot ss;
 	private HelperObject currObj;
 	private int indexOfCurrObj;
+	
+	private double xVel, yVel;
+	
 
 	// CONSTRUCTORS
 	public Character(int xCoor, int yCoor, int w, int h, Image character, Slingshot ss) {
 		x = xCoor;
 		y = yCoor;
-		xChange = 0;
-		yChange = 0;
+		//xChange = 0;
+		//yChange = 0;
 		charImg = character;
 		isDead = false;
 		beginTime = 0;
@@ -39,15 +42,18 @@ public class Character {
 
 	// METHODS
 	public int getX() {
-		return x + xChange;
+		return x;
 	}
 
 	public void setInitialTime(double beginTime) {
 		this.beginTime = beginTime;
+		
+		xVel = ss.getXVelocity();
+		yVel = ss.getInitialYVelocity();
 	}
 
 	public int getY() {
-		return y - yChange;
+		return y;
 	}
 
 	public void die() {
@@ -63,13 +69,18 @@ public class Character {
 		return true;
 	}
 
-	public void launch(double currentTime) {
-		double timeDiff = (currentTime - beginTime) * 50;
+	public void launch() {
+		//double timeDiff = (currentTime - beginTime) * 50;
 		// ss.incrementJumpNum();
 		// ss.setVelocity();
 
-		xChange = (int) (ss.getXVelocity() * timeDiff);
-		yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 * Slingshot.GRAVITY * Math.pow(timeDiff, 2));
+		yVel += Slingshot.GRAVITY;
+		
+		x += xVel;
+		y += yVel;
+		
+		// xChange = (int) (ss.getXVelocity() * timeDiff);
+		// yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 * Slingshot.GRAVITY * Math.pow(timeDiff, 2));
 
 		// int dummy = 0;
 		// dummy += 1;
@@ -79,7 +90,7 @@ public class Character {
 	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, int screenWidth,
 			int screenHeight) {
 
-		if (x + xChange <= 0 || x + xChange >= screenWidth || y - yChange <= 0 || y - yChange >= screenHeight) {
+		if (x <= 0 || x >= screenWidth || y <= 0 || y >= screenHeight) {
 			hasDied = true;
 		}
 
@@ -104,8 +115,8 @@ public class Character {
 		}
 
 		for (int i = 0; i < helpers.size(); i++) {
-			if (x + xChange > helpers.get(i).getX() && x + (charWidth / 2.0) + xChange < helpers.get(i).getX() + 60) {
-				if (y - yChange + charHeight >= helpers.get(i).getY()) {
+			if (x > helpers.get(i).getX() && x + (charWidth / 2.0) < helpers.get(i).getX() + 60) {
+				if (y + charHeight >= helpers.get(i).getY()) {
 					hasHitTop = true;
 
 					indexOfCurrObj = i;
@@ -114,7 +125,7 @@ public class Character {
 					break;
 				}
 
-				if (y - yChange <= helpers.get(i).getY()) {
+				if (y <= helpers.get(i).getY()) {
 					hasHitBottom = true;
 
 					indexOfCurrObj = i;
