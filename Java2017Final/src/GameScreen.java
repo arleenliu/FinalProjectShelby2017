@@ -33,7 +33,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private Image charImg;
 	private int charSize;
 	private TimeTracker time;
-
+	
 	private boolean helperObj;
 	private int xClick, yClick;
 	private int objWidth, objHeight;
@@ -69,7 +69,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		helperObj = false;
 		objWidth = 60;
 		objHeight = 5;
-
+		
 		slingPressed = false;
 		slingX = 65;
 		slingY = 370;
@@ -361,6 +361,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			character.setXY(x,  y);
 			
 			slingReleased = true;
+			
+			isEditable = false;
 			
 //			int heightI = e.getY();
 //			int heightF = helpers.get(character.getIndexOfCurrObj()).getY();
