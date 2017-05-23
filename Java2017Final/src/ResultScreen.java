@@ -80,7 +80,7 @@ public class ResultScreen extends Screen {
 		int xClick = e.getX();
 		int yClick = e.getY();
 
-		if(xClick >= 700 && xClick <= 770 && yClick >= 480 && yClick <= 560)
+		if(xClick >= 700 && xClick <= 770 && yClick >= 480 && yClick <= 580)
 			as.changeScreen("Level");
 	}
 }
