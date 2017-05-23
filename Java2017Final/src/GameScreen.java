@@ -420,6 +420,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 				if (!slingInitTimeSet) {
 					// set start time of fling, so that we can compute diff correctly
 					AllScreen.panel.character.setInitialTime(TimeTracker.getTime());
+					slingshot.setXY(dragX, dragY);
+					character.setXY(dragX, dragY);
 					slingInitTimeSet = true;
 				}
 								

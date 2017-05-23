@@ -27,6 +27,8 @@ public class Character {
 		y = yCoor;
 		//xChange = 0;
 		//yChange = 0;
+		xVel = 0;
+		yVel = 0;
 		charImg = character;
 		isDead = false;
 		beginTime = 0;
@@ -47,6 +49,7 @@ public class Character {
 
 	public void setInitialTime(double beginTime) {
 		this.beginTime = beginTime;
+		
 		
 		xVel = ss.getXVelocity();
 		yVel = ss.getInitialYVelocity();
