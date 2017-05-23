@@ -50,9 +50,6 @@ public class Character {
 	public void setInitialTime(double beginTime) {
 		this.beginTime = beginTime;
 		
-		
-		xVel = ss.getXVelocity();
-		yVel = ss.getInitialYVelocity();
 	}
 
 	public int getY() {
@@ -93,7 +90,7 @@ public class Character {
 	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, int screenWidth,
 			int screenHeight) {
 
-		if (x <= 0 || x >= screenWidth || y <= 0 || y >= screenHeight) {
+		if (x <= -50 || x >= screenWidth || y <= 0 || y >= screenHeight) {
 			hasDied = true;
 		}
 
@@ -186,6 +183,9 @@ public class Character {
 	public void setXY(int x, int y) {
 		this.x = x;
 		this.y = y;
+		
+		xVel = ss.getXVelocity();
+		yVel = ss.getInitialYVelocity();
 	}
 
 	// code this later
