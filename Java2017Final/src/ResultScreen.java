@@ -21,7 +21,6 @@ public class ResultScreen extends Screen {
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
 
-		score = 3;
 		time = TimeTracker.getTime();
 
 		if(time == -1)
@@ -47,6 +46,7 @@ public class ResultScreen extends Screen {
 			g.drawImage(starImg, 250 + 60*i, 200, 50, 50, this);
 		}
 
+		g.setColor(Color.BLACK);
 		Font newFont = new Font("Arial Narrow", Font.PLAIN, 35);
 		g.setFont(newFont);
 		g.drawString("Your score is " + score + " out of 5 stars", 180, 300);

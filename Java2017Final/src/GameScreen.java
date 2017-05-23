@@ -26,13 +26,11 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private Slingshot slingshot;
 	protected Character character;
 	private Target target;
-	private Image charImg, slingImg;
+	private Image charImg;
 	private int charSize;
 	private TimeTracker time;
 
-	private int dragOffsetX, dragOffsetY;
-
-	private boolean helperObj, drawHelperObj;
+	private boolean helperObj;
 	private int xClick, yClick;
 	private int objWidth, objHeight;
 	private int slingX, slingY, dragX, dragY;
@@ -57,7 +55,6 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		
 		this.as = as;
 		helperObj = false;
-		drawHelperObj = false;
 		objWidth = 60;
 		objHeight = 5;
 
@@ -67,9 +64,6 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		dragX = slingX;
 		dragY = slingY;
 
-		
-		//charImg = (new ImageIcon("sunImg.png").getImage());
-		slingImg = (new ImageIcon("slingshot1.png").getImage());
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 		slingshot = new Slingshot();
 		character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot);
@@ -78,7 +72,6 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		charSize = 50;
 
 		isEditable = true;
-		//sling = new Rectangle(slingX, slingY, 70, 10);	
 
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
@@ -130,9 +123,6 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		Color BROWN = new Color(185, 155, 75);
 		g.setColor(BROWN);
 		g.fillRect(90, 330, 10, 70);
-
-
-		//g.fillRect(sling.x, sling.y, sling.width, sling.height);
 
 		//platform for target
 		g.setColor(PALEGREEN);
@@ -233,6 +223,9 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			if (!AllScreen.panel.getSlingClicked()) {
 				AllScreen.panel.character.launch(TimeTracker.getTime());
 				AllScreen.panel.character.checkHasCollided(AllScreen.panel.helpers, AllScreen.panel.obstacles, 800, 600);
+				
+				if(character.getHasDied() == true)
+					as.changeScreen("Results");
 			}
 			
 			repaint();
