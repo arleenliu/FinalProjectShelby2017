@@ -33,7 +33,7 @@ public class AllScreen extends JPanel{
 	    this.add(panel, "Game");
 	    this.add(resultPanel, "Results");
 	    
-	    // cards.show(this, "Title");
+//	     cards.show(this, "Title");
 
 		panel.addMouseListener(panel);
 		panel.addMouseMotionListener(panel);
@@ -45,6 +45,16 @@ public class AllScreen extends JPanel{
 	}
 	
 	public void changeScreen(String name) {
+		// if we restart a game, make sure start from clean slate, so that we do not have leftovers from last game
+		if (name == "Game") {
+			this.remove(panel);
+			panel = new GameScreen(this);
+			panel.setLevel(LEVEL);
+			panel.addMouseListener(panel);
+			panel.addMouseMotionListener(panel);
+			this.add(panel, "Game");
+		}
+		
 		cards.show(this, name);
 		
 	}

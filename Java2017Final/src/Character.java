@@ -47,7 +47,7 @@ public class Character {
 	}
 	
 	public int getY(){
-		return y + yChange;
+		return y - yChange;
 	}
 	
 	
@@ -64,25 +64,27 @@ public class Character {
 		return true;
 	}
 	public void launch(double currentTime) {
-		double timeDiff = currentTime - beginTime;
+		double timeDiff = (currentTime - beginTime)*10;
 		// ss.incrementJumpNum();
-		ss.setVelocity();
+//		ss.setVelocity();
 		
-		yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 * Slingshot.GRAVITY * Math.pow(timeDiff, 2));
 		xChange = (int) (ss.getXVelocity() * timeDiff);
+		yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 * Slingshot.GRAVITY * Math.pow(timeDiff, 2));
 		
+		int dummy = 0;
+		dummy += 1;
 		
 	}
 	
 	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, int screenWidth, int screenHeight) {
 		
-		if (x + xChange <= 0 || x + xChange >= screenWidth || y + yChange <= 0 || y + yChange >= screenHeight) {
+		if (x + xChange <= 0 || x + xChange >= screenWidth || y - yChange <= 0 || y - yChange >= screenHeight) {
 			hasDied = true;
 		}
 		
 		for (int i = 0; i < helpers.size(); i++) {
 			if (x + xChange > helpers.get(i).getX() && x + (charWidth / 2.0) + xChange < helpers.get(i).getX() + 60) {
-				if (y + yChange + charHeight >= helpers.get(i).getY()) {
+				if (y - yChange + charHeight >= helpers.get(i).getY()) {
 					hasHitTop = true;
 					
 					indexOfCurrObj = i;
@@ -91,7 +93,7 @@ public class Character {
 					break;
 				}
 				
-				if (y + yChange <= helpers.get(i).getY()) {
+				if (y - yChange <= helpers.get(i).getY()) {
 					hasHitBottom = true;
 					
 					indexOfCurrObj = i;
@@ -120,17 +122,17 @@ public class Character {
 			int c1 = m1x * x3 + m1y * y3;
 			int c2 = m2x * x3 + m2y * y3;
 			
-			if (m1x * (x + xChange + charWidth) + m1y * (y + yChange + charHeight) == c1 ||
-					m1x * (x + xChange) + m1y * (y + yChange + charHeight) == c1 ||
-					m1x * (x + xChange + charWidth) + m1y * (y + yChange) == c1 ||
-					m1x * (x + xChange) + m1y * (y + yChange) == c1) {
+			if (m1x * (x + xChange + charWidth) + m1y * (y - yChange + charHeight) == c1 ||
+					m1x * (x + xChange) + m1y * (y - yChange + charHeight) == c1 ||
+					m1x * (x + xChange + charWidth) + m1y * (y - yChange) == c1 ||
+					m1x * (x + xChange) + m1y * (y - yChange) == c1) {
 				hasDied = true;
 			}
 			
-			if (m2x * (x + xChange + charWidth) + m2y * (y + yChange + charHeight) == c2 ||
-					m2x * (x + xChange) + m2y * (y + yChange + charHeight) == c2 ||
-					m2x * (x + xChange + charWidth) + m2y * (y + yChange) == c2 ||
-					m2x * (x + xChange) + m2y * (y + yChange) == c2) {
+			if (m2x * (x + xChange + charWidth) + m2y * (y - yChange + charHeight) == c2 ||
+					m2x * (x + xChange) + m2y * (y - yChange + charHeight) == c2 ||
+					m2x * (x + xChange + charWidth) + m2y * (y - yChange) == c2 ||
+					m2x * (x + xChange) + m2y * (y - yChange) == c2) {
 				hasDied = true;
 			}
 			

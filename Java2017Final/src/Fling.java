@@ -19,6 +19,7 @@ public class Fling extends JFrame{
 		w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		w.setBounds(100, 100, 800, 600);
 		w.add(as);
+		w.getContentPane().repaint();
 		
 		w.setResizable(false);
 		w.setVisible(true);

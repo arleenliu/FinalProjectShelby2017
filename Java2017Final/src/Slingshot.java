@@ -4,11 +4,12 @@ public class Slingshot {
 
 	// FIELDS
 	// subject to change
-	public static final double GRAVITY = 9.81;
+	public static final double GRAVITY = 0.001;
+	public static final double SCALE = 0.01;
 	private int length;
 	// velocityI calculation will be figured out later
-	private int velocityI, velocityF;
-	private int xVelocity, yVelocityI, yVelocityF;
+	private double velocityI, velocityF;
+	private double xVelocity, yVelocityI, yVelocityF;
 	private int jumpNum;
 	private int objectHeight;
 	private double angle;
@@ -17,7 +18,7 @@ public class Slingshot {
 	// CONSTRUCTORS
 	// to be deleted later
 
-	public int calculateCurrentXVelocity() {
+	public double calculateCurrentXVelocity() {
 		return xVelocity;
 	}
 
@@ -30,18 +31,21 @@ public class Slingshot {
 		length = 0;
 		angle = 0;
 		jumpNum = 0;
-		velocityI = (int) (length * GRAVITY);
+		objectHeight = 0;
 		velocityF = 0;
 		yVelocityF = 0;
-		yVelocityI = (int) (velocityI * Math.sin(angle));
-		xVelocity = (int) (velocityI * Math.cos(angle));
-		objectHeight = 0;
+	}
+	
+	private void calculateInitialVelocity() {
+		velocityI = (length * SCALE);
+		yVelocityI =  (velocityI * Math.sin(angle));
+		xVelocity =  (velocityI * Math.cos(angle));
 	}
 
 	public void setVelocity() {
 		if (Character.getHasHitTop()){
 			calculateFinalVelocity();
-			velocityI = (int) (-velocityF / 2.0);
+			velocityI =  (-velocityF);
 			velocityF = 0;
 		}
 		
@@ -52,15 +56,15 @@ public class Slingshot {
 
 	}
 
-	public int getInitialVelocity() {
+	public double getInitialVelocity() {
 		return velocityI;
 	}
 
-	public int getInitialYVelocity() {
+	public double getInitialYVelocity() {
 		return yVelocityI;
 	}
 
-	public int getXVelocity() {
+	public double getXVelocity() {
 		return xVelocity;
 	}
 	
@@ -87,10 +91,10 @@ public class Slingshot {
 
 	public void calculateFinalVelocity() {
 
-		yVelocityI = (int) (velocityI * Math.sin(angle));
-		xVelocity = (int) (velocityI * Math.cos(angle));
-		yVelocityF = (int) (Math.sqrt(Math.pow(yVelocityI, 2) - 2 * GRAVITY * (-objectHeight)));
-		velocityF = -(int) (Math.sqrt(Math.pow(xVelocity, 2) + Math.pow(yVelocityF, 2)));
+		yVelocityI =  (velocityI * Math.sin(angle));
+		xVelocity =  (velocityI * Math.cos(angle));
+		yVelocityF =  (Math.sqrt(Math.pow(yVelocityI, 2) - 2 * GRAVITY * (-objectHeight)));
+		velocityF = - (Math.sqrt(Math.pow(xVelocity, 2) + Math.pow(yVelocityF, 2)));
 
 	}
 
@@ -107,8 +111,9 @@ public class Slingshot {
 		y2 = y;
 		
 		length = (int) Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
-		angle = Math.atan((y1 - y2) / (double) (x1 - 2));
+		angle = Math.atan((y2 - y1) / (double) (x1 - x2));
 	
+		calculateInitialVelocity();
 	}
 
 	/*
