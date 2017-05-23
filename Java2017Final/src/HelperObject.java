@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Polygon;
 
 //delete this later prob
 public class HelperObject {

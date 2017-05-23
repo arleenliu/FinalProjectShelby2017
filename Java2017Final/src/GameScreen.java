@@ -62,7 +62,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public GameScreen (AllScreen as) {
 		
 		t = 0;
-		Timer clock = new Timer(30, this);
+		Timer clock = new Timer(16, this);
 		clock.start();
 		
 		this.as = as;
@@ -75,13 +75,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		slingY = 370;
 		dragX = slingX;
 		dragY = slingY;
+		charSize = 50;
 
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 		slingshot = new Slingshot();
 		character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot);
 		time = new TimeTracker(character);
 		target = new Target(550, 315, 80);		
-		charSize = 50;
+		
 
 		isEditable = true;
 
@@ -110,7 +111,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setColor(PALEGREEN);
 		g.fillRect(0, 400, 150, 200);	
 
-		System.out.print("pai....xxted\n");
+		// System.out.print("pai....xxted\n");
 
 		//character
 		if(slingPressed == true) {
@@ -121,7 +122,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			y = character.getY();
 			character.draw(g, x, y, charSize, charSize+10);
 
-			System.out.print("draw x " + x + "  y " + y  + "\n");
+			// System.out.print("draw x " + x + "  y " + y  + "\n");
 			
 		}
 		//slingshot
@@ -231,7 +232,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	}
 	
 	
-	public void run() {
+
+	/*public void run() {
 		
 		while(true){
 		
@@ -256,7 +258,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			}
 			
 			repaint();
-			System.out.println("repainting....");
+			// System.out.println("repainting....");
 			
 			try {
 				Thread.sleep(160);
@@ -264,12 +266,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
+			
 		}
+		
 		
 	}
 	
-
+*/ 
+	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 
@@ -280,6 +284,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		// TODO Auto-generated method stub
 
 	}
+
 
 	@Override
 	public void mouseExited(MouseEvent e) {
@@ -307,7 +312,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			}
 			//if true, which means have already clicked on a block
 			else {
-				if (xClick < 650){
+				if (xClick < 590){
 					if (helpers.size() < 10){
 						helpers.add(new HelperObject(xClick, yClick, objWidth, objHeight));
 						helperObj = false;
@@ -416,10 +421,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 					slingInitTimeSet = true;
 				}
 								
-				System.out.println("launch....");
+				// System.out.println("launch....");
 
 				AllScreen.panel.character.launch(TimeTracker.getTime());
 				AllScreen.panel.character.checkHasCollided(AllScreen.panel.helpers, AllScreen.panel.obstacles, 800, 600);
+				
+				if(character.getHasHitTop() || character.getHasHitBottom()) {
+					slingshot.setVelocity();
+				}
 				
 				if(character.getHasDied() == true) {
 					AllScreen.panel.setSlingReleased(false);  // only release once
@@ -428,10 +437,10 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			}
 			
 			repaint();
-			System.out.println("repainting....");
+			// System.out.println("repainting....");
 			
 			try {
-				Thread.sleep(160);
+				Thread.sleep(16);
 			} catch (InterruptedException o) {
 				// TODO Auto-generated catch block
 				o.printStackTrace();

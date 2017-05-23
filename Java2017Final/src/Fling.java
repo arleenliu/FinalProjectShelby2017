@@ -24,7 +24,7 @@ public class Fling extends JFrame{
 		w.setResizable(false);
 		w.setVisible(true);
 		
-		AllScreen.panel.run();
+		// AllScreen.panel.run();
 		
 		// Fling w = new Fling();
 		

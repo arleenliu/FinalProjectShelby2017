@@ -4,8 +4,8 @@ import java.awt.Polygon;
 import java.util.ArrayList;
 
 public class Character {
-	//FIELDS
-	private int x; //location of character
+	// FIELDS
+	private int x; // location of character
 	private int y;
 	private int charWidth;
 	private int charHeight;
@@ -18,9 +18,8 @@ public class Character {
 	private HelperObject currObj;
 	private int indexOfCurrObj;
 
-	
-	//CONSTRUCTORS
-	public Character (int xCoor, int yCoor, int w, int h, Image character, Slingshot ss){
+	// CONSTRUCTORS
+	public Character(int xCoor, int yCoor, int w, int h, Image character, Slingshot ss) {
 		x = xCoor;
 		y = yCoor;
 		xChange = 0;
@@ -37,166 +36,180 @@ public class Character {
 		currObj = new HelperObject(0, 0, 60, 10);
 		indexOfCurrObj = -1;
 	}
-	
-	//METHODS
-	public int getX(){
+
+	// METHODS
+	public int getX() {
 		return x + xChange;
 	}
-	
+
 	public void setInitialTime(double beginTime) {
 		this.beginTime = beginTime;
 	}
-	
-	public int getY(){
+
+	public int getY() {
 		return y - yChange;
 	}
-	
-	
-	
-	public void die(){
+
+	public void die() {
 		isDead = true;
 	}
-	
+
 	public boolean returnStatus() {
 		return isDead;
 	}
-	public boolean isOnTarget(){
-	
+
+	public boolean isOnTarget() {
+
 		return true;
 	}
+
 	public void launch(double currentTime) {
-		double timeDiff = (currentTime - beginTime)*50;
+		double timeDiff = (currentTime - beginTime) * 50;
 		// ss.incrementJumpNum();
-//		ss.setVelocity();
-		
+		// ss.setVelocity();
+
 		xChange = (int) (ss.getXVelocity() * timeDiff);
 		yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 * Slingshot.GRAVITY * Math.pow(timeDiff, 2));
-		
+
 		// int dummy = 0;
 		// dummy += 1;
-		
+
 	}
-	
-	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, int screenWidth, int screenHeight) {
-		
+
+	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, int screenWidth,
+			int screenHeight) {
+
 		if (x + xChange <= 0 || x + xChange >= screenWidth || y - yChange <= 0 || y - yChange >= screenHeight) {
 			hasDied = true;
 		}
-		
+
+		for (int i = 0; i < obstacles.size(); i++) {
+
+			Polygon obstacle = obstacles.get(i).getPolygon();
+
+			// obstacle.addPoint(obstacles.get(i).getX1(),
+			// obstacles.get(i).getY1());
+			// obstacle.addPoint(obstacles.get(i).getX2(),
+			// obstacles.get(i).getY2());
+			// obstacle.addPoint(obstacles.get(i).getX3(),
+			// obstacles.get(i).getY3());
+
+			if (obstacle.intersects(x, y, charWidth, charHeight)) {
+
+				hasDied = true;
+
+				break;
+
+			}
+		}
+
 		for (int i = 0; i < helpers.size(); i++) {
 			if (x + xChange > helpers.get(i).getX() && x + (charWidth / 2.0) + xChange < helpers.get(i).getX() + 60) {
 				if (y - yChange + charHeight >= helpers.get(i).getY()) {
 					hasHitTop = true;
-					
+
 					indexOfCurrObj = i;
 					currObj = helpers.get(i);
-					
+
 					break;
 				}
-				
+
 				if (y - yChange <= helpers.get(i).getY()) {
 					hasHitBottom = true;
-					
+
 					indexOfCurrObj = i;
 					currObj = helpers.get(i);
-					
+
 					break;
 				}
-				
+
 				ss.setVelocity();
 			}
 		}
-		
-		for (int i = 0; i < obstacles.size(); i++) {
 			
-			Polygon obstacle = new Polygon();
-			
-			obstacle.addPoint(obstacles.get(i).getX1(), obstacles.get(i).getY1());
-			obstacle.addPoint(obstacles.get(i).getX2(), obstacles.get(i).getY2());
-			obstacle.addPoint(obstacles.get(i).getX3(), obstacles.get(i).getY3());
-			
-			if (obstacle.intersects(x, y, charWidth, charHeight)) {
-				
-				hasDied = true;
-				
-				break;
-				
-			}
-			
-			/*
-			 * int x1 = obstacles.get(i).getX1();
-			int x2 = obstacles.get(i).getX2();
-			int x3 = obstacles.get(i).getX3();
-			int y1 = obstacles.get(i).getY1();
-			int y2 = obstacles.get(i).getY2();
-			int y3 = obstacles.get(i).getY3();
-			
-			int m1y = - (y3 - y1);
-			int m1x = (x3 - x1);
-			int m2y = - (y3 - y2);
-			int m2x = (x3 - x2);
+			for (int i = 0; i < obstacles.size(); i++) {
 
-			int c1 = m1x * x3 + m1y * y3;
-			int c2 = m2x * x3 + m2y * y3;
-			
-			if (m1x * (x + xChange + charWidth) + m1y * (y - yChange + charHeight) == c1 ||
-					m1x * (x + xChange) + m1y * (y - yChange + charHeight) == c1 ||
-					m1x * (x + xChange + charWidth) + m1y * (y - yChange) == c1 ||
-					m1x * (x + xChange) + m1y * (y - yChange) == c1) {
-				hasDied = true;
+				Polygon obstacle = obstacles.get(i).getPolygon();
+
+				// obstacle.addPoint(obstacles.get(i).getX1(),
+				// obstacles.get(i).getY1());
+				// obstacle.addPoint(obstacles.get(i).getX2(),
+				// obstacles.get(i).getY2());
+				// obstacle.addPoint(obstacles.get(i).getX3(),
+				// obstacles.get(i).getY3());
+
+				if (obstacle.intersects(x, y, charWidth, charHeight)) {
+
+					hasDied = true;
+
+					break;
+
+				}
 			}
 			
-			if (m2x * (x + xChange + charWidth) + m2y * (y - yChange + charHeight) == c2 ||
-					m2x * (x + xChange) + m2y * (y - yChange + charHeight) == c2 ||
-					m2x * (x + xChange + charWidth) + m2y * (y - yChange) == c2 ||
-					m2x * (x + xChange) + m2y * (y - yChange) == c2) {
-				hasDied = true;
-			}
-			*/
 			
 		}
-		
-		
+
+		/*
+		 * int x1 = obstacles.get(i).getX1(); int x2 = obstacles.get(i).getX2();
+		 * int x3 = obstacles.get(i).getX3(); int y1 = obstacles.get(i).getY1();
+		 * int y2 = obstacles.get(i).getY2(); int y3 = obstacles.get(i).getY3();
+		 * 
+		 * int m1y = - (y3 - y1); int m1x = (x3 - x1); int m2y = - (y3 - y2);
+		 * int m2x = (x3 - x2);
+		 * 
+		 * int c1 = m1x * x3 + m1y * y3; int c2 = m2x * x3 + m2y * y3;
+		 * 
+		 * if (m1x * (x + xChange + charWidth) + m1y * (y - yChange +
+		 * charHeight) == c1 || m1x * (x + xChange) + m1y * (y - yChange +
+		 * charHeight) == c1 || m1x * (x + xChange + charWidth) + m1y * (y -
+		 * yChange) == c1 || m1x * (x + xChange) + m1y * (y - yChange) == c1) {
+		 * hasDied = true; }
+		 * 
+		 * if (m2x * (x + xChange + charWidth) + m2y * (y - yChange +
+		 * charHeight) == c2 || m2x * (x + xChange) + m2y * (y - yChange +
+		 * charHeight) == c2 || m2x * (x + xChange + charWidth) + m2y * (y -
+		 * yChange) == c2 || m2x * (x + xChange) + m2y * (y - yChange) == c2) {
+		 * hasDied = true; }
+		 */
+
 		// ss.setVelocity();
 		// x += xChange;
-		// y = 
-		
-	}
-	
-	
+		// y =
+
 	public static boolean getHasHitTop() {
 		return hasHitTop;
 	}
-	
+
 	public static boolean getHasHitBottom() {
 		return hasHitBottom;
 	}
-	
+
 	public static boolean getHasDied() {
 		return hasDied;
 	}
-	
+
 	public void setXY(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
-	
-	//code this later
-	public void bounce(){
-		
+
+	// code this later
+	public void bounce() {
+
 	}
-	
+
 	public HelperObject getCurrObj() {
 		return currObj;
 	}
-	
+
 	public int getIndexOfCurrObj() {
 		return indexOfCurrObj;
 	}
-	
-	public void draw(Graphics g, int x, int y, int sizeX, int sizeY){
+
+	public void draw(Graphics g, int x, int y, int sizeX, int sizeY) {
 		g.drawImage(charImg, x, y, sizeX, sizeY, null);
 
 	}
-	
+
 }

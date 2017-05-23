@@ -30,6 +30,10 @@ public class TitleScreen extends Screen implements ActionListener {
 	public void paintComponent(Graphics g) {
 		g.drawImage(titleImg, 0, 0, 800, 600, this);
 		
+		if (xPos > 1000) {
+			xPos = 0;
+		}
+		
 		g.drawImage(nyanCat, xPos, yPos, 200, 150, this);
 
 		Font newFont = new Font("Arial", Font.BOLD, 20);
@@ -55,6 +59,7 @@ public class TitleScreen extends Screen implements ActionListener {
 		t++;
 		
 		xPos += 5;
+
 		
 		repaint();
 	}
