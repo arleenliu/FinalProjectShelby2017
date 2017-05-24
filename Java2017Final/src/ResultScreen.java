@@ -10,7 +10,7 @@ public class ResultScreen extends Screen {
 	private int score;
 	private int time;
 	private Image starImg;
-	private Image shelbyFace, catImg;
+	private Image shelbyFace;
 	private AllScreen as;
 
 	public ResultScreen(AllScreen as) {
@@ -54,13 +54,13 @@ public class ResultScreen extends Screen {
 		else if(score == 1)
 			phrase = "Wow you are almost as terrible as Arleen";
 		else if(score == 2)
-			phrase = "Okay??? I guess";
+			phrase = "You are a disappointment";
 		else if(score == 3)
-			phrase = "Nice";
+			phrase = "Okay??? I guess";
 		else if(score == 4)
-			phrase = "Very nice";
+			phrase = "Nice, but could be better";
 		else if(score == 5)
-			phrase = "Congratulations!! You get a Pusheen";
+			phrase = "Congratulations!! You get a Pusheen! lol jk";
 		
 		Font f2 = new Font("Arial Narrow", Font.PLAIN, 26);
 		g.setFont(f2);
