@@ -30,7 +30,7 @@ public class ResultScreen extends Screen {
 			score = 3;
 		else if(time>30 && time <= 60)
 			score = 4;
-		else if(time <= 30 )
+		else if(time>0 && time<= 30 )
 			score = 5;
 	}
 

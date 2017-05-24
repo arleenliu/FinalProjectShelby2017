@@ -106,6 +106,19 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		int width = getWidth();
 		int height = getHeight();
+		
+		int t = TimeTracker.getTime();
+		String time = "";
+		
+		if(t<=9)
+			time = "0:0" + t;
+		else if(t>9 && t<60)
+			time = "0:" + t;
+		else if(t>60)
+			time = t/60 + ":" + t%60;
+					
+		g.setColor(Color.GRAY);
+		g.drawString(time, 500, 100);
 
 		//platform for character
 		Color PALEGREEN = new Color(160, 255, 100);
