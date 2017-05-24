@@ -14,15 +14,19 @@ public class ResultScreen extends Screen {
 	private AllScreen as;
 	private TimeTracker timeTracker;
 	private Character character;
+	private boolean isDead;
 
 	public ResultScreen(AllScreen as) {
 		this.as = as;
 		starImg = (new ImageIcon("starImg.png").getImage());
 		shelbyFace = (new ImageIcon("shelbyface.png").getImage());
-
+		character = as.panel.getCharacter();
+		timeTracker = new TimeTracker (character);
+		
 		time = timeTracker.getTime();
-
-		if(time == -1)
+		isDead = character.getHasDied();
+		
+		if(isDead)
 			score = 0;
 		else if(time > 180)
 			score = 1;

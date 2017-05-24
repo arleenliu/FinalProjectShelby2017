@@ -7,16 +7,14 @@ public class TimeTracker implements ActionListener {
 	private static int time;
 	private boolean characterDead; 
 	private Timer clock;
+	private Character c1;
 	
 	public TimeTracker(Character character) {
 		time = 0;
 	    clock = new Timer(1000, this); 
 	    clock.start();
-	    
-	    if(character.getHasDied() == true) {
-	    	clock.stop();
-	    	time = -1;
-	    }
+	    c1 = character;
+	   
 	}
 
 	
@@ -34,5 +32,12 @@ public class TimeTracker implements ActionListener {
 		time = 0;
 	    clock = new Timer(1000, this);
 		clock.start();
+	}
+	public void stopTimeTracker(){
+
+	    if(c1.getHasDied() == true) {
+	    	clock.stop();
+	    	time = -1;
+	    }
 	}
 }

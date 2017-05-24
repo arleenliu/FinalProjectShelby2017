@@ -32,7 +32,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private Target target;
 	private Image charImg;
 	private int charSize;
-	private TimeTracker time;
+	private TimeTracker timeTracker;
 
 	private boolean helperObj;
 	private int xClick, yClick;
@@ -84,8 +84,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 		slingshot = new Slingshot();
 		character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot);
-		time = new TimeTracker(character);
-		time.startTimeTracker();
+		timeTracker = new TimeTracker(character);
+		timeTracker.startTimeTracker();
 
 		target = new Target(550, 315, 80);
 
@@ -113,7 +113,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		int width = getWidth();
 		int height = getHeight();
 
-		int t = time.getTime();
+		int t = timeTracker.getTime();
 		String time = "";
 
 		Font timeFont = new Font("SansSerif", Font.BOLD, 20);
@@ -228,6 +228,9 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			obj.draw(g, Color.WHITE);
 
 		}
+		
+		
+		timeTracker.stopTimeTracker();
 
 	}
 
@@ -456,7 +459,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			if (!slingInitTimeSet) {
 				// set start time of fling, so that we can compute diff
 				// correctly
-				AllScreen.panel.character.setInitialTime(time.getTime());
+				AllScreen.panel.character.setInitialTime(timeTracker.getTime());
 				// slingshot.setXY(dragX, dragY);
 				// character.setXY(dragX, dragY);
 				slingInitTimeSet = true;
@@ -530,7 +533,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		// slingshot = new Slingshot();
 		// character = new Character(40, 340, charSize, charSize + 10, charImg,
 		// slingshot);
-		time = new TimeTracker(character);
+		timeTracker = new TimeTracker(character);
 
 		slingReleased = false;
 
@@ -541,6 +544,13 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		helpers = new ArrayList<>();
 	}
+	
+	public Character getCharacter (){
+		
+		
+		return character;
+	}
+	
 	// }
 
 }
