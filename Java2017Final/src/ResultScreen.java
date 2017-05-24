@@ -79,4 +79,24 @@ public class ResultScreen extends Screen {
 		if(xClick >= 700 && xClick <= 770 && yClick >= 480 && yClick <= 580)
 			as.changeScreen("Level");
 	}
+	
+	public void reset(){
+		
+		this.as = as;
+		
+		time = TimeTracker.getTime();
+
+		if(time == -1)
+			score = 0;
+		else if(time >= 300)
+			score = 1;
+		else if(time >= 240)
+			score = 2;
+		else if(time >= 180)
+			score = 3;
+		else if(time >= 60)
+			score = 4;
+		else if(time >= 30)
+			score = 5;
+	}
 }
