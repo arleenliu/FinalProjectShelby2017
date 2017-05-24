@@ -14,7 +14,7 @@ public class ResultScreen extends Screen {
 	private AllScreen as;
 	private TimeTracker timeTracker;
 	private Character character;
-	private boolean isDead;
+	// private boolean isDead;
 
 	public ResultScreen(AllScreen as) {
 		this.as = as;
@@ -24,7 +24,7 @@ public class ResultScreen extends Screen {
 		timeTracker = new TimeTracker(character);
 
 		time = timeTracker.getTime();
-		isDead = character.getHasDied();
+		// isDead = character.getHasDied();
 
 		// if ((character.getHasHitTarget())) {
 		// score = 5;
@@ -62,6 +62,9 @@ public class ResultScreen extends Screen {
 			score = 0;
 		}
 
+		as.panel.setHasHitTarget(false);
+		as.panel.setHasDied(false);
+		
 		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, 800, 600);
 

@@ -118,7 +118,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		int width = getWidth();
 		int height = getHeight();
 
-		int t = timeTracker.getTime();
+		int t = TimeTracker.getTime();
 		String time = "";
 
 		Font timeFont = new Font("SansSerif", Font.BOLD, 20);
@@ -567,6 +567,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	
 	public boolean getHasDied() {
 		return hasHitTarget;
+	}
+	
+	public void setHasHitTarget(boolean b) {
+		hasHitTarget = b;
+	}
+	
+	public void setHasDied(boolean b) {
+		hasDied = b;
 	}
 	
 	// }
