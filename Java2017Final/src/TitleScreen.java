@@ -24,7 +24,7 @@ public class TitleScreen extends Screen implements ActionListener {
 		Timer clock = new Timer(30, this);
 		clock.start();
 		xPos = -200;
-		yPos = 50;
+		yPos = 75;
 	}
 
 	public void paintComponent(Graphics g) {
