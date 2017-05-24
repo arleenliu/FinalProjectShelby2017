@@ -54,6 +54,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private LevelThree level3;
 	private LevelFour level4;
 	private LevelFive level5;
+	
+	private boolean hasHitTarget, hasDied;
 
 	private int t;
 
@@ -81,6 +83,9 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		dragY = slingY;
 		charSize = 50;
 
+		hasHitTarget = false;
+		hasDied = false;
+		
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 		slingshot = new Slingshot();
 		character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot, as);
@@ -476,12 +481,12 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 			if (character.getHasHitTarget() == true) {
 				setSlingReleased(false);
+				hasHitTarget = true;
 				character.reset();
 				as.changeScreen("Results");
-			}
-			
-			if (character.getHasDied() == true) {
+			} else if (character.getHasDied() == true) {
 				setSlingReleased(false); // only release once
+				hasDied = true;
 				character.reset();
 				as.changeScreen("Results");
 			}
@@ -554,6 +559,14 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public Character getCharacter (){
 		
 		return character;
+	}
+	
+	public boolean getHasHitTarget() {
+		return hasHitTarget;
+	}
+	
+	public boolean getHasDied() {
+		return hasHitTarget;
 	}
 	
 	// }

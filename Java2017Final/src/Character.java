@@ -159,7 +159,8 @@ public class Character {
 	}
 	
 	public boolean getHasHitTarget() {
-		return hasHitTarget;
+		boolean b = hasHitTarget;
+		return b;
 	}
 
 	/*
