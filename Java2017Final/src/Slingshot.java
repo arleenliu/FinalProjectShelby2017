@@ -5,7 +5,7 @@ public class Slingshot {
 	// FIELDS
 	// subject to change
 	public static final double GRAVITY = 0.1;
-	public static final double SCALE = 0.01;
+	public static final double SCALE = 0.005;
 	private int length;
 	// velocityI calculation will be figured out later
 	private double velocityI, velocityF;
