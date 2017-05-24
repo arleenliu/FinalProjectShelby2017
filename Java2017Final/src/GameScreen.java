@@ -48,6 +48,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	protected ArrayList<HelperObject> helpers;
 	protected ArrayList<Obstacle> obstacles;
 	private int level;
+	private LevelZero level0;
 	private LevelOne level1;
 	private LevelTwo level2;
 	private LevelThree level3;
@@ -92,7 +93,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		Color SKYBLUE = new Color(175, 238, 238);
 		setBackground(SKYBLUE);
-
+		level0 = new LevelZero();
 		level1 = new LevelOne();
 		level2 = new LevelTwo();
 		level3 = new LevelThree();
@@ -229,8 +230,12 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	public int setLevel(int lvl) {
 
 		level = lvl;
-
-		if (level == 1) {
+		
+		if (level == 0){
+			
+			obstacles = level0.typeOfObstacles();
+			
+		} else if (level == 1) {
 
 			obstacles = level1.typeOfObstacles();
 
