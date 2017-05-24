@@ -22,15 +22,15 @@ public class ResultScreen extends Screen {
 
 		if(time == -1)
 			score = 0;
-		else if(time >= 300)
+		else if(time > 150)
 			score = 1;
-		else if(time >= 240)
+		else if(time>90 && time<=180)
 			score = 2;
-		else if(time >= 180)
+		else if(time>60 && time<=90)
 			score = 3;
-		else if(time >= 60)
+		else if(time>30 && time <= 60)
 			score = 4;
-		else if(time >= 30)
+		else if(time <= 30 )
 			score = 5;
 	}
 
