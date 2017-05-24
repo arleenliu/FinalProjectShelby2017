@@ -20,10 +20,11 @@ public class Character {
 	private HelperObject currObj;
 	private int indexOfCurrObj;
 
+	private AllScreen as;
 	private double xVel, yVel;
 
 	// CONSTRUCTORS
-	public Character(int xCoor, int yCoor, int w, int h, Image character, Slingshot ss) {
+	public Character(int xCoor, int yCoor, int w, int h, Image character, Slingshot ss, AllScreen as) {
 		x = xCoor;
 		y = yCoor;
 		// xChange = 0;
@@ -40,6 +41,7 @@ public class Character {
 		charHeight = h;
 		currObj = new HelperObject(0, 0, 60, 10);
 		indexOfCurrObj = -1;
+		this.as = as;
 	}
 
 	// METHODS
@@ -99,7 +101,7 @@ public class Character {
 
 	}
 
-	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, int screenWidth,
+	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, Target t, int screenWidth,
 			int screenHeight) {
 
 		if (x <= -50 || x >= screenWidth - 150 || y <= 0 || y >= screenHeight) {
@@ -150,8 +152,14 @@ public class Character {
 			}
 		}
 		
-		
+		if (t.getPolygon().intersects(x, y, charWidth, charHeight)) {
+			hasHitTarget = true;
+		}
 
+	}
+	
+	public boolean getHasHitTarget() {
+		return hasHitTarget;
 	}
 
 	/*
@@ -221,6 +229,7 @@ public class Character {
 		hasHitBottom = false;
 		hasHitTop = false;
 		hasDied = false;
+		hasHitTarget = false;
 
 		x = 65 - 23;
 		y = 370 - 23;
@@ -230,7 +239,7 @@ public class Character {
 	}
 
 	public void draw(Graphics g, int x, int y, int sizeX, int sizeY) {
-		g.drawImage(charImg, x, y, sizeX, sizeY, AllScreen.panel);
+		g.drawImage(charImg, x, y, sizeX, sizeY, as.panel);
 
 	}
 

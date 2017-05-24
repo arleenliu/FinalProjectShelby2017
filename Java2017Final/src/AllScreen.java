@@ -7,10 +7,10 @@ import javax.swing.JPanel;
 public class AllScreen extends JPanel{
 	
 	public static CardLayout cards;
-	private static TitleScreen titlePanel;
-	private static ResultScreen resultPanel;
-	private static LevelScreen levelPanel;
-	public static GameScreen panel;
+	private TitleScreen titlePanel;
+	private ResultScreen resultPanel;
+	private LevelScreen levelPanel;
+	public GameScreen panel;
 	public static int SCREEN;
 	public static int LEVEL;
 
@@ -19,11 +19,12 @@ public class AllScreen extends JPanel{
 		
 		cards = new CardLayout();
 		
+		panel = new GameScreen(this);
 		titlePanel = new TitleScreen(this);
 		resultPanel = new ResultScreen(this);
 		levelPanel = new LevelScreen(this);
 		
-		panel = new GameScreen(this);
+		
 		panel.setLevel(LEVEL);
 		System.out.println(LEVEL + "");
 		

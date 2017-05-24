@@ -83,7 +83,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		charImg = (new ImageIcon("shelbyface.png").getImage());
 		slingshot = new Slingshot();
-		character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot);
+		character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot, as);
 		timeTracker = new TimeTracker(character);
 		timeTracker.startTimeTracker();
 
@@ -459,7 +459,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			if (!slingInitTimeSet) {
 				// set start time of fling, so that we can compute diff
 				// correctly
-				AllScreen.panel.character.setInitialTime(timeTracker.getTime());
+				as.panel.character.setInitialTime(timeTracker.getTime());
 				// slingshot.setXY(dragX, dragY);
 				// character.setXY(dragX, dragY);
 				slingInitTimeSet = true;
@@ -468,12 +468,18 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			// System.out.println("launch....");
 
 			character.launch();
-			character.checkHasCollided(helpers, obstacles, 800, 600);
+			character.checkHasCollided(helpers, obstacles, target, 800, 600);
 
 			slingshot.setVelocity(character);
 
 			repaint();
 
+			if (character.getHasHitTarget() == true) {
+				setSlingReleased(false);
+				character.reset();
+				as.changeScreen("Results");
+			}
+			
 			if (character.getHasDied() == true) {
 				setSlingReleased(false); // only release once
 				character.reset();
@@ -546,7 +552,6 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	}
 	
 	public Character getCharacter (){
-		
 		
 		return character;
 	}
