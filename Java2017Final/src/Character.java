@@ -11,7 +11,7 @@ public class Character {
 	private int charHeight;
 	// private int xChange, yChange;
 	private Image charImg;
-	private boolean isDead;
+	// private boolean isDead;
 	private double beginTime;
 	private static boolean hasHitBottom, hasHitTop, hasDied;
 	private Slingshot ss;
@@ -30,7 +30,6 @@ public class Character {
 		xVel = 0;
 		yVel = 0;
 		charImg = character;
-		isDead = false;
 		beginTime = 0;
 		this.ss = ss;
 		hasHitBottom = false;
@@ -54,14 +53,6 @@ public class Character {
 
 	public int getY() {
 		return y;
-	}
-
-	public void die() {
-		isDead = true;
-	}
-
-	public boolean returnStatus() {
-		return isDead;
 	}
 
 	public boolean isOnTarget() {
@@ -90,7 +81,7 @@ public class Character {
 	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, int screenWidth,
 			int screenHeight) {
 
-		if (x <= -50 || x >= screenWidth || y <= 0 || y >= screenHeight) {
+		if (x <= -50 || x >= screenWidth - 150 || y <= 0 || y >= screenHeight) {
 			hasDied = true;
 		}
 
@@ -109,7 +100,7 @@ public class Character {
 
 				hasDied = true;
 
-				break;
+				// break;
 
 			}
 		}
@@ -176,7 +167,7 @@ public class Character {
 		return hasHitBottom;
 	}
 
-	public static boolean getHasDied() {
+	public boolean getHasDied() {
 		return hasDied;
 	}
 
@@ -184,8 +175,10 @@ public class Character {
 		this.x = x;
 		this.y = y;
 		
-		xVel = ss.getXVelocity();
-		yVel = ss.getInitialYVelocity();
+		xVel = ss.getXVelocity() * 15;
+		yVel = -(ss.getInitialYVelocity() + 15);
+		
+		hasDied = false;
 	}
 
 	// code this later
@@ -196,6 +189,12 @@ public class Character {
 
 	public int getIndexOfCurrObj() {
 		return indexOfCurrObj;
+	}
+	
+	public void reset() {
+		hasHitBottom = false;
+		hasHitTop = false;
+		hasDied = false;
 	}
 
 	public void draw(Graphics g, int x, int y, int sizeX, int sizeY) {

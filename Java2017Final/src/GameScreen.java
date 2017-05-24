@@ -412,7 +412,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		// t++;
+		t++;
 		//while(true){
 			
 			// CHANGE
@@ -437,6 +437,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 				
 				if(character.getHasDied() == true) {
 					setSlingReleased(false);  // only release once
+					character.reset();
 					as.changeScreen("Results");
 				}
 				
