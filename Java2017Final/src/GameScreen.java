@@ -33,13 +33,13 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private Image charImg;
 	private int charSize;
 	private TimeTracker time;
-	
+
 	private boolean helperObj;
 	private int xClick, yClick;
 	private int objWidth, objHeight;
 	private int slingX, slingY, dragX, dragY;
 	private static boolean slingPressed, slingReleased, slingInitTimeSet;  // slingReleased = sling clicked, then released 
-	
+
 	protected ArrayList<HelperObject> helpers;
 	protected ArrayList<Obstacle> obstacles;
 	private int level;
@@ -48,28 +48,26 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	private LevelThree level3;
 	private LevelFour level4;
 	private LevelFive level5;
-	
+
 	private int t;
-	
+
 	private int x, y;
-	
+
 	private boolean isEditable;
 	private AllScreen as;
 	// still need to call as.changeScreen("Results") somewhere
 
-
-
 	public GameScreen (AllScreen as) {
-		
+
 		t = 0;
 		Timer clock = new Timer(16, this);
 		clock.start();
-		
+
 		this.as = as;
 		helperObj = false;
 		objWidth = 60;
 		objHeight = 5;
-		
+
 		slingPressed = false;
 		slingX = 65;
 		slingY = 370;
@@ -82,7 +80,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot);
 		time = new TimeTracker(character);
 		target = new Target(550, 315, 80);		
-		
+
 		slingReleased = false;
 
 		isEditable = true;
@@ -106,19 +104,33 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		int width = getWidth();
 		int height = getHeight();
-		
+
 		int t = TimeTracker.getTime();
 		String time = "";
+
+		Font timeFont = new Font("SansSerif", Font.BOLD, 20);
+		g.setFont(timeFont);
 		
-		if(t<=9)
-			time = "0:0" + t;
-		else if(t>9 && t<60)
-			time = "0:" + t;
-		else if(t>60)
-			time = t/60 + ":" + t%60;
-					
+		if(t<60) {
+			if(t<=9)
+				time = "0:0" + t;
+			else if(t>9 && t<60)
+				time = "0:" + t;
+			else if(t>60)
+				time = t/60 + ":" + t%60;
+		}
+		else {
+			int sec = t%60;
+			int min = t/60;
+			
+			if(sec<=9)
+				time = min + ":0" + sec;
+			else
+				time = min + ":" + sec;
+		}
+		
 		g.setColor(Color.GRAY);
-		g.drawString(time, 500, 100);
+		g.drawString(time, 575, 30);
 
 		//platform for character
 		Color PALEGREEN = new Color(160, 255, 100);
@@ -137,7 +149,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			character.draw(g, x, y, charSize, charSize+10);
 
 			// System.out.print("draw x " + x + "  y " + y  + "\n");
-			
+
 		}
 		//slingshot
 		//g.drawImage(slingImg, 60, 300, 70, 100, this);
@@ -244,50 +256,50 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		return level;
 
 	}
-	
-	
+
+
 
 	/*public void run() {
-		
+
 		while(true){
-		
+
 			// CHANGE
 			if (AllScreen.panel.getSlingReleased()) {
-				
+
 				if (!slingInitTimeSet) {
 					// set start time of fling, so that we can compute diff correctly
 					AllScreen.panel.character.setInitialTime(TimeTracker.getTime());
 					slingInitTimeSet = true;
 				}
-								
+
 				System.out.println("launch....");
 
 				AllScreen.panel.character.launch(TimeTracker.getTime());
 				AllScreen.panel.character.checkHasCollided(AllScreen.panel.helpers, AllScreen.panel.obstacles, 800, 600);
-				
+
 				if(character.getHasDied() == true) {
 					AllScreen.panel.setSlingReleased(false);  // only release once
 					as.changeScreen("Results");
 				}
 			}
-			
+
 			repaint();
 			// System.out.println("repainting....");
-			
+
 			try {
 				Thread.sleep(160);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
-		
-		
+
+
 	}
-	
-*/ 
-	
+
+	 */ 
+
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 
@@ -352,7 +364,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			}
 
 		}
-		
+
 
 		if (xClick >= 670 && xClick <= 700 + 60 && yClick >= 400 && yClick <= 400 + 30){
 			isEditable = false;
@@ -373,22 +385,22 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			int y = e.getY() - 23;
 			slingshot.setXY(x, y);
 			character.setXY(x,  y);
-			
-			slingReleased = true;
-			
-			isEditable = false;
-			
-//			int heightI = e.getY();
-//			int heightF = helpers.get(character.getIndexOfCurrObj()).getY();
-//			
-//			slingshot.setObjectHeight(heightI, heightF);
-//			
-//			
-//			
-//			
-//			character.launch(time.getTime());
 
-		
+			slingReleased = true;
+
+			isEditable = false;
+
+			//			int heightI = e.getY();
+			//			int heightF = helpers.get(character.getIndexOfCurrObj()).getY();
+			//			
+			//			slingshot.setObjectHeight(heightI, heightF);
+			//			
+			//			
+			//			
+			//			
+			//			character.launch(time.getTime());
+
+
 		}
 
 		repaint();
@@ -414,7 +426,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public static boolean getSlingReleased() {
 		return slingReleased;
 	}
@@ -427,44 +439,46 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		// TODO Auto-generated method stub
 		// t++;
 		//while(true){
-			
-			// CHANGE
-			if(getSlingReleased()) {
-				
-				if (!slingInitTimeSet) {
-					// set start time of fling, so that we can compute diff correctly
-					AllScreen.panel.character.setInitialTime(TimeTracker.getTime());
-					slingshot.setXY(dragX, dragY);
-					character.setXY(dragX, dragY);
-					slingInitTimeSet = true;
-				}
-								
-				// System.out.println("launch....");
 
-				character.launch();
-				character.checkHasCollided(helpers, obstacles, 800, 600);
-	
-				slingshot.setVelocity();
-				
-				repaint();
-				
-				if(character.getHasDied() == true) {
-					setSlingReleased(false);  // only release once
-					character.reset();
-					as.changeScreen("Results");
-				}
-				
+		repaint();
+
+		// CHANGE
+		if(getSlingReleased()) {
+
+			if (!slingInitTimeSet) {
+				// set start time of fling, so that we can compute diff correctly
+				AllScreen.panel.character.setInitialTime(TimeTracker.getTime());
+				slingshot.setXY(dragX, dragY);
+				character.setXY(dragX, dragY);
+				slingInitTimeSet = true;
 			}
-			
-			// System.out.println("repainting....");
 
-		
+			// System.out.println("launch....");
+
+			character.launch();
+			character.checkHasCollided(helpers, obstacles, 800, 600);
+
+			slingshot.setVelocity();
+
+			repaint();
+
+			if(character.getHasDied() == true) {
+				setSlingReleased(false);  // only release once
+				character.reset();
+				as.changeScreen("Results");
+			}
+
 		}
-		
+
+		// System.out.println("repainting....");
+
+
+	}
+
 	public void reset() {
 
 		helperObj = false;
-		
+
 		slingPressed = false;
 		slingX = 65;
 		slingY = 370;
@@ -476,7 +490,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		// slingshot = new Slingshot();
 		// character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot);
 		time = new TimeTracker(character);		
-		
+
 		slingReleased = false;
 
 		isEditable = true;
