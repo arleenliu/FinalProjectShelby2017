@@ -22,7 +22,7 @@ public class ResultScreen extends Screen {
 
 		if(time == -1)
 			score = 0;
-		else if(time > 150)
+		else if(time > 180)
 			score = 1;
 		else if(time>90 && time<=180)
 			score = 2;
@@ -85,18 +85,5 @@ public class ResultScreen extends Screen {
 		this.as = as;
 		
 		time = TimeTracker.getTime();
-
-		if(time == -1)
-			score = 0;
-		else if(time >= 300)
-			score = 1;
-		else if(time >= 240)
-			score = 2;
-		else if(time >= 180)
-			score = 3;
-		else if(time >= 60)
-			score = 4;
-		else if(time >= 30)
-			score = 5;
 	}
 }

@@ -438,6 +438,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		// TODO Auto-generated method stub
 		// t++;
 		// while(true){
+		
+		repaint();
 
 		// CHANGE
 		if (getSlingReleased()) {
