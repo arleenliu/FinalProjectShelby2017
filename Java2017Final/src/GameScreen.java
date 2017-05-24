@@ -144,13 +144,21 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 
 		// System.out.print("pai....xxted\n");
 
+		// platform for target
+				g.setColor(PALEGREEN);
+				g.fillRect(500, 300, 150, 300);
+
+				// Target
+				target.drawTarget(g);
+
+		
 		// character
-		if (slingPressed == true) {
-			character.draw(g, dragX - 23, dragY - 23, charSize, charSize + 10);
-		} else {
-			x = character.getX();
-			y = character.getY();
-			character.draw(g, x, y, charSize, charSize + 10);
+				if (slingPressed == true) {
+					character.draw(g, dragX - 23, dragY - 23, charSize, charSize + 10);
+				} else {
+					x = character.getX();
+					y = character.getY();
+					character.draw(g, x, y, charSize, charSize + 10);
 
 			// System.out.print("draw x " + x + " y " + y + "\n");
 
@@ -170,13 +178,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		g.setColor(BROWN);
 		g.fillRect(90, 330, 10, 70);
 
-		// platform for target
-		g.setColor(PALEGREEN);
-		g.fillRect(500, 300, 150, 300);
-
-		// Target
-		target.drawTarget(g);
-
+		
 		// screen w/ all the thing
 		Color LIGHTGRAY = new Color(211, 211, 211);
 		g.setColor(LIGHTGRAY);
