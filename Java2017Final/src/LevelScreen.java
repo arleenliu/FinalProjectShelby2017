@@ -31,7 +31,7 @@ public class LevelScreen extends Screen {
 		
 		Font newFont = new Font("Arial", Font.PLAIN, 20);
 		g.setFont(newFont);
-		g.drawImage(level0, 25, 400, 80, 80, this);
+		g.drawImage(level0, 25, 400, 110, 80, this);
 		g.drawString("Level 0", 35, 500);
 		g.drawImage(level1, 50, 200, 200, 150, this);
 		g.drawString("Level 1", 100, 300);
@@ -74,7 +74,7 @@ public class LevelScreen extends Screen {
 			AllScreen.LEVEL = 5;
 			isSelected = true;
 		}
-		else if(xClick>=25 && xClick<=105 && yClick>=400 && yClick<=480) {
+		else if(xClick>=25 && xClick<=135 && yClick>=400 && yClick<=480) {
 			AllScreen.LEVEL = 0;
 			isSelected = true;
 		}
