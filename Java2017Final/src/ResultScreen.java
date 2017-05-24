@@ -48,13 +48,13 @@ public class ResultScreen extends Screen {
 
 		
 		if (as.panel.getHasHitTarget()) {
-			if (time > 180)
+			if (time > 120)
 				score = 1;
-			else if (time > 90 && time <= 180)
+			else if (time > 45 && time <= 120)
 				score = 2;
-			else if (time > 60 && time <= 90)
+			else if (time > 30 && time <= 45)
 				score = 3;
-			else if (time > 30 && time <= 60)
+			else if (time > 15 && time <= 30)
 				score = 4;
 			else // ((time>0 && time<= 30))
 				score = 5;
