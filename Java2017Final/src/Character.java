@@ -198,7 +198,7 @@ public class Character {
 		// if (!ss.getIsNegative()) {
 		// yVel = -(ss.getInitialYVelocity() + 15);
 		// } else {
-			yVel = ss.getInitialYVelocity() - 15;
+			yVel = ss.getInitialYVelocity() * 15;
 		// }
 		
 		hasDied = false;
