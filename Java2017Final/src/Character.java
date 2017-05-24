@@ -130,8 +130,8 @@ public class Character {
 
 		for (int i = 0; i < helpers.size(); i++) {
 			if (x - (charWidth / 2.0) > helpers.get(i).getX() && x + (charWidth / 2.0) <= helpers.get(i).getX() + 60) {
-				if (y >= helpers.get(i).getY() || y + charHeight <= helpers.get(i).getY()) {
-					if (y + charHeight <= helpers.get(i).getY()) {
+				if (y + charHeight <= helpers.get(i).getY() || y >= helpers.get(i).getY()) {
+					if (y >= helpers.get(i).getY()) {
 						hasHitTop = true;
 
 						indexOfCurrObj = i;
