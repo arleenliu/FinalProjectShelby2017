@@ -9,12 +9,13 @@ import javax.swing.ImageIcon;
 
 public class LevelScreen extends Screen {
 
-	private Image level1, level2, level3, level4, level5;
+	private Image level0, level1, level2, level3, level4, level5;
 	private AllScreen as;
 
 	public LevelScreen(AllScreen as) {
 		this.as = as;
 		
+		level0 = (new ImageIcon("Nyan-cat.png").getImage());
 		level1 = (new ImageIcon("pusheen1.png").getImage());
 		level2 = (new ImageIcon("pusheen2.png").getImage());
 		level3 = (new ImageIcon("pusheen3.png").getImage());
@@ -30,6 +31,8 @@ public class LevelScreen extends Screen {
 		
 		Font newFont = new Font("Arial", Font.PLAIN, 20);
 		g.setFont(newFont);
+		g.drawImage(level0, 25, 400, 80, 80, this);
+		g.drawString("Level 0", 35, 500);
 		g.drawImage(level1, 50, 200, 200, 150, this);
 		g.drawString("Level 1", 100, 300);
 		g.drawImage(level2, 180, 55, 200, 210, this);
@@ -70,9 +73,12 @@ public class LevelScreen extends Screen {
 		else if(xClick>=565 && xClick<= 750 && yClick>=130 && yClick<=270){
 			AllScreen.LEVEL = 5;
 			isSelected = true;
-			
-
 		}
+		else if(xClick>=25 && xClick<=105 && yClick>=400 && yClick<=480) {
+			AllScreen.LEVEL = 0;
+			isSelected = true;
+		}
+
 		AllScreen.panel.setLevel(AllScreen.LEVEL);
 		
 		if (isSelected){
