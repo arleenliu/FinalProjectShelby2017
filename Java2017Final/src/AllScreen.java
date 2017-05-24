@@ -60,9 +60,9 @@ public class AllScreen extends JPanel{
 			panel.reset();
 		}
 		
-//		if (name.equals("Level")) {
-//			resultPanel.reset();
-//		}
+		if (name.equals("Level")) {
+			resultPanel.reset();
+		}
 		
 		
 		cards.show(this, name);
