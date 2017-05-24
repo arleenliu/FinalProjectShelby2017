@@ -39,7 +39,7 @@ public class Slingshot {
 		isNegative = false;
 	}
 	
-	private void calculateInitialVelocity() {
+	private void calculateInitialVelocity(Character c) {
 		velocityI = (length * SCALE);
 		yVelocityI =  (velocityI * Math.sin(angle));
 		xVelocity =  (velocityI * Math.cos(angle));
@@ -47,12 +47,15 @@ public class Slingshot {
 		if (angle < 0) {
 			isNegative = true;
 		}
+		
+		c.setXVel(xVelocity);
+		c.setYVel(yVelocityI);
 	}
 
-	public void setVelocity() {
+	public void setVelocity(Character c) {
 		if (Character.getHasHitTop()){
-			calculateFinalVelocity();
-			velocityI =  (-velocityF);
+			// 
+			c.setYVel(-(c.getYVel()));
 			velocityF = 0;
 			isNegative = false;
 		}
@@ -102,7 +105,7 @@ public class Slingshot {
 
 		yVelocityI =  (velocityI * Math.sin(angle));
 		xVelocity =  (velocityI * Math.cos(angle));
-		yVelocityF =  (Math.sqrt(Math.pow(yVelocityI, 2) - 2 * GRAVITY * (-objectHeight)));
+		// yVelocityF =  (Math.sqrt(Math.pow(yVelocityI, 2) - 2 * GRAVITY * (-objectHeight)));
 		velocityF = - (Math.sqrt(Math.pow(xVelocity, 2) + Math.pow(yVelocityF, 2)));
 
 	}
@@ -119,14 +122,14 @@ public class Slingshot {
 		return isNegative;
 	}
 	
-	public void setXY(int x, int y) {
+	public void setXY(int x, int y, Character c) {
 		x2 = x;
 		y2 = y;
 		
 		length = (int) Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
-		angle = Math.atan((y2 - y1) / (double) (x1 - x2));
+		angle = Math.atan((y1 - y2) / (double) (x1 - x2));
 		
-		calculateInitialVelocity();
+		calculateInitialVelocity(c);
 	}
 
 	/*

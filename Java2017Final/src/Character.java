@@ -47,6 +47,22 @@ public class Character {
 		return x;
 	}
 
+	public double getXVel() {
+		return xVel;
+	}
+	
+	public double getYVel() {
+		return yVel;
+	}
+	
+	public void setYVel(double yVel) {
+		this.yVel = yVel;
+	}
+	
+	public void setXVel(double xVel) {
+		this.xVel = xVel;
+	}
+	
 	public void setInitialTime(double beginTime) {
 		this.beginTime = beginTime;
 		
@@ -173,17 +189,17 @@ public class Character {
 	}
 
 	public void setXY(int x, int y) {
-		this.x = x;
-		this.y = y;
+		this.x = x - 23;
+		this.y = y - 23;
 		
 		
 		xVel = ss.getXVelocity() * 15;
 		
-		if (!ss.getIsNegative()) {
-		yVel = -(ss.getInitialYVelocity() + 15);
-		} else {
+		// if (!ss.getIsNegative()) {
+		// yVel = -(ss.getInitialYVelocity() + 15);
+		// } else {
 			yVel = ss.getInitialYVelocity() - 15;
-		}
+		// }
 		
 		hasDied = false;
 	}
@@ -206,7 +222,7 @@ public class Character {
 		x = 65 - 23;
 		y = 370 - 23;
 		
-		xVel = 0;
+		// xVel = 0;
 		yVel = 0;
 	}
 

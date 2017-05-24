@@ -371,8 +371,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			slingInitTimeSet = false;  // mark if we have set initial time yet
 			int x = e.getX() - 23;
 			int y = e.getY() - 23;
-			slingshot.setXY(x, y);
-			character.setXY(x,  y);
+			slingshot.setXY(x, y, character);
+			character.setXY(x, y);
 			
 			slingReleased = true;
 			
@@ -434,8 +434,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 				if (!slingInitTimeSet) {
 					// set start time of fling, so that we can compute diff correctly
 					AllScreen.panel.character.setInitialTime(TimeTracker.getTime());
-					slingshot.setXY(dragX, dragY);
-					character.setXY(dragX, dragY);
+					// slingshot.setXY(dragX, dragY);
+					// character.setXY(dragX, dragY);
 					slingInitTimeSet = true;
 				}
 								
@@ -444,7 +444,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 				character.launch();
 				character.checkHasCollided(helpers, obstacles, 800, 600);
 	
-				slingshot.setVelocity();
+				slingshot.setVelocity(character);
 				
 				repaint();
 				
