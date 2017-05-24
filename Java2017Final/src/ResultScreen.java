@@ -18,10 +18,6 @@ public class ResultScreen extends Screen {
 		starImg = (new ImageIcon("starImg.png").getImage());
 		shelbyFace = (new ImageIcon("shelbyface.png").getImage());
 		
-		Color SKYBLUE = new Color(175, 238, 238);
-		setBackground(SKYBLUE);
-
-		score = 3;
 		time = TimeTracker.getTime();
 
 		if(time == -1)
@@ -34,19 +30,19 @@ public class ResultScreen extends Screen {
 			score = 3;
 		else if(time >= 60)
 			score = 4;
-		else if(time >= 20)
+		else if(time >= 30)
 			score = 5;
 	}
 
 	public void paintComponent(Graphics g) {	
-		Color SKYBLUE = new Color(175, 238, 238);
-		g.setColor(SKYBLUE);
+		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, 800, 600);
 
 		for(int i = 0; i < score; i++) {
 			g.drawImage(starImg, 250 + 60*i, 200, 50, 50, this);
 		}
 
+		g.setColor(Color.BLACK);
 		Font newFont = new Font("Arial Narrow", Font.PLAIN, 35);
 		g.setFont(newFont);
 		g.drawString("Your score is " + score + " out of 5 stars", 180, 300);
@@ -80,7 +76,7 @@ public class ResultScreen extends Screen {
 		int xClick = e.getX();
 		int yClick = e.getY();
 
-		if(xClick >= 700 && xClick <= 770 && yClick >= 480 && yClick <= 560)
+		if(xClick >= 700 && xClick <= 770 && yClick >= 480 && yClick <= 580)
 			as.changeScreen("Level");
 	}
 }

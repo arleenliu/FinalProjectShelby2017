@@ -9,8 +9,8 @@ public class LevelThree {
 	
 	public LevelThree (){
 		
-		ob1 = new Obstacle (200, 600, 250, 600, 225, 78, Color.BLACK);
-		ob2 = new Obstacle (400, 600, 450, 600, 425, 78, Color.BLACK);
+		ob1 = new Obstacle (200, 600, 250, 600, 225, 100, Color.BLACK);
+		ob2 = new Obstacle (400, 600, 450, 600, 425, 100, Color.BLACK);
 		
 	}
 	

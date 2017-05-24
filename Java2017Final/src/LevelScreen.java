@@ -23,9 +23,7 @@ public class LevelScreen extends Screen {
 	}
 
 	public void paintComponent(Graphics g) {
-		
-		Color SKYBLUE = new Color(175, 238, 238);
-		g.setColor(SKYBLUE);
+		g.setColor(Color.CYAN);
 		g.fillRect(0, 0, 800, 600);
 		
 		g.setColor(Color.BLACK);
