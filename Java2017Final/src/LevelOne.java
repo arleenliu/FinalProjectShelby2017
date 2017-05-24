@@ -10,7 +10,7 @@ public class LevelOne {
 	
 	public LevelOne (){
 		
-		ob1 = new Obstacle (50, 0, 270, 0, 300, 350, Color.BLACK);
+		ob1 = new Obstacle (60, 0, 270, 0, 300, 350, Color.BLACK);
 		x = new ArrayList<Obstacle>();
 	}
 	
