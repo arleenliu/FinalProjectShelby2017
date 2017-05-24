@@ -23,7 +23,7 @@ public class TitleScreen extends Screen implements ActionListener {
 		t = 0;
 		Timer clock = new Timer(30, this);
 		clock.start();
-		xPos = -20;
+		xPos = -200;
 		yPos = 50;
 	}
 
@@ -31,7 +31,7 @@ public class TitleScreen extends Screen implements ActionListener {
 		g.drawImage(titleImg, 0, 0, 800, 600, this);
 		
 		if (xPos > 1000) {
-			xPos = 0;
+			xPos = -200;
 		}
 		
 		g.drawImage(nyanCat, xPos, yPos, 200, 150, this);

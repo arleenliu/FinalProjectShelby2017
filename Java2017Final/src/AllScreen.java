@@ -46,14 +46,24 @@ public class AllScreen extends JPanel{
 	
 	public void changeScreen(String name) {
 		// if we restart a game, make sure start from clean slate, so that we do not have leftovers from last game
-		if (name == "Game") {
+		
+		if (name.equals("Results")) {
+			
+			/*
 			this.remove(panel);
 			panel = new GameScreen(this);
 			panel.setLevel(LEVEL);
 			panel.addMouseListener(panel);
 			panel.addMouseMotionListener(panel);
 			this.add(panel, "Game");
+			*/
+			panel.reset();
 		}
+		
+//		if (name.equals("Level")) {
+//			resultPanel.reset();
+//		}
+		
 		
 		cards.show(this, name);
 		

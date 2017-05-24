@@ -13,7 +13,8 @@ public class Character {
 	private Image charImg;
 	// private boolean isDead;
 	private double beginTime;
-	private static boolean hasHitBottom, hasHitTop, hasDied;
+	private static boolean hasHitBottom, hasHitTop;
+	private boolean hasDied;
 	private Slingshot ss;
 	private HelperObject currObj;
 	private int indexOfCurrObj;
@@ -175,8 +176,14 @@ public class Character {
 		this.x = x;
 		this.y = y;
 		
+		
 		xVel = ss.getXVelocity() * 15;
+		
+		if (!ss.getIsNegative()) {
 		yVel = -(ss.getInitialYVelocity() + 15);
+		} else {
+			yVel = ss.getInitialYVelocity() - 15;
+		}
 		
 		hasDied = false;
 	}
@@ -195,6 +202,12 @@ public class Character {
 		hasHitBottom = false;
 		hasHitTop = false;
 		hasDied = false;
+		
+		x = 65 - 23;
+		y = 370 - 23;
+		
+		xVel = 0;
+		yVel = 0;
 	}
 
 	public void draw(Graphics g, int x, int y, int sizeX, int sizeY) {

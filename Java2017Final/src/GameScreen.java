@@ -412,7 +412,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		t++;
+		// t++;
 		//while(true){
 			
 			// CHANGE
@@ -448,6 +448,31 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		
 		}
 		
+	public void reset() {
+
+		helperObj = false;
+		
+		slingPressed = false;
+		slingX = 65;
+		slingY = 370;
+		dragX = slingX;
+		dragY = slingY;
+		charSize = 50;
+
+		// charImg = (new ImageIcon("shelbyface.png").getImage());
+		// slingshot = new Slingshot();
+		// character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot);
+		time = new TimeTracker(character);		
+		
+		slingReleased = false;
+
+		isEditable = true;
+
+		Color SKYBLUE = new Color(175, 238, 238);
+		setBackground(SKYBLUE);
+
+		helpers = new ArrayList<>();
+	}
 	//}
 
 }

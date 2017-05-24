@@ -14,6 +14,7 @@ public class Slingshot {
 	private int objectHeight;
 	private double angle;
 	private int x1, y1, x2, y2;
+	private boolean isNegative;
 
 	// CONSTRUCTORS
 	// to be deleted later
@@ -34,12 +35,18 @@ public class Slingshot {
 		objectHeight = 0;
 		velocityF = 0;
 		yVelocityF = 0;
+		
+		isNegative = false;
 	}
 	
 	private void calculateInitialVelocity() {
 		velocityI = (length * SCALE);
 		yVelocityI =  (velocityI * Math.sin(angle));
 		xVelocity =  (velocityI * Math.cos(angle));
+		
+		if (angle < 0) {
+			isNegative = true;
+		}
 	}
 
 	public void setVelocity() {
@@ -47,11 +54,13 @@ public class Slingshot {
 			calculateFinalVelocity();
 			velocityI =  (-velocityF);
 			velocityF = 0;
+			isNegative = false;
 		}
 		
 		if (Character.getHasHitBottom()){
 			this.angle = -angle;
 			velocityF = velocityI;
+			isNegative = true;
 		}
 
 	}
@@ -106,13 +115,17 @@ public class Slingshot {
 		return jumpNum;
 	}
 	
+	public boolean getIsNegative() {
+		return isNegative;
+	}
+	
 	public void setXY(int x, int y) {
 		x2 = x;
 		y2 = y;
 		
 		length = (int) Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
 		angle = Math.atan((y2 - y1) / (double) (x1 - x2));
-	
+		
 		calculateInitialVelocity();
 	}
 
