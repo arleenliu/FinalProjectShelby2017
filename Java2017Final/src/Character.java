@@ -15,6 +15,7 @@ public class Character {
 	private double beginTime;
 	private static boolean hasHitBottom, hasHitTop;
 	private boolean hasDied;
+	private boolean hasHitTarget;
 	private Slingshot ss;
 	private HelperObject currObj;
 	private int indexOfCurrObj;
@@ -127,7 +128,7 @@ public class Character {
 
 		for (int i = 0; i < helpers.size(); i++) {
 			if (x - (charWidth / 2.0) > helpers.get(i).getX() && x + (charWidth / 2.0) <= helpers.get(i).getX() + 60) {
-				if (y >= helpers.get(i).getY() - 2 * charHeight || y <= helpers.get(i).getY() +  2 * charHeight) {
+				if (y >= helpers.get(i).getY() - charHeight || y <= helpers.get(i).getY() +  charHeight) {
 					if (y >= helpers.get(i).getY()) {
 						hasHitTop = true;
 
@@ -135,9 +136,7 @@ public class Character {
 						currObj = helpers.get(i);
 
 						// break;
-					}
-
-					if (y + charHeight <= helpers.get(i).getY()) {
+					} else {//if (y + charHeight <= helpers.get(i).getY()) {
 						hasHitBottom = true;
 
 						indexOfCurrObj = i;
@@ -150,6 +149,8 @@ public class Character {
 				// ss.setVelocity();
 			}
 		}
+		
+		
 
 	}
 
@@ -187,7 +188,8 @@ public class Character {
 	}
 
 	public boolean getHasDied() {
-		return hasDied;
+		boolean b = hasDied;
+		return b;
 	}
 
 	public void setXY(int x, int y) {
