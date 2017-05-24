@@ -85,6 +85,8 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		slingshot = new Slingshot();
 		character = new Character(40, 340, charSize, charSize + 10, charImg, slingshot);
 		time = new TimeTracker(character);
+		time.startTimeTracker();
+
 		target = new Target(550, 315, 80);
 
 		slingReleased = false;
@@ -111,7 +113,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 		int width = getWidth();
 		int height = getHeight();
 
-		int t = TimeTracker.getTime();
+		int t = time.getTime();
 		String time = "";
 
 		Font timeFont = new Font("SansSerif", Font.BOLD, 20);
@@ -454,7 +456,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 			if (!slingInitTimeSet) {
 				// set start time of fling, so that we can compute diff
 				// correctly
-				AllScreen.panel.character.setInitialTime(TimeTracker.getTime());
+				AllScreen.panel.character.setInitialTime(time.getTime());
 				// slingshot.setXY(dragX, dragY);
 				// character.setXY(dragX, dragY);
 				slingInitTimeSet = true;
@@ -484,7 +486,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 				if (!slingInitTimeSet) {
 					// set start time of fling, so that we can compute diff
 					// correctly
-					AllScreen.panel.character.setInitialTime(TimeTracker.getTime());
+					AllScreen.panel.character.setInitialTime(time.getTime());
 					// slingshot.setXY(dragX, dragY);
 					// character.setXY(dragX, dragY);
 					slingInitTimeSet = true;

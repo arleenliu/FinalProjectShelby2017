@@ -5,11 +5,12 @@ import javax.swing.Timer;
 public class TimeTracker implements ActionListener {
 
 	private static int time;
-	private boolean characterDead;
+	private boolean characterDead; 
+	private Timer clock;
 	
 	public TimeTracker(Character character) {
 		time = 0;
-	    Timer clock = new Timer(1000, this); 
+	    clock = new Timer(1000, this); 
 	    clock.start();
 	    
 	    if(character.getHasDied() == true) {
@@ -28,5 +29,10 @@ public class TimeTracker implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		time++;
+	}
+	public void startTimeTracker(){
+		time = 0;
+	    clock = new Timer(1000, this);
+		clock.start();
 	}
 }
