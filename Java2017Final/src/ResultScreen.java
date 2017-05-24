@@ -12,13 +12,15 @@ public class ResultScreen extends Screen {
 	private Image starImg;
 	private Image shelbyFace;
 	private AllScreen as;
+	private TimeTracker timeTracker;
+	private Character character;
 
 	public ResultScreen(AllScreen as) {
 		this.as = as;
 		starImg = (new ImageIcon("starImg.png").getImage());
 		shelbyFace = (new ImageIcon("shelbyface.png").getImage());
-		
-		time = TimeTracker.getTime();
+
+		time = timeTracker.getTime();
 
 		if(time == -1)
 			score = 0;
