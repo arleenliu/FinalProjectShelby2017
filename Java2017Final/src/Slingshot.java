@@ -56,12 +56,15 @@ public class Slingshot {
 		if (Character.getHasHitTop()){
 			// 
 			c.setYVel(-(c.getYVel()));
+			c.setXVel(c.getXVel());
 			velocityF = 0;
 			isNegative = false;
 		}
 		
 		if (Character.getHasHitBottom()){
 			this.angle = -angle;
+			c.setYVel(-(c.getYVel()));
+			// velocityF = 0;
 			velocityF = velocityI;
 			isNegative = true;
 		}

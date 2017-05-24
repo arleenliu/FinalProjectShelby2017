@@ -18,16 +18,15 @@ public class Character {
 	private Slingshot ss;
 	private HelperObject currObj;
 	private int indexOfCurrObj;
-	
+
 	private double xVel, yVel;
-	
 
 	// CONSTRUCTORS
 	public Character(int xCoor, int yCoor, int w, int h, Image character, Slingshot ss) {
 		x = xCoor;
 		y = yCoor;
-		//xChange = 0;
-		//yChange = 0;
+		// xChange = 0;
+		// yChange = 0;
 		xVel = 0;
 		yVel = 0;
 		charImg = character;
@@ -50,22 +49,22 @@ public class Character {
 	public double getXVel() {
 		return xVel;
 	}
-	
+
 	public double getYVel() {
 		return yVel;
 	}
-	
+
 	public void setYVel(double yVel) {
 		this.yVel = yVel;
 	}
-	
+
 	public void setXVel(double xVel) {
 		this.xVel = xVel;
 	}
-	
+
 	public void setInitialTime(double beginTime) {
 		this.beginTime = beginTime;
-		
+
 	}
 
 	public int getY() {
@@ -78,17 +77,21 @@ public class Character {
 	}
 
 	public void launch() {
-		//double timeDiff = (currentTime - beginTime) * 50;
+		// double timeDiff = (currentTime - beginTime) * 50;
 		// ss.incrementJumpNum();
 		// ss.setVelocity();
 
-		yVel += Slingshot.GRAVITY;
-		
 		x += xVel;
 		y += yVel;
-		
+
+		yVel += Slingshot.GRAVITY;
+
+		hasHitTop = false;
+		hasHitBottom = false;
+
 		// xChange = (int) (ss.getXVelocity() * timeDiff);
-		// yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 * Slingshot.GRAVITY * Math.pow(timeDiff, 2));
+		// yChange = (int) (ss.getInitialYVelocity() * timeDiff - 0.5 *
+		// Slingshot.GRAVITY * Math.pow(timeDiff, 2));
 
 		// int dummy = 0;
 		// dummy += 1;
@@ -123,58 +126,57 @@ public class Character {
 		}
 
 		for (int i = 0; i < helpers.size(); i++) {
-			if (x > helpers.get(i).getX() && x + (charWidth / 2.0) < helpers.get(i).getX() + 60) {
-				if (y + charHeight >= helpers.get(i).getY()) {
-					hasHitTop = true;
+			if (x - (charWidth / 2.0) > helpers.get(i).getX() && x + (charWidth / 2.0) <= helpers.get(i).getX() + 60) {
+				if (y >= helpers.get(i).getY() - 2 * charHeight || y <= helpers.get(i).getY() +  2 * charHeight) {
+					if (y >= helpers.get(i).getY()) {
+						hasHitTop = true;
 
-					indexOfCurrObj = i;
-					currObj = helpers.get(i);
+						indexOfCurrObj = i;
+						currObj = helpers.get(i);
 
-					break;
-				}
+						// break;
+					}
 
-				if (y <= helpers.get(i).getY()) {
-					hasHitBottom = true;
+					if (y + charHeight <= helpers.get(i).getY()) {
+						hasHitBottom = true;
 
-					indexOfCurrObj = i;
-					currObj = helpers.get(i);
+						indexOfCurrObj = i;
+						currObj = helpers.get(i);
 
-					break;
+						// break;
+					}
 				}
 
 				// ss.setVelocity();
 			}
 		}
-			
-			
-		}
 
-		/*
-		 * int x1 = obstacles.get(i).getX1(); int x2 = obstacles.get(i).getX2();
-		 * int x3 = obstacles.get(i).getX3(); int y1 = obstacles.get(i).getY1();
-		 * int y2 = obstacles.get(i).getY2(); int y3 = obstacles.get(i).getY3();
-		 * 
-		 * int m1y = - (y3 - y1); int m1x = (x3 - x1); int m2y = - (y3 - y2);
-		 * int m2x = (x3 - x2);
-		 * 
-		 * int c1 = m1x * x3 + m1y * y3; int c2 = m2x * x3 + m2y * y3;
-		 * 
-		 * if (m1x * (x + xChange + charWidth) + m1y * (y - yChange +
-		 * charHeight) == c1 || m1x * (x + xChange) + m1y * (y - yChange +
-		 * charHeight) == c1 || m1x * (x + xChange + charWidth) + m1y * (y -
-		 * yChange) == c1 || m1x * (x + xChange) + m1y * (y - yChange) == c1) {
-		 * hasDied = true; }
-		 * 
-		 * if (m2x * (x + xChange + charWidth) + m2y * (y - yChange +
-		 * charHeight) == c2 || m2x * (x + xChange) + m2y * (y - yChange +
-		 * charHeight) == c2 || m2x * (x + xChange + charWidth) + m2y * (y -
-		 * yChange) == c2 || m2x * (x + xChange) + m2y * (y - yChange) == c2) {
-		 * hasDied = true; }
-		 */
+	}
 
-		// ss.setVelocity();
-		// x += xChange;
-		// y =
+	/*
+	 * int x1 = obstacles.get(i).getX1(); int x2 = obstacles.get(i).getX2(); int
+	 * x3 = obstacles.get(i).getX3(); int y1 = obstacles.get(i).getY1(); int y2
+	 * = obstacles.get(i).getY2(); int y3 = obstacles.get(i).getY3();
+	 * 
+	 * int m1y = - (y3 - y1); int m1x = (x3 - x1); int m2y = - (y3 - y2); int
+	 * m2x = (x3 - x2);
+	 * 
+	 * int c1 = m1x * x3 + m1y * y3; int c2 = m2x * x3 + m2y * y3;
+	 * 
+	 * if (m1x * (x + xChange + charWidth) + m1y * (y - yChange + charHeight) ==
+	 * c1 || m1x * (x + xChange) + m1y * (y - yChange + charHeight) == c1 || m1x
+	 * * (x + xChange + charWidth) + m1y * (y - yChange) == c1 || m1x * (x +
+	 * xChange) + m1y * (y - yChange) == c1) { hasDied = true; }
+	 * 
+	 * if (m2x * (x + xChange + charWidth) + m2y * (y - yChange + charHeight) ==
+	 * c2 || m2x * (x + xChange) + m2y * (y - yChange + charHeight) == c2 || m2x
+	 * * (x + xChange + charWidth) + m2y * (y - yChange) == c2 || m2x * (x +
+	 * xChange) + m2y * (y - yChange) == c2) { hasDied = true; }
+	 */
+
+	// ss.setVelocity();
+	// x += xChange;
+	// y =
 
 	public static boolean getHasHitTop() {
 		return hasHitTop;
@@ -191,16 +193,15 @@ public class Character {
 	public void setXY(int x, int y) {
 		this.x = x - 23;
 		this.y = y - 23;
-		
-		
+
 		xVel = ss.getXVelocity() * 15;
-		
+
 		// if (!ss.getIsNegative()) {
 		// yVel = -(ss.getInitialYVelocity() + 15);
 		// } else {
-			yVel = ss.getInitialYVelocity() * 15;
+		yVel = ss.getInitialYVelocity() * 15;
 		// }
-		
+
 		hasDied = false;
 	}
 
@@ -213,15 +214,15 @@ public class Character {
 	public int getIndexOfCurrObj() {
 		return indexOfCurrObj;
 	}
-	
+
 	public void reset() {
 		hasHitBottom = false;
 		hasHitTop = false;
 		hasDied = false;
-		
+
 		x = 65 - 23;
 		y = 370 - 23;
-		
+
 		// xVel = 0;
 		yVel = 0;
 	}

@@ -475,10 +475,11 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 				as.changeScreen("Results");
 			}
 
-			repaint();
+			// repaint();
 
 			// CHANGE
-			if (getSlingReleased()) {
+			/*
+			 * if (getSlingReleased()) {
 
 				if (!slingInitTimeSet) {
 					// set start time of fling, so that we can compute diff
@@ -505,6 +506,7 @@ public class GameScreen extends JPanel implements MouseListener, MouseMotionList
 				}
 
 			}
+			*/
 		}
 
 		// System.out.println("repainting....");
