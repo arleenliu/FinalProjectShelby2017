@@ -10,6 +10,7 @@ public class TimeTracker implements ActionListener {
 	private Character c1;
 	
 	public TimeTracker(Character character) {
+		
 		time = 0;
 	    clock = new Timer(1000, this); 
 	    clock.start();
@@ -26,7 +27,7 @@ public class TimeTracker implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		time++;
+		//time++;
 	}
 	public void startTimeTracker(){
 		time = 0;
