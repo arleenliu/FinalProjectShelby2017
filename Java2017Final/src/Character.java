@@ -127,16 +127,22 @@ public class Character {
 
 			}
 		}
+		
+		if (t.getPolygon().intersects(x, y, charWidth, charHeight)) {
+			hasHitTarget = true;
+		}
 
 		for (int i = 0; i < helpers.size(); i++) {
+			/*
+			 * if (x - (charWidth / 2.0) > helpers.get(i).getX() && x +
+			 * (charWidth / 2.0) <= helpers.get(i).getX() +
+			 * helpers.get(i).getHeight()) {
+			 */
 			if (helpers.get(i).intersects(x, y, charWidth, charHeight)) {
 				/*
-				 * if (y >= helpers.get(i).getY()) {
-					hasHitTop = true;
-				} else {
-					hasHitBottom = true;
-				}
-				*/
+				 * if (y >= helpers.get(i).getY()) { hasHitTop = true; } else {
+				 * hasHitBottom = true; }
+				 */
 				hasHitTop = true;
 
 				indexOfCurrObj = i;
@@ -145,10 +151,10 @@ public class Character {
 
 			/*
 			 * if (x - (charWidth / 2.0) > helpers.get(i).getX() && x +
-			 * (charWidth / 2.0) <= helpers.get(i).getX() + 60) { if (y +
-			 * charHeight <= helpers.get(i).getY() || y >=
-			 * helpers.get(i).getY()) { if (y >= helpers.get(i).getY()) {
-			 * hasHitTop = true;
+			 * (charWidth / 2.0) <= helpers.get(i).getX() +
+			 * helpers.get(i).getHeight()) { if (y + charHeight <=
+			 * helpers.get(i).getY() || y >= helpers.get(i).getY()) { if (y >=
+			 * helpers.get(i).getY()) { hasHitTop = true;
 			 * 
 			 * indexOfCurrObj = i; currObj = helpers.get(i);
 			 * 
@@ -162,9 +168,6 @@ public class Character {
 			 * // ss.setVelocity(); } }
 			 */
 
-			if (t.getPolygon().intersects(x, y, charWidth, charHeight)) {
-				hasHitTarget = true;
-			}
 		}
 	}
 
