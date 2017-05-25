@@ -101,10 +101,10 @@ public class Character {
 
 	}
 
-	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, Target t, int screenWidth,
-			int screenHeight) {
+	public void checkHasCollided(ArrayList<HelperObject> helpers, ArrayList<Obstacle> obstacles, Target t,
+			int screenWidth, int screenHeight) {
 
-		if (x <= -50 || x >= screenWidth - 150 || y <= 0 || y >= screenHeight) {
+		if (x <= -charWidth / 2.0 || x >= screenWidth - 150 || y <= 0 || y >= screenHeight) {
 			hasDied = true;
 		}
 
@@ -129,35 +129,45 @@ public class Character {
 		}
 
 		for (int i = 0; i < helpers.size(); i++) {
-			if (x - (charWidth / 2.0) > helpers.get(i).getX() && x + (charWidth / 2.0) <= helpers.get(i).getX() + 60) {
-				if (y + charHeight <= helpers.get(i).getY() || y >= helpers.get(i).getY()) {
-					if (y >= helpers.get(i).getY()) {
-						hasHitTop = true;
-
-						indexOfCurrObj = i;
-						currObj = helpers.get(i);
-
-						// break;
-					} else {//if (y + charHeight <= helpers.get(i).getY()) {
-						hasHitBottom = true;
-
-						indexOfCurrObj = i;
-						currObj = helpers.get(i);
-
-						// break;
-					}
+			if (helpers.get(i).intersects(x, y, charWidth, charHeight)) {
+				/*
+				 * if (y >= helpers.get(i).getY()) {
+					hasHitTop = true;
+				} else {
+					hasHitBottom = true;
 				}
+				*/
+				hasHitTop = true;
 
-				// ss.setVelocity();
+				indexOfCurrObj = i;
+				currObj = helpers.get(i);
+			}
+
+			/*
+			 * if (x - (charWidth / 2.0) > helpers.get(i).getX() && x +
+			 * (charWidth / 2.0) <= helpers.get(i).getX() + 60) { if (y +
+			 * charHeight <= helpers.get(i).getY() || y >=
+			 * helpers.get(i).getY()) { if (y >= helpers.get(i).getY()) {
+			 * hasHitTop = true;
+			 * 
+			 * indexOfCurrObj = i; currObj = helpers.get(i);
+			 * 
+			 * // break; } else {//if (y + charHeight <= helpers.get(i).getY())
+			 * { hasHitBottom = true;
+			 * 
+			 * indexOfCurrObj = i; currObj = helpers.get(i);
+			 * 
+			 * // break; } }
+			 * 
+			 * // ss.setVelocity(); } }
+			 */
+
+			if (t.getPolygon().intersects(x, y, charWidth, charHeight)) {
+				hasHitTarget = true;
 			}
 		}
-		
-		if (t.getPolygon().intersects(x, y, charWidth, charHeight)) {
-			hasHitTarget = true;
-		}
-
 	}
-	
+
 	public boolean getHasHitTarget() {
 		boolean b = hasHitTarget;
 		return b;

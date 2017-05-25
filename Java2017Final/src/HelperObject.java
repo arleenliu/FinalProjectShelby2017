@@ -1,13 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Polygon;
+import java.awt.geom.Rectangle2D;
 
 //delete this later prob
-public class HelperObject {
+public class HelperObject extends Rectangle2D {
 
-	int x, y;
-	int width;
-	int height;
+	double x, y;
+	double width;
+	double height;
 	
 	public HelperObject(int x, int y, int width, int height) {
 		this.x = x;
@@ -15,25 +15,68 @@ public class HelperObject {
 		this.width = width;
 		this.height = height;
 		
+		setRect(x, y, width, height);
 	}
 	
 	public void draw(Graphics g, Color colour) {
 		g.setColor(colour);
-		g.fillRect(x, y, width, height);
+		g.fillRect((int) x, (int) y, (int) width, (int) height);
 	}
 	
-	public int getX() {
+	@Override
+	public void setRect(double x, double y, double w, double h) {
+		// TODO Auto-generated method stub
+		this.x = x;
+		this.y = y;
+		width = w;
+		height = h;
+	}
+
+	@Override
+	public int outcode(double x, double y) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Rectangle2D createIntersection(Rectangle2D r) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rectangle2D createUnion(Rectangle2D r) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public double getX() {
+		// TODO Auto-generated method stub
 		return x;
 	}
-	
-	public int getY() {
+
+	@Override
+	public double getY() {
+		// TODO Auto-generated method stub
 		return y;
 	}
 
-	public int getWidth() {
+	@Override
+	public double getWidth() {
+		// TODO Auto-generated method stub
 		return width;
 	}
-	public int getHeight() {
+
+	@Override
+	public double getHeight() {
+		// TODO Auto-generated method stub
 		return height;
 	}
 	
