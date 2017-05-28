@@ -42,19 +42,21 @@ public class ResultScreen extends Screen {
 		// score = 4;
 		// else // ((time>0 && time<= 30))
 		// score = 5;
+		System.out.println(as.panel.getHasHitTarget()+ "");
+
 	}
 
 	public void paintComponent(Graphics g) {
 
-		
+		System.out.println(as.panel.getHasHitTarget()+ "");
 		if (as.panel.getHasHitTarget()) {
-			if (time > 120)
+			if (time > 40)
 				score = 1;
-			else if (time > 45 && time <= 120)
+			else if (time > 20 && time <= 40)
 				score = 2;
-			else if (time > 30 && time <= 45)
+			else if (time > 10 && time <= 20)
 				score = 3;
-			else if (time > 15 && time <= 30)
+			else if (time > 5 && time <= 10)
 				score = 4;
 			else // ((time>0 && time<= 30))
 				score = 5;
